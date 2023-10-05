@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header (Gray) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#808080" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+         />
+
+    <!-- Driver's License -->
+
+    <TextView
+        android:id="@+id/documentCheckTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/backButton"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="-4dp"
+        android:layout_toEndOf="@id/backButton"
+        android:gravity="center"
+        android:text="Document Check"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/driversLicenseTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Driver's License"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18sp"
+         />
+
+    <RadioButton
+        android:id="@+id/driversLicenseRadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/driversLicenseTag"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp" />
+
+    <!-- OR/CR -->
+    <TextView
+        android:id="@+id/orcrTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/driversLicenseTag"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="OR/CR"
+        android:textSize="18sp"
+        android:textColor="@android:color/holo_blue_dark"
+         />
+
+    <RadioButton
+        android:id="@+id/orcrRadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBaseline="@id/orcrTag"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Local Transport Permit -->
+    <TextView
+        android:id="@+id/localTransportPermitTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orcrTag"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Local Transport Permit"
+        android:textSize="18sp"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <RadioButton
+        android:id="@+id/localTransportPermitRadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBaseline="@id/localTransportPermitTag"
+        android:layout_marginEnd="16dp" />
+
+    <!-- E-Signature -->
+    <TextView
+        android:id="@+id/eSignatureTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/localTransportPermitTag"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="E-Signature"
+        android:textSize="18sp"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <!-- Image Box for E-Signature -->
+
+    <!-- Buttons (Clear and Verify Documents) -->
+    <ImageView
+        android:id="@+id/eSignatureImage"
+        android:layout_width="381dp"
+        android:layout_height="193dp"
+        android:layout_below="@id/eSignatureTag"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="8dp"
+        android:background="#CCCCCC" />
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eSignatureImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:text="Clear" />
+
+    <Button
+        android:id="@+id/verifyDocumentsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eSignatureImage"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:text="Verify Documents" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-2dp"
+        android:background="#808080" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="252dp"
+        android:layout_marginBottom="121dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/holo_blue_dark"
+        android:text="Clear" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="195dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="121dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Verify Load" />
+
+</RelativeLayout>
+</LinearLayout>
+

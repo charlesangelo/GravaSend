@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="27dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <!-- Tag: My Truck -->
+    <TextView
+        android:id="@+id/myTruckTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/backButton"
+        android:layout_centerHorizontal="true"
+        android:text="My Truck"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_blue_dark" /> <!-- Blue color, you can use other color codes or resources as needed -->
+
+    <!-- Plate No. -->
+    <TextView
+        android:id="@+id/plateNoTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myTruckTag"
+        android:layout_marginTop="16dp"
+        android:text="Plate No." />
+
+    <EditText
+        android:id="@+id/plateNoEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plateNoTag"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Plate No." />
+
+    <!-- Chassis No. -->
+    <TextView
+        android:id="@+id/chassisNoTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plateNoEditText"
+        android:layout_marginTop="16dp"
+        android:text="Chassis No." />
+
+    <EditText
+        android:id="@+id/chassisNoEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chassisNoTag"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Chassis No." />
+
+    <!-- Engine No. -->
+    <TextView
+        android:id="@+id/engineNoTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chassisNoEditText"
+        android:layout_marginTop="16dp"
+        android:text="Engine No." />
+
+    <EditText
+        android:id="@+id/engineNoEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/engineNoTag"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Engine No." />
+
+    <!-- Model -->
+    <TextView
+        android:id="@+id/modelTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/engineNoEditText"
+        android:layout_marginTop="16dp"
+        android:text="Model" />
+
+    <EditText
+        android:id="@+id/modelEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/modelTag"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Model" />
+
+    <!-- Mileage -->
+    <TextView
+        android:id="@+id/mileageTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/modelEditText"
+        android:layout_marginTop="16dp"
+        android:text="Mileage" />
+
+    <EditText
+        android:id="@+id/mileageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="256dp"
+        android:hint="Enter Mileage" />
+
+    <!-- Done Button -->
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="578dp"
+        android:layout_marginEnd="161dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Done" />
+
+</RelativeLayout>

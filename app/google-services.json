@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "359996352620",
+    "project_id": "gravasend-965f7",
+    "storage_bucket": "gravasend-965f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359996352620:android:2e1ef8f3607b422bd8d049",
+        "android_client_info": {
+          "package_name": "com.example.gravasend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqlnNdYQeGI08dcE4IP4-ARH0DGTok0qU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

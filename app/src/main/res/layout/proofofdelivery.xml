@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header (Gray) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#808080" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Back Button (Upper Left) -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="31dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <!-- Tag: Proof of Delivery -->
+
+    <!-- Tag: E-Signature -->
+    <TextView
+        android:id="@+id/proofOfDeliveryTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/backButton"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/backButton"
+        android:text="Proof of Delivery"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/eSignatureTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/proofOfDeliveryTag"
+        android:layout_alignStart="@id/proofOfDeliveryTag"
+        android:layout_marginStart="-116dp"
+        android:layout_marginTop="18dp"
+        android:text="E-Signature"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18sp"
+         />
+
+    <ImageView
+        android:id="@+id/sampleImageBox"
+        android:layout_width="wrap_content"
+        android:layout_height="203dp"
+        android:layout_alignStart="@id/eSignatureTag"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/darker_gray" />
+
+    <!-- Date Input -->
+    <EditText
+        android:id="@+id/dateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sampleImageBox"
+        android:layout_marginTop="16dp"
+        android:hint="Date"
+        android:inputType="text" />
+
+    <!-- Time Input -->
+    <EditText
+        android:id="@+id/timeInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateInput"
+        android:layout_marginTop="16dp"
+        android:hint="Time"
+        android:inputType="text" />
+
+    <!-- Buttons: Clear and Complete Trip (Side by Side) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeInput"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <!-- Clear Button -->
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_blue_dark"
+            android:text="Clear"
+            android:backgroundTint="@android:color/white"/>
+
+        <!-- Complete Trip Button -->
+        <Button
+            android:id="@+id/completeTripButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Complete Trip"
+            android:backgroundTint="@android:color/holo_blue_dark"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-2dp"
+        android:background="#808080" />
+
+</RelativeLayout>
+
+</LinearLayout>

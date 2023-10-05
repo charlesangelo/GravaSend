@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header (Gray) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#808080" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+             />
+
+        <!-- Tag: Maintenance History -->
+        <TextView
+            android:id="@+id/maintenanceHistoryTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/backButton"
+            android:layout_centerHorizontal="true"
+            android:text="Inspection Records"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark" /> <!-- Blue color, you can use other color codes or resources as needed -->
+
+        <!-- First Text Field -->
+
+        <!-- Second Text Field -->
+
+        <!-- Radio Button -->
+
+        <TextView
+            android:id="@+id/firstMaintenanceItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/maintenanceHistoryTag"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="57dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="131dp"
+            android:text="July 12, 2023 9:00 AM CY52M" />
+
+        <!-- Radio Button -->
+        <RadioButton
+            android:id="@+id/firstMaintenanceItemRadioButton"
+            android:layout_width="105dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="288dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="574dp"
+            android:text="Passed" />
+
+        <TextView
+            android:id="@+id/secondMaintenanceItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/firstMaintenanceItem"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="142dp"
+            android:text="Jul 13, 2023 10:00 AM CY527M" />
+
+        <RadioButton
+            android:id="@+id/secondMaintenanceItemRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="290dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="519dp"
+            android:text="Passed" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-2dp"
+            android:background="#808080" />
+
+    </RelativeLayout>
+
+</LinearLayout>

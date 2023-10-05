@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header (Gray) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#808080" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="36dp"
+        android:layout_height="33dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/tripDashboardText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/backButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="-3dp"
+        android:text="Trip Dashboard"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/sampleLocationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tripDashboardText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Sample Location - September 29, 2023"
+        android:textSize="16sp" />
+
+    <!-- Cargo Details -->
+    <TextView
+        android:id="@+id/cargoDetailsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sampleLocationText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Cargo Details"
+        android:textSize="18sp"
+
+        android:textColor="@android:color/holo_blue_dark"/>
+
+    <!-- Text Box below Cargo Details -->
+    <EditText
+        android:id="@+id/cargoDetailsDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cargoDetailsText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Cargo details description goes here"
+        android:textSize="16sp" />
+
+    <!-- Special Instructions -->
+    <TextView
+        android:id="@+id/specialInstructionsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cargoDetailsDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Special Instructions"
+        android:textSize="18sp"
+        android:textColor="@android:color/holo_blue_dark"/>
+
+    <!-- Text Box below Special Instructions -->
+    <EditText
+        android:id="@+id/specialInstructionsDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/specialInstructionsText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Special instructions description goes here"
+        android:textSize="16sp"
+        />
+
+    <!-- Complete Trip Button -->
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="525dp"
+        android:layout_marginEnd="118dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Complete trip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-2dp"
+        android:background="#808080" />
+
+</RelativeLayout>
+
+</LinearLayout>

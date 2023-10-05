@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:visibility="visible">
+
+    <!-- Title -->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="142dp"
+        android:layout_height="25dp"
+        android:layout_alignEnd="@+id/myTripsButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="237dp"
+        android:layout_marginTop="285dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="422dp"
+        android:gravity="center"
+        android:text="My Trips"
+        android:textColor="#090707" />
+
+    <!-- Set background color to blue (#0000FF) -->
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp"
+        android:gravity="center"
+        android:text="JMIG"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="142dp"
+        android:layout_height="25dp"
+        android:layout_alignEnd="@+id/truckInfoButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="282dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="424dp"
+        android:gravity="center"
+        android:text="Truck Information"
+        android:textColor="#090707" />
+
+
+    <Button
+        android:id="@+id/truckInfoButton"
+        android:layout_width="143dp"
+        android:layout_height="113dp"
+        android:layout_below="@+id/titleTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="226dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:drawableRight="@drawable/ic_launcher_foreground"
+        android:drawablePadding="10dp"
+        android:text="Truck Information"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/myTripsButton"
+        android:layout_width="143dp"
+        android:layout_height="113dp"
+        android:layout_below="@+id/truckInfoButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="233dp"
+        android:layout_marginTop="-110dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:drawableRight="@drawable/ic_launcher_foreground"
+        android:drawablePadding="10dp"
+        android:text="Truck Information"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="143dp"
+        android:layout_height="113dp"
+        android:layout_below="@+id/titleTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="288dp"
+        android:layout_marginEnd="133dp"
+        android:layout_marginBottom="274dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:drawableRight="@drawable/ic_launcher_foreground"
+        android:drawablePadding="10dp"
+        android:text="Truck Information"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="98dp"
+        android:layout_marginBottom="622dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="GRAVASEND"
+        android:textColor="#245678"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="53dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="527dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginBottom="185dp"
+        android:text="Logout"
+        android:textColor="#050202" />
+
+</RelativeLayout>
