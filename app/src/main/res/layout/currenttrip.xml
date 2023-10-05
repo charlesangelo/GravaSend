@@ -56,7 +56,7 @@
                 android:id="@+id/btnMyTruck"
                 android:layout_width="250dp"
                 android:layout_height="70dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
+                android:backgroundTint="@android:color/black"
                 android:text="Trip Dashboard" />
 
             <Button
