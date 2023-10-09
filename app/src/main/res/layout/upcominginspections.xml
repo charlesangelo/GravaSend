@@ -40,23 +40,24 @@
 
         <!-- Second Text Field -->
 
-        <!-- Radio Button -->
+        <!-- Checkbox -->
+
+        <!-- Checkbox -->
 
         <EditText
-            android:id="@+id/firstMaintenanceItem"
+            android:id="@+id/TB2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/maintenanceHistoryTag"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="57dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="131dp"
-            android:text="July 12, 2023 9:00 AM Main Branch" />
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="98dp"
+            android:layout_marginEnd="141dp"
+            android:hint="Date 1" />
 
-        <!-- Radio Button -->
-        <RadioButton
-            android:id="@+id/firstMaintenanceItemRadioButton"
+        <CheckBox
+            android:id="@+id/CB1"
             android:layout_width="105dp"
             android:layout_height="38dp"
             android:layout_alignParentStart="true"
@@ -67,20 +68,23 @@
             android:layout_marginBottom="574dp"
             android:text="Due Today" />
 
+        <!-- Checkbox -->
+
         <EditText
-            android:id="@+id/secondMaintenanceItem"
+            android:id="@+id/TB1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/firstMaintenanceItem"
+
+            android:layout_below="@+id/maintenanceHistoryTag"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="58dp"
-            android:layout_marginTop="38dp"
-            android:layout_marginEnd="142dp"
-            android:text="Jul 13, 2023 10:00 AM Main Branch" />
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="138dp"
+            android:hint="Date 2" />
 
-        <RadioButton
-            android:id="@+id/secondMaintenanceItemRadioButton"
+        <CheckBox
+            android:id="@+id/CB2"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -90,6 +94,21 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="519dp"
             android:text="Due Today" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="444dp"
+            android:layout_marginEnd="160dp"
+            android:layout_marginBottom="190dp"
+            android:text="Done" />
+
 
         <View
             android:layout_width="match_parent"

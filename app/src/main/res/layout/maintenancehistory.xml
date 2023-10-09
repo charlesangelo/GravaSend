@@ -9,96 +9,119 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#808080" />
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <!-- Back Button -->
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="37dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_launcher_background" />
-
-    <!-- Tag: Maintenance History -->
-    <TextView
-        android:id="@+id/maintenanceHistoryTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/backButton"
-        android:layout_centerHorizontal="true"
-        android:text="Maintenance History"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_blue_dark" /> <!-- Blue color, you can use other color codes or resources as needed -->
-
-    <!-- First Text Field -->
-
-    <!-- Second Text Field -->
-
-    <!-- Radio Button -->
-
-    <EditText
-        android:id="@+id/firstMaintenanceItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/maintenanceHistoryTag"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="131dp"
-        android:text="July 12, 2023 9:00 AM Filter change" />
-
-    <!-- Radio Button -->
-
-    <RadioButton
-        android:id="@+id/firstMaintenanceItemRadioButton"
-        android:layout_width="105dp"
-        android:layout_height="38dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="289dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="566dp"
-        android:text="Completed" />
-
-    <EditText
-        android:id="@+id/secondMaintenanceItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/firstMaintenanceItem"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="142dp"
-        android:text="Jul 13, 2023 10:00 AM Oil Change" />
-
-    <RadioButton
-        android:id="@+id/secondMaintenanceItemRadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="291dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="466dp"
-        android:text="Completed" />
-
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-2dp"
-        android:background="#808080" />
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="37dp"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_launcher_background" />
 
+        <!-- Tag: Maintenance History -->
+        <TextView
+            android:id="@+id/maintenanceHistoryTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/backButton"
+            android:layout_centerHorizontal="true"
+            android:text="Maintenance History"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark" />
+
+        <!-- First Text Field -->
+
+        <!-- Checkbox (replacing Radio Button) -->
+
+        <EditText
+            android:id="@+id/firstMaintenanceItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/maintenanceHistoryTag"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="57dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="131dp"
+            android:hint="Filter Change Date" />
+
+        <!-- Checkbox (replacing Radio Button) -->
+
+        <CheckBox
+            android:id="@+id/checkB1"
+            android:layout_width="105dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="289dp"
+            android:layout_marginTop="77dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="566dp"
+            android:text="Completed" />
+
+
+        <!-- Checkbox (replacing Radio Button) -->
+
+        <EditText
+            android:id="@+id/thirdMaintenanceItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstMaintenanceItem"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="59dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="141dp"
+            android:layout_marginBottom="481dp"
+            android:hint="Oil Change Date" />
+
+        <!-- Done Button -->
+
+        <CheckBox
+            android:id="@+id/checkB2"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="287dp"
+            android:layout_marginTop="158dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="489dp"
+            android:text="Completed" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="444dp"
+            android:layout_marginEnd="160dp"
+            android:layout_marginBottom="190dp"
+            android:text="Done" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-2dp"
+            android:background="#808080" />
+
+    </RelativeLayout>
 </LinearLayout>

@@ -22,7 +22,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-             />
+            />
 
         <!-- Tag: Maintenance History -->
         <TextView
@@ -40,9 +40,9 @@
 
         <!-- Second Text Field -->
 
-        <!-- Radio Button -->
+        <!-- Checkbox -->
 
-        <TextView
+        <EditText
             android:id="@+id/firstMaintenanceItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,12 +52,12 @@
             android:layout_marginStart="57dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="131dp"
-            android:text="July 12, 2023 9:00 AM CY52M" />
+            android:hint="Inspection Date 1" />
 
-        <!-- Radio Button -->
-        <RadioButton
-            android:id="@+id/firstMaintenanceItemRadioButton"
-            android:layout_width="105dp"
+        <!-- Checkbox -->
+        <CheckBox
+            android:id="@+id/firstMaintenanceItemCheckBox"
+            android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -67,7 +67,7 @@
             android:layout_marginBottom="574dp"
             android:text="Passed" />
 
-        <TextView
+        <EditText
             android:id="@+id/secondMaintenanceItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,10 +77,11 @@
             android:layout_marginStart="58dp"
             android:layout_marginTop="38dp"
             android:layout_marginEnd="142dp"
-            android:text="Jul 13, 2023 10:00 AM CY527M" />
+            android:hint="Inspection Date 1" />
 
-        <RadioButton
-            android:id="@+id/secondMaintenanceItemRadioButton"
+        <!-- Checkbox -->
+        <CheckBox
+            android:id="@+id/secondMaintenanceItemCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -90,6 +91,20 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="519dp"
             android:text="Passed" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="444dp"
+            android:layout_marginEnd="160dp"
+            android:layout_marginBottom="190dp"
+            android:text="Done" />
 
         <View
             android:layout_width="match_parent"
