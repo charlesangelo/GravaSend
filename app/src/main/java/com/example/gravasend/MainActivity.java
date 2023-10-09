@@ -4,25 +4,28 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.gravasend.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.ValueEventListener;
-import android.util.Log;
-
-import java.util.HashMap;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout passInput;
     private TextInputEditText accountNumberEditText;
     private TextInputEditText passwordEditText;
+    private Button registerButton; // Add this line
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private FirebaseFirestore db; // Firestore instance
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +46,25 @@ public class MainActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        // Initialize Firebase Database
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference(); // Replace with your desired reference name
-
-        DatabaseReference mydb = myRef.child("login");
+        // Initialize Firebase Firestore
+        db = FirebaseFirestore.getInstance();
 
         // Initialize views
         unameInput = findViewById(R.id.unameInput);
         passInput = findViewById(R.id.passInput);
         accountNumberEditText = findViewById(R.id.accountNumberEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+
+        // Initialize the Register button and set an OnClickListener
+        registerButton = findViewById(R.id.RegisterButton); // Add this line
+        registerButton.setOnClickListener(new View.OnClickListener() { // Add this block
+            @Override
+            public void onClick(View v) {
+                // Redirect to RegisterActivity when the "Register" button is clicked
+                Intent intent = new Intent(MainActivity.this, Register.class);
+                startActivity(intent);
+            }
+        });
 
         // Initialize the SignInButton and set an OnClickListener
         findViewById(R.id.SignInButton).setOnClickListener(new View.OnClickListener() {
@@ -75,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                         startHomeActivity();
                                     } else {
                                         // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Log.e(TAG, "signInWithEmail:failure", task.getException());
                                         Toast.makeText(MainActivity.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
@@ -86,42 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // Read data from Firebase
-        // Read data from Firebase as a HashMap
-        mydb.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Check if the data exists
-                if (dataSnapshot.exists()) {
-                    // Read data as a HashMap
-                    HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
-
-                    // Now, you can access specific values from the HashMap
-                    if (dataMap != null) {
-                        // For example, if you have a key called "someKey" in the HashMap
-                        Object someValue = dataMap.get("someKey");
-                        if (someValue instanceof String) {
-                            String stringValue = (String) someValue;
-                            Log.d(TAG, "Data from Firebase: " + stringValue);
-                        } else {
-                            Log.d(TAG, "Data from Firebase is not a String.");
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle errors here
-                Log.e(TAG, "Database read failed: " + error.getMessage());
-            }
-        });
-
     }
-        private void startHomeActivity () {
-            // Create an Intent to start the HomeActivity
-            Intent intent = new Intent(this, Home.class);
-            startActivity(intent);
-        }
+
+    private void startHomeActivity() {
+        // Create an Intent to start the HomeActivity
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
+}

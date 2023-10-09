@@ -86,11 +86,11 @@
         android:id="@+id/SignInButton"
         android:layout_width="112dp"
         android:layout_height="47dp"
-        android:text="Login"
         android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintHorizontal_bias="0.832"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unameInput"
         app:layout_constraintVertical_bias="0.21" />
@@ -123,4 +123,20 @@
         app:layout_constraintTop_toBottomOf="@+id/SignInButton"
         app:layout_constraintVertical_bias="0.0" /> <!-- Set the font color to black -->
 
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="104dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/SignInButton"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.625"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
