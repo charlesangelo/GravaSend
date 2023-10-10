@@ -36,7 +36,6 @@
             android:textStyle="bold"
             android:textColor="@android:color/holo_blue_dark" /> <!-- Blue color, you can use other color codes or resources as needed -->
 
-
         <EditText
             android:id="@+id/firstMaintenanceItem"
             android:layout_width="wrap_content"
@@ -47,11 +46,11 @@
             android:layout_marginStart="57dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="131dp"
-            android:text="Job Order #1 July 12, 2023 9:00am" />
+            android:hint="Job Order #1 July 12, 2023 9:00am" />
 
-        <!-- Radio Button -->
-        <RadioButton
-            android:id="@+id/firstMaintenanceItemRadioButton"
+        <!-- Check Box -->
+        <CheckBox
+            android:id="@+id/firstMaintenanceItemCheckBox"
             android:layout_width="105dp"
             android:layout_height="38dp"
             android:layout_alignParentStart="true"
@@ -72,10 +71,12 @@
             android:layout_marginStart="58dp"
             android:layout_marginTop="38dp"
             android:layout_marginEnd="142dp"
-            android:text="Job Order #2 July 12, 2023 11:00am"/>
+            android:hint="Job Order #2 July 12, 2023 11:00am"/>
 
-        <RadioButton
-            android:id="@+id/secondMaintenanceItemRadioButton"
+        <!-- Check Box -->
+
+        <CheckBox
+            android:id="@+id/secondMaintenanceItemCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -83,7 +84,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="290dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="519dp"
+            android:layout_marginBottom="453dp"
             android:text="Completed" />
 
         <View
@@ -94,5 +95,4 @@
             android:background="#808080" />
 
     </RelativeLayout>
-
 </LinearLayout>
