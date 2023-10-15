@@ -21,30 +21,29 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class SafetyChecklist extends AppCompatActivity {
+    // Define the UI elements
     private ImageButton backButton;
-    private Button saveButton, clearButton;
+    private Button saveButton, clearButton, selectImageButton;
     private EditText plateNumberInput, odometerInput, imageDescriptionInput;
     private CheckBox checkBox;
     private DatabaseReference userReference;
     private FirebaseAuth firebaseAuth;
     private ImageView imagePlaceholder;
     private Uri selectedImageUri;
-    private String imageUrl; // Store the image URL
+    private String imageUrl;
 
     // Request code for image selection
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -73,6 +72,7 @@ public class SafetyChecklist extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
         saveButton = findViewById(R.id.button4);
         clearButton = findViewById(R.id.button3);
+        selectImageButton = findViewById(R.id.selectImageButton);
         plateNumberInput = findViewById(R.id.plateNumberInput);
         odometerInput = findViewById(R.id.odometerInput);
         imageDescriptionInput = findViewById(R.id.imageDescriptionInput);
@@ -82,6 +82,7 @@ public class SafetyChecklist extends AppCompatActivity {
         // Load existing data when the activity starts
         loadUserData();
 
+        // Handle the "Back" button click
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +91,7 @@ public class SafetyChecklist extends AppCompatActivity {
             }
         });
 
+        // Handle the "Save" button click
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +99,7 @@ public class SafetyChecklist extends AppCompatActivity {
             }
         });
 
+        // Handle the "Clear" button click
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +108,7 @@ public class SafetyChecklist extends AppCompatActivity {
         });
 
         // Set an onClickListener for the imagePlaceholder
-        imagePlaceholder.setOnClickListener(new View.OnClickListener() {
+        selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Check for runtime permissions on Android Marshmallow and above
@@ -220,7 +223,6 @@ public class SafetyChecklist extends AppCompatActivity {
 
         Toast.makeText(SafetyChecklist.this, "Data cleared successfully.", Toast.LENGTH_SHORT).show();
     }
-
 
     private void launchImagePicker() {
         // Launch the image picker
