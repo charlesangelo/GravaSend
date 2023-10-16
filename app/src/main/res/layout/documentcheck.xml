@@ -1,53 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- Header (Gray) -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#808080" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="#004aad"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
 
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints" />
 
-        <!-- Driver's License -->
         <TextView
             android:id="@+id/documentCheckTag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/backButton"
-            android:layout_marginStart="82dp"
-            android:layout_marginTop="-4dp"
-            android:layout_toEndOf="@id/backButton"
-            android:gravity="center"
+            android:layout_width="241dp"
+            android:layout_height="51dp"
+            android:gravity=""
+            android:paddingLeft="20dp"
             android:text="Document Check"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="370dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="28dp"
+        android:background="#bebcbb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.001">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_license" />
 
         <TextView
             android:id="@+id/driversLicenseTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/backButton"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
             android:text="Driver's License"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="#004aad"
             android:textSize="18sp" />
 
         <CheckBox
@@ -55,126 +78,146 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/driversLicenseTag"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp" />
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="15dp" />
+    </FrameLayout>
 
-        <!-- OR/CR -->
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="370dp"
+        android:layout_height="75dp"
+        android:background="#bebcbb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.015">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_document" />
+
         <TextView
             android:id="@+id/orcrTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/driversLicenseTag"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
             android:text="OR/CR"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="#004aad"
+            android:textSize="18sp" />
 
         <CheckBox
             android:id="@+id/orcrCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBaseline="@id/orcrTag"
-            android:layout_marginEnd="16dp" />
+            android:layout_alignBaseline="@id/driversLicenseTag"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="15dp" />
+    </FrameLayout>
 
-        <!-- Local Transport Permit -->
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="370dp"
+        android:layout_height="75dp"
+        android:background="#bebcbb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
+        app:layout_constraintVertical_bias="0.019">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="70dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_inspect" />
+
         <TextView
             android:id="@+id/localTransportPermitTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/orcrTag"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
             android:text="Local Transport Permit"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="#004aad"
+            android:textSize="18sp" />
 
         <CheckBox
             android:id="@+id/localTransportPermitCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBaseline="@id/localTransportPermitTag"
-            android:layout_marginEnd="16dp" />
+            android:layout_alignBaseline="@id/driversLicenseTag"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="15dp" />
+    </FrameLayout>
 
-        <!-- E-Signature -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="370dp"
+        android:layout_height="185dp"
+        android:background="#bebcbb"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+        app:layout_constraintVertical_bias="0.039">
+
         <TextView
             android:id="@+id/eSignatureTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/localTransportPermitTag"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:text="E-Signature"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_blue_dark" />
-
-        <!-- Image Box for E-Signature -->
-
-        <!-- Buttons (Clear and Verify Documents) -->
-        <!-- Image Box for E-Signature -->
-
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <com.example.gravasend.SignatureView
             android:id="@+id/signatureView"
-            android:layout_width="361dp"
-            android:layout_height="183dp"
-            android:layout_below="@id/eSignatureTag"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="23dp"
-            android:background="#CCCCCC" />
+            android:layout_width="330dp"
+            android:layout_height="124dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFF" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/verifyDocumentsButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_weight="1"
-            android:text="Verify Documents" />
+    <Button
+        android:id="@+id/verifyLoadButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#004aad"
+        android:text="Verify Load"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="-2dp"
-            android:background="#808080" />
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#F3EEEB"
+        android:shadowColor="@color/black"
+        android:text="Clear Data"
+        android:textColor="#004aad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928" />
 
 
-        <Button
-            android:id="@+id/clearButton"
-            android:layout_width="136dp"
-            android:layout_height="59dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="512dp"
-            android:layout_marginEnd="242dp"
-            android:layout_marginBottom="111dp"
-            android:text="Clear Data" />
-
-        <Button
-            android:id="@+id/verifyLoadButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="195dp"
-            android:layout_marginEnd="58dp"
-            android:layout_marginBottom="121dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:text="Verify Load" />
-
-    </RelativeLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

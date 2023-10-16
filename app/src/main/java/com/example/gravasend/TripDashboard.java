@@ -40,7 +40,7 @@ public class TripDashboard extends AppCompatActivity {
 
         // Initialize views
         backButton = findViewById(R.id.backButton);
-        doneButton = findViewById(R.id.doneButton);
+        /*doneButton = findViewById(R.id.doneButton);
 
         sampleLocationText = findViewById(R.id.sampleLocationText);
         cargoDetailsDescription = findViewById(R.id.cargoDetailsDescription);
@@ -48,7 +48,7 @@ public class TripDashboard extends AppCompatActivity {
 
         // Load existing data from Firebase and populate the EditText fields
         loadExistingData();
-
+*/
         // Back Button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +56,7 @@ public class TripDashboard extends AppCompatActivity {
                 finish();
             }
         });
-
+/*
         // Done Button
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,5 +129,8 @@ public class TripDashboard extends AppCompatActivity {
         sampleLocationText.setText("");
         cargoDetailsDescription.setText("");
         specialInstructionsDescription.setText("");
+
+
+ */
     }
 }

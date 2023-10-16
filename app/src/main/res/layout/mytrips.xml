@@ -1,70 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <!-- Header (Gray) -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#808080" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="#004aad"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
 
-        <!-- Back Button -->
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="42dp"
-            android:layout_height="29dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_launcher_background" />
-
-        <!-- Tag: Maintenance History -->
-        <TextView
-            android:id="@+id/maintenanceHistoryTag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/backButton"
-            android:layout_centerHorizontal="true"
-            android:text="My Trips"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_dark" />
-
-        <!-- Buttons (Current Trip and Trip History) -->
-        <Button
-            android:id="@+id/currentTripButton"
-            android:layout_width="250dp"
-            android:layout_height="70dp"
-            android:layout_below="@id/maintenanceHistoryTag"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:text="Current Trip" />
-
-        <Button
-            android:id="@+id/tripHistoryButton"
-            android:layout_width="250dp"
-            android:layout_height="70dp"
-            android:layout_below="@id/currentTripButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:text="Trip History" />
-
-        <View
-            android:layout_width="match_parent"
+            android:layout_width="48dp"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="-2dp"
-            android:background="#808080" />
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@id/maintenanceHistoryTag"
+            android:layout_width="241dp"
+            android:layout_height="51dp"
+            android:gravity=""
+            android:paddingLeft="20dp"
+            android:text="My Trips"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/currentTripButton"
+        android:layout_width="318dp"
+        android:layout_height="94dp"
+        android:backgroundTint="#bebcbb"
+        android:src="@drawable/ic_bluetruckfull"
+        android:paddingRight="240dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
+
+
+    <ImageButton
+        android:id="@+id/tripHistoryButton"
+        android:layout_width="318dp"
+        android:layout_height="94dp"
+        android:backgroundTint="#bebcbb"
+        android:gravity="center"
+        android:paddingRight="240dp"
+        android:src="@drawable/ic_history"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentTripButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="Current Trip"
+        android:textColor="#004aad"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/currentTripButton"
+        app:layout_constraintEnd_toEndOf="@+id/currentTripButton"
+        app:layout_constraintHorizontal_bias="0.299"
+        app:layout_constraintStart_toStartOf="@+id/currentTripButton"
+        app:layout_constraintTop_toTopOf="@+id/currentTripButton" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="Trip History"
+        android:textColor="#004aad"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/tripHistoryButton"
+        app:layout_constraintEnd_toEndOf="@+id/tripHistoryButton"
+        app:layout_constraintHorizontal_bias="0.299"
+        app:layout_constraintStart_toStartOf="@+id/tripHistoryButton"
+        app:layout_constraintTop_toBottomOf="@+id/tripHistoryButton"
+        app:layout_constraintVertical_bias="0.525" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

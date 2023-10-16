@@ -1,129 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- Header (Gray) -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#808080" />
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <!-- Back Button -->
-
-    <Button
-        android:id="@+id/VerifyLV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="225dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="121dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:text="Verify" />
-
-    <Button
-        android:id="@+id/clearLV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="252dp"
-        android:layout_marginBottom="121dp"
-        android:backgroundTint="@android:color/white"
-        android:textColor="@android:color/holo_blue_dark"
-        android:text="Clear" />
-
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="34dp"
-        android:layout_height="33dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_launcher_background" />
-
-    <!-- Tag: Load Verification -->
-
-    <!-- Tag: Cargo Type -->
-
-    <TextView
-        android:id="@+id/loadVerificationTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/backButton"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@id/backButton"
-        android:gravity="center"
-        android:text="Load Verification"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/cargoTypeTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loadVerificationTag"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Cargo Type"
-        android:textSize="18sp"
-        android:textColor="@android:color/holo_blue_dark" />
-
-    <EditText
-        android:id="@+id/cargoTypeInput"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cargoTypeTag"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Enter Cargo Type"
-        android:inputType="text" />
+        android:background="#004aad"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
 
-    <!-- Tag: Cargo Weight -->
-    <TextView
-        android:id="@+id/cargoWeightTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cargoTypeInput"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Cargo Weight"
-        android:textSize="18sp"
-        android:textColor="@android:color/holo_blue_dark" />
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/cargoWeightInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cargoWeightTag"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Enter Cargo Weight"
-        android:inputType="numberDecimal" />
+        <TextView
+            android:id="@+id/loadVerificationTag"
+            android:layout_width="241dp"
+            android:layout_height="51dp"
+            android:gravity=""
+            android:paddingLeft="20dp"
+            android:text="Load Verification"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-2dp"
-        android:background="#808080" />
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="600dp"
+        android:background="#bebcbb"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.3">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:foregroundGravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Cargo Type"
+            android:textColor="@color/white" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/dateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:foregroundGravity="center"
+            android:hint="Cargo Type"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:foregroundGravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Cargo Weight"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/timeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:foregroundGravity="center"
+            android:hint="6.5 tons"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:foregroundGravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="350dp"
+            android:paddingBottom="10dp"
+            tools:ignore="MissingConstraints">
+
+            <!-- Clear Button -->
+            <Button
+                android:id="@+id/clearLV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/white"
+                android:text="Clear"
+                android:textColor="@android:color/holo_blue_dark" />
+
+            <!-- Complete Trip Button -->
+            <Button
+                android:id="@+id/VerifyLV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#004aad"
+                android:text="Verify Load" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,122 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <!-- Header (Gray) -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#808080" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <!-- Back Button -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#004aad"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_launcher_background" />
-
-        <!-- Tag: Maintenance History -->
-        <TextView
-            android:id="@+id/maintenanceHistoryTag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/backButton"
-            android:layout_centerHorizontal="true"
-            android:text="Upcoming Inspections"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_dark" /> <!-- Blue color, you can use other color codes or resources as needed -->
-
-        <!-- First Text Field -->
-
-        <!-- Second Text Field -->
-
-        <!-- Checkbox -->
-
-        <!-- Checkbox -->
-
-        <EditText
-            android:id="@+id/TB2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/maintenanceHistoryTag"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="47dp"
-            android:layout_marginTop="98dp"
-            android:layout_marginEnd="141dp"
-            android:hint="Date 1" />
-
-        <CheckBox
-            android:id="@+id/CB1"
-            android:layout_width="105dp"
-            android:layout_height="38dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="288dp"
-            android:layout_marginEnd="19dp"
-            android:layout_marginBottom="574dp"
-            android:text="Due Today" />
-
-        <!-- Checkbox -->
-
-        <EditText
-            android:id="@+id/TB1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@+id/maintenanceHistoryTag"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="62dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="138dp"
-            android:hint="Date 2" />
-
-        <CheckBox
-            android:id="@+id/CB2"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="290dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="519dp"
-            android:text="Due Today" />
-
-        <Button
-            android:id="@+id/doneButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="163dp"
-            android:layout_marginTop="444dp"
-            android:layout_marginEnd="160dp"
-            android:layout_marginBottom="190dp"
-            android:text="Done" />
-
-
-        <View
-            android:layout_width="match_parent"
+            android:layout_width="48dp"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="-2dp"
-            android:background="#808080" />
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/upcomingInspectionsTag"
+            android:layout_width="295dp"
+            android:layout_height="51dp"
+            android:gravity=""
+            android:paddingLeft="20dp"
+            android:text="Upcoming Inspections"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="100dp"
+        android:background="#bebcbb"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.032"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="140dp">
+
+            <TextView
+                android:id="@+id/DateView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:text="July 20, 2023 9:00AM"
+                android:textColor="#004aad"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/Type1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Main Branch"
+                android:textColor="#004aad" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="100dp"
+        android:background="#bebcbb"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.234"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="140dp">
+
+            <TextView
+                android:id="@+id/DateView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:text="July 22, 2023 9:00AM"
+                android:textColor="#004aad"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/Type2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Main Branch"
+                android:textColor="#004aad" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,13 +37,15 @@ public class UpcomingInspection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upcominginspections);
-
+/*
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("upcomingInspections");
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // Initialize views
+        */
         backButton = findViewById(R.id.backButton);
+        /*
         doneButton = findViewById(R.id.doneButton);
 
         date1EditText = findViewById(R.id.TB2);
@@ -51,7 +53,7 @@ public class UpcomingInspection extends AppCompatActivity {
 
         dueTodayCheckBox1 = findViewById(R.id.CB1);
         dueTodayCheckBox2 = findViewById(R.id.CB2);
-
+*/
         // Back Button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +62,7 @@ public class UpcomingInspection extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         // Done Button
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +127,6 @@ public class UpcomingInspection extends AppCompatActivity {
                     // Handle error here if needed
                 }
             });
-        }
+        }*/
     }
 }

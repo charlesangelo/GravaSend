@@ -4,15 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Home extends AppCompatActivity {
 
-    private Button b1;
-    private Button b2;
-    private Button b3;
+    private ImageButton b1;
+    private ImageButton b2;
+    private ImageButton b3;
     private FirebaseAuth mAuth; // Firebase Authentication
 
     @Override

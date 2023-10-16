@@ -35,7 +35,7 @@ public class MaintenanceHistory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maintenancehistory);
-
+/*
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("maintenanceHistory");
 
@@ -60,8 +60,9 @@ public class MaintenanceHistory extends AppCompatActivity {
 
         firstMaintenanceItemCheckBox = findViewById(R.id.checkB1);
         thirdMaintenanceItemCheckBox = findViewById(R.id.checkB2);
-
+*/
         // Back Button
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +70,7 @@ public class MaintenanceHistory extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         // Done Button
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,5 +142,6 @@ public class MaintenanceHistory extends AppCompatActivity {
                 }
             });
         }
+    }*/
     }
 }

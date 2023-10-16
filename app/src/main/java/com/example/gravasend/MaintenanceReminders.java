@@ -35,13 +35,15 @@ public class MaintenanceReminders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maintenancereminders);
-
+/*
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("maintenanceReminders");
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // Initialize views
+        */
         backButton = findViewById(R.id.backButton);
+        /*
         doneButton = findViewById(R.id.doneButton);
 
         firstMaintenanceItemEditText = findViewById(R.id.firstMaintenanceItem);
@@ -49,7 +51,7 @@ public class MaintenanceReminders extends AppCompatActivity {
 
         firstMaintenanceItemCheckBox = findViewById(R.id.firstMaintenanceItemCheckBox);
         secondMaintenanceItemCheckBox = findViewById(R.id.secondMaintenanceItemCheckBox);
-
+*/
         // Back Button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,7 @@ public class MaintenanceReminders extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         // Done Button
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +125,6 @@ public class MaintenanceReminders extends AppCompatActivity {
                     // Handle error here if needed
                 }
             });
-        }
+        }*/
     }
 }

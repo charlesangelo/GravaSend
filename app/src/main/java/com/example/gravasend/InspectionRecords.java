@@ -35,13 +35,15 @@ public class InspectionRecords extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inspectionrecords);
-
+/*
         // Initialize Firebase Database and Authentication
         databaseReference = FirebaseDatabase.getInstance().getReference("inspectionRecords");
         auth = FirebaseAuth.getInstance();
 
         // Initialize views
+        */
         backButton = findViewById(R.id.backButton);
+        /*
         doneButton = findViewById(R.id.doneButton);
 
         firstMaintenanceItemEditText = findViewById(R.id.firstMaintenanceItem);
@@ -49,7 +51,7 @@ public class InspectionRecords extends AppCompatActivity {
 
         firstMaintenanceItemCheckBox = findViewById(R.id.firstMaintenanceItemCheckBox);
         secondMaintenanceItemCheckBox = findViewById(R.id.secondMaintenanceItemCheckBox);
-
+*/
         // Back Button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,7 @@ public class InspectionRecords extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         // Done Button
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +120,6 @@ public class InspectionRecords extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle error here if needed
             }
-        });
+        });*/
     }
 }

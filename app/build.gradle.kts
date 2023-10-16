@@ -32,6 +32,7 @@ android {
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation ("com.android.support:support-annotations:28.0.0")
     implementation("com.google.android.material:material:1.8.0")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation ("com.google.firebase:firebase-database:20.0.0")

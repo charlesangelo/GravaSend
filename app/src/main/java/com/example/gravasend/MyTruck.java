@@ -33,7 +33,7 @@ public class MyTruck extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mytruck);
-
+/*
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("trucks");
 
@@ -41,7 +41,11 @@ public class MyTruck extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Initialize views
+        */
+
         backButton = findViewById(R.id.backButton);
+
+        /*
         doneButton = findViewById(R.id.doneButton);
 
         plateNoEditText = findViewById(R.id.plateNoEditText);
@@ -49,7 +53,7 @@ public class MyTruck extends AppCompatActivity {
         engineNoEditText = findViewById(R.id.engineNoEditText);
         modelEditText = findViewById(R.id.modelEditText);
         mileageEditText = findViewById(R.id.mileageEditText);
-
+*/
         // Back Button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +61,7 @@ public class MyTruck extends AppCompatActivity {
                 startActivity(new Intent(MyTruck.this, TruckInformation.class));
             }
         });
-
+/*
         // Done Button
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,5 +108,8 @@ public class MyTruck extends AppCompatActivity {
         engineNoEditText.setText("");
         modelEditText.setText("");
         mileageEditText.setText("");
+
+
+ */
     }
 }

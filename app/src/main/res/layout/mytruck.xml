@@ -1,129 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Back Button -->
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="40dp"
-        android:layout_height="27dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_launcher_background" />
-
-    <!-- Tag: My Truck -->
-    <TextView
-        android:id="@+id/myTruckTag"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/backButton"
-        android:layout_centerHorizontal="true"
-        android:text="My Truck"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_blue_dark" /> <!-- Blue color, you can use other color codes or resources as needed -->
+        android:background="#004aad"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/myTruckTag"
+            android:layout_width="241dp"
+            android:layout_height="51dp"
+            android:gravity=""
+            android:paddingLeft="20dp"
+            android:text="My Truck"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
     <!-- Plate No. -->
-    <TextView
-        android:id="@+id/plateNoTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/myTruckTag"
-        android:layout_marginTop="16dp"
-        android:text="Plate No." />
-
-    <EditText
-        android:id="@+id/plateNoEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/plateNoTag"
-        android:layout_marginTop="8dp"
-        android:hint="Enter Plate No." />
 
     <!-- Chassis No. -->
-    <TextView
-        android:id="@+id/chassisNoTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/plateNoEditText"
-        android:layout_marginTop="16dp"
-        android:text="Chassis No." />
 
-    <EditText
-        android:id="@+id/chassisNoEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/chassisNoTag"
-        android:layout_marginTop="8dp"
-        android:hint="Enter Chassis No." />
+    <LinearLayout
+        android:id="@+id/linearContainer"
+        android:layout_width="371dp"
+        android:layout_height="626dp"
+        android:background="#bebcbb"
+        android:backgroundTint="#bebcbb"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.144">
+
+        <TextView
+            android:id="@+id/plateNoTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myTruckTag"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Plate No."
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints,NotSibling" />
+
+        <TextView
+            android:id="@+id/plateNoEditText"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/plateNoTag"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter Plate No."
+            android:shadowColor="@color/white"
+            android:textColor="#004aad"
+            android:textColorHint="#004aad"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/chassisNoTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/plateNoEditText"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Chassis No."
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/chassisNoEditText"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/chassisNoTag"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter Chassis No."
+            android:textColor="#004aad"
+            android:textColorHint="#004aad"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/engineNoTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/chassisNoEditText"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Engine No."
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/engineNoEditText"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/engineNoTag"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter Engine No."
+            android:textColor="#004aad"
+            android:textColorHint="#004aad"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/modelTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/engineNoEditText"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Model"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/modelEditText"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/modelTag"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter Model"
+            android:textColor="#004aad"
+            android:textColorHint="#004aad"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/mileageTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/modelEditText"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Mileage"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/mileageEditText"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter Mileage"
+            android:textColor="#004aad"
+            android:textColorHint="#004aad"
+            android:textSize="22sp" />
+
+        <Space
+            android:id="@+id/space1"
+            android:layout_width="match_parent"
+            android:layout_height="130dp" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|center"
+            android:backgroundTint="#004aad"
+            android:text="Done" />
+    </LinearLayout>
 
     <!-- Engine No. -->
-    <TextView
-        android:id="@+id/engineNoTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/chassisNoEditText"
-        android:layout_marginTop="16dp"
-        android:text="Engine No." />
-
-    <EditText
-        android:id="@+id/engineNoEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/engineNoTag"
-        android:layout_marginTop="8dp"
-        android:hint="Enter Engine No." />
 
     <!-- Model -->
-    <TextView
-        android:id="@+id/modelTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/engineNoEditText"
-        android:layout_marginTop="16dp"
-        android:text="Model" />
-
-    <EditText
-        android:id="@+id/modelEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/modelTag"
-        android:layout_marginTop="8dp"
-        android:hint="Enter Model" />
 
     <!-- Mileage -->
-    <TextView
-        android:id="@+id/mileageTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/modelEditText"
-        android:layout_marginTop="16dp"
-        android:text="Mileage" />
-
-    <EditText
-        android:id="@+id/mileageEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="256dp"
-        android:hint="Enter Mileage" />
 
     <!-- Done Button -->
-    <Button
-        android:id="@+id/doneButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="578dp"
-        android:layout_marginEnd="161dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:text="Done" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

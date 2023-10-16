@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CurrentTrip extends AppCompatActivity {
     private ImageButton b1;
-    private Button b2;
-    private Button b3;
-    private Button b4;
-    private Button b5;
+    private ImageButton b2;
+    private ImageButton b3;
+    private ImageButton b4;
+    private ImageButton b5;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

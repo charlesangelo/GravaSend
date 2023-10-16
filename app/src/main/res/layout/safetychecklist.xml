@@ -1,186 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- Header (Gray) -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#808080" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:background="#bebcbb"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.054">
 
-        <!-- Back Button -->
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="46dp"
-            android:layout_height="32dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="14dp"
-            android:src="@drawable/ic_launcher_foreground" />
-
-        <!-- Tag: Safety Checklist -->
-        <TextView
-            android:id="@+id/safetyChecklistTag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/backButton"
-            android:layout_alignTop="@id/backButton"
-            android:layout_marginStart="16dp"
-            android:text="Safety Checklist"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <!-- Button: Save -->
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="255dp"
-            android:layout_marginTop="520dp"
-            android:layout_marginEnd="68dp"
-            android:layout_marginBottom="114dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:text="Save" />
-
-        <!-- Button: Clear -->
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="53dp"
-            android:layout_marginTop="519dp"
-            android:layout_marginBottom="115dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:text="Clear" />
-
-        <!-- Plate Number -->
         <TextView
             android:id="@+id/plateNumberTag"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/safetyChecklistTag"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:foregroundGravity="center"
+            android:paddingTop="7dp"
+            android:paddingBottom="10dp"
             android:text="Plate Number"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="18sp" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/plateNumberInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/plateNumberTag"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:foregroundGravity="center"
             android:hint="Enter Plate Number"
-            android:inputType="text" />
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            tools:ignore="MissingConstraints" />
 
-        <!-- Odometer -->
         <TextView
             android:id="@+id/odometerTag"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/plateNumberInput"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:foregroundGravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="Odometer"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="18sp" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/odometerInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/odometerTag"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:foregroundGravity="center"
             android:hint="Enter Odometer Reading"
-            android:inputType="number" />
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            tools:ignore="MissingConstraints" />
 
-        <!-- Image and Image Description -->
-        <RelativeLayout
-            android:id="@+id/imageTextContainer"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#004aad"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/safetyCheckListTag"
+            android:layout_width="241dp"
+            android:layout_height="51dp"
+            android:gravity=""
+            android:paddingLeft="20dp"
+            android:text="Safety Checklist"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/imageTextContainer"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#EEEEEE"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.065">
+
+        <!-- ImageView for Image Selection -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/odometerInput"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="#EEEEEE">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <!-- ImageView for Image Selection -->
-            <ImageView
-                android:id="@+id/imagePlaceholder"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="#CCCCCC"
-                android:clickable="true"
-                android:src="@drawable/ic_launcher_foreground" />
-
-            <!-- EditText for Image Description -->
             <EditText
                 android:id="@+id/imageDescriptionInput"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/imagePlaceholder"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@id/imagePlaceholder"
                 android:hint="Enter Image Description"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="12dp" />
 
-            <!-- CheckBox (Upper Right) -->
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
-                android:text="Done" />
-        </RelativeLayout>
+                android:text="" />
+        </LinearLayout>
 
-        <!-- Select Image Button -->
-        <Button
-            android:id="@+id/selectImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imageTextContainer"
+        <ImageView
+            android:id="@+id/imagePlaceholder"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#CCCCCC"
+            android:clickable="true"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Notes"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/selectImageButton"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="25dp"
+            android:backgroundTint="#004aad"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:text="Select Image" />
 
-        <!-- Footer (Gray) -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp"
-            android:background="#808080" />
-    </RelativeLayout>
-</LinearLayout>
+        <!-- EditText for Image Description -->
+
+        <!-- CheckBox (Upper Right) -->
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#004aad"
+        android:text="Save Changes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.928" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F3EEEC"
+        android:shadowColor="@color/black"
+        android:text="Clear"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.928"
+        app:rippleColor="@color/black"
+        app:strokeColor="@color/black" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

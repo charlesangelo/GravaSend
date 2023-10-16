@@ -39,11 +39,14 @@ public class LoadVerification extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         b1 = findViewById(R.id.backButton);
+        /*
         verifyButton = findViewById(R.id.VerifyLV);
         clearButton = findViewById(R.id.clearLV);
         cargoTypeInput = findViewById(R.id.cargoTypeInput);
         cargoWeightInput = findViewById(R.id.cargoWeightInput);
 
+
+         */
         // Handle the back button click
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +56,7 @@ public class LoadVerification extends AppCompatActivity {
             }
         });
 
+/*
         // Handle the "Verify" button click
         verifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +109,7 @@ public class LoadVerification extends AppCompatActivity {
                         }
                     });
         }
+
+ */
     }
 }

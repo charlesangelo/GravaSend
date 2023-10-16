@@ -41,10 +41,10 @@ public class TripHistory extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Trip History").child(userId).child("trips");
 
         b1 = findViewById(R.id.backButton);
-        firstMaintenanceItem = findViewById(R.id.firstMaintenanceItem);
-        secondMaintenanceItem = findViewById(R.id.secondMaintenanceItem);
-        firstMaintenanceItemCheckBox = findViewById(R.id.firstMaintenanceItemCheckBox);
-        secondMaintenanceItemCheckBox = findViewById(R.id.secondMaintenanceItemCheckBox);
+       // firstMaintenanceItem = findViewById(R.id.firstMaintenanceItem);
+       // secondMaintenanceItem = findViewById(R.id.secondMaintenanceItem);
+        //firstMaintenanceItemCheckBox = findViewById(R.id.firstMaintenanceItemCheckBox);
+        //secondMaintenanceItemCheckBox = findViewById(R.id.secondMaintenanceItemCheckBox);
 
         // Handle the back button click
         b1.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,7 @@ public class TripHistory extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         // Save data to Firebase when the checkboxes are clicked
         firstMaintenanceItemCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +106,6 @@ public class TripHistory extends AppCompatActivity {
                     }
                 }
             }
-        });
+        });*/
     }
 }
