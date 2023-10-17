@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,28 +8,22 @@
     android:orientation="vertical">
 
     <!-- Header (Gray) -->
-    <!-- Header (Gray) -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#004aad"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="48dp"
             android:layout_height="50dp"
             android:backgroundTint="#00FFFFFF"
-            android:src="@drawable/ic_back"
-            tools:ignore="MissingConstraints" />
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/proofOfDelivery"
@@ -37,10 +32,9 @@
             android:gravity=""
             android:paddingLeft="20dp"
             android:text="Proof of Delivery"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="22sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,12 +43,10 @@
         android:background="#bebcbb"
         android:orientation="vertical"
         android:paddingTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/eSignatureTag"
@@ -62,26 +54,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:foregroundGravity="center"
+            android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="E-Signature"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="18sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/sampleImageBox"
-            android:layout_width="match_parent"
-            android:layout_height="159dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
-            android:foregroundGravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints" />
+        <com.example.gravasend.SignatureView
+            android:id="@+id/signatureView"
+            android:layout_width="303dp"
+            android:layout_height="166dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white" /> <!-- Set the background color to match the background color of your layout -->
 
         <TextView
             android:id="@+id/textView7"
@@ -89,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:foregroundGravity="center"
+            android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Date" />
@@ -102,12 +88,10 @@
             android:layout_marginRight="10dp"
             android:background="@color/white"
             android:backgroundTint="@color/white"
-            android:foregroundGravity="center"
             android:hint="mm/dd/yyyy"
             android:inputType="date"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints" />
+            android:paddingBottom="10dp" />
 
         <TextView
             android:id="@+id/textView9"
@@ -115,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:foregroundGravity="center"
+            android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Time" />
@@ -128,25 +112,21 @@
             android:layout_marginRight="10dp"
             android:background="@color/white"
             android:backgroundTint="@color/white"
-            android:foregroundGravity="center"
             android:hint="00:00 AM"
             android:inputType="time"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints" />
+            android:paddingBottom="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:foregroundGravity="center"
+            android:gravity="center"
             android:orientation="horizontal"
             android:paddingTop="90dp"
-            android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints">
+            android:paddingBottom="10dp">
 
-            <!-- Clear Button -->
             <Button
                 android:id="@+id/clearButton"
                 android:layout_width="0dp"
@@ -157,17 +137,14 @@
                 android:text="Clear"
                 android:textColor="@android:color/holo_blue_dark" />
 
-            <!-- Complete Trip Button -->
             <Button
                 android:id="@+id/completeTripButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="clip_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#004aad"
                 android:text="Complete Trip" />
         </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

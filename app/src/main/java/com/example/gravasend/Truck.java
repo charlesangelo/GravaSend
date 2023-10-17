@@ -6,13 +6,13 @@ public class Truck {
     private String chassisNo;
     private String engineNo;
     private String model;
-    private String mileage;
+    private Long mileage;
 
     // Default constructor (required for Firebase)
     public Truck() {
     }
 
-    public Truck(String id, String plateNo, String chassisNo, String engineNo, String model, String mileage) {
+    public Truck(String id, String plateNo, String chassisNo, String engineNo, String model, Long mileage) {
         this.id = id;
         this.plateNo = plateNo;
         this.chassisNo = chassisNo;
@@ -21,8 +21,12 @@ public class Truck {
         this.mileage = mileage;
     }
 
-    public String getId() {
-        return id;
+    public Long getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Long mileage) {
+        this.mileage = mileage;
     }
 
     public String getPlateNo() {
@@ -41,7 +45,5 @@ public class Truck {
         return model;
     }
 
-    public String getMileage() {
-        return mileage;
-    }
+    // Other getters and setters
 }

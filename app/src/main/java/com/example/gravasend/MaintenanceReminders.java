@@ -3,11 +3,8 @@ package com.example.gravasend;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,39 +17,33 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MaintenanceReminders extends AppCompatActivity {
     private ImageButton backButton;
-    private Button doneButton;
-
-    private EditText firstMaintenanceItemEditText;
-    private EditText secondMaintenanceItemEditText;
-
-    private CheckBox firstMaintenanceItemCheckBox;
-    private CheckBox secondMaintenanceItemCheckBox;
-
     private DatabaseReference databaseReference;
     private FirebaseUser currentUser;
+
+    private TextView dateView1;
+    private TextView type1;
+    private TextView dateView2;
+    private TextView type2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maintenancereminders);
-/*
+
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("maintenanceReminders");
+
+        // Get the current user
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        // Initialize views
-        */
-        backButton = findViewById(R.id.backButton);
-        /*
-        doneButton = findViewById(R.id.doneButton);
+        // Set up references to views
+        dateView1 = findViewById(R.id.DateView1);
+        type1 = findViewById(R.id.Type1);
+        dateView2 = findViewById(R.id.DateView2);
+        type2 = findViewById(R.id.Type2);
 
-        firstMaintenanceItemEditText = findViewById(R.id.firstMaintenanceItem);
-        secondMaintenanceItemEditText = findViewById(R.id.secondMaintenanceItem);
-
-        firstMaintenanceItemCheckBox = findViewById(R.id.firstMaintenanceItemCheckBox);
-        secondMaintenanceItemCheckBox = findViewById(R.id.secondMaintenanceItemCheckBox);
-*/
         // Back Button
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,41 +51,9 @@ public class MaintenanceReminders extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-/*
-        // Done Button
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveMaintenanceReminders();
-            }
-        });
 
-        // Load data from Firebase and set it to EditText and CheckBox
+        // Load data from Firebase and set it to TextViews
         loadMaintenanceReminders();
-    }
-
-    private void saveMaintenanceReminders() {
-        String firstMaintenanceItem = firstMaintenanceItemEditText.getText().toString().trim();
-        String secondMaintenanceItem = secondMaintenanceItemEditText.getText().toString().trim();
-
-        boolean firstItemCompleted = firstMaintenanceItemCheckBox.isChecked();
-        boolean secondItemCompleted = secondMaintenanceItemCheckBox.isChecked();
-
-        if (currentUser != null) {
-            // Save data to Firebase under the user's ID
-            String userId = currentUser.getUid();
-
-            DatabaseReference userReference = databaseReference.child(userId);
-            userReference.child("firstMaintenanceItem").setValue(firstMaintenanceItem);
-            userReference.child("secondMaintenanceItem").setValue(secondMaintenanceItem);
-
-            userReference.child("firstItemCompleted").setValue(firstItemCompleted);
-            userReference.child("secondItemCompleted").setValue(secondItemCompleted);
-
-            Toast.makeText(MaintenanceReminders.this, "Maintenance reminders saved successfully.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(MaintenanceReminders.this, "User not authenticated.", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void loadMaintenanceReminders() {
@@ -106,17 +65,15 @@ public class MaintenanceReminders extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String firstMaintenanceItem = dataSnapshot.child("firstMaintenanceItem").getValue(String.class);
-                        String secondMaintenanceItem = dataSnapshot.child("secondMaintenanceItem").getValue(String.class);
+                        String date1 = dataSnapshot.child("firstDate").getValue(String.class);
+                        String type1Text = dataSnapshot.child("firstType").getValue(String.class);
+                        String date2 = dataSnapshot.child("secondDate").getValue(String.class);
+                        String type2Text = dataSnapshot.child("secondType").getValue(String.class);
 
-                        boolean firstItemCompleted = dataSnapshot.child("firstItemCompleted").getValue(Boolean.class);
-                        boolean secondItemCompleted = dataSnapshot.child("secondItemCompleted").getValue(Boolean.class);
-
-                        firstMaintenanceItemEditText.setText(firstMaintenanceItem);
-                        secondMaintenanceItemEditText.setText(secondMaintenanceItem);
-
-                        firstMaintenanceItemCheckBox.setChecked(firstItemCompleted);
-                        secondMaintenanceItemCheckBox.setChecked(secondItemCompleted);
+                        dateView1.setText(date1);
+                        type1.setText(type1Text);
+                        dateView2.setText(date2);
+                        type2.setText(type2Text);
                     }
                 }
 
@@ -125,6 +82,6 @@ public class MaintenanceReminders extends AppCompatActivity {
                     // Handle error here if needed
                 }
             });
-        }*/
+        }
     }
 }

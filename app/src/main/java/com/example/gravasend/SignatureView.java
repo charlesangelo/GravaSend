@@ -83,4 +83,7 @@ public class SignatureView extends View {
 
     public void clearCanvas() {
     }
+
+    public void clear() {
+    }
 }

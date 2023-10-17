@@ -66,7 +66,7 @@ public class SafetyChecklist extends AppCompatActivity {
 
         // Initialize Firebase Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        userReference = database.getReference("Safety Checklist").child(currentUser.getUid());
+        userReference = database.getReference("SafetyChecklist").child(currentUser.getUid());
 
         // Initialize views
         backButton = findViewById(R.id.backButton);
@@ -111,19 +111,7 @@ public class SafetyChecklist extends AppCompatActivity {
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Check for runtime permissions on Android Marshmallow and above
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(SafetyChecklist.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        // Permission not granted, request it
-                        ActivityCompat.requestPermissions(SafetyChecklist.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE_REQUEST);
-                    } else {
-                        // Permission already granted, launch image picker
-                        launchImagePicker();
-                    }
-                } else {
-                    // Launch image picker (no need to request permissions on older Android versions)
-                    launchImagePicker();
-                }
+                checkAndRequestPermissions();
             }
         });
     }
@@ -222,6 +210,21 @@ public class SafetyChecklist extends AppCompatActivity {
         }
 
         Toast.makeText(SafetyChecklist.this, "Data cleared successfully.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void checkAndRequestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                // Permission not granted, request it
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE_REQUEST);
+            } else {
+                // Permission already granted, launch image picker
+                launchImagePicker();
+            }
+        } else {
+            // Launch image picker (no need to request permissions on older Android versions)
+            launchImagePicker();
+        }
     }
 
     private void launchImagePicker() {

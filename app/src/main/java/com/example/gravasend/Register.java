@@ -21,6 +21,7 @@ public class Register extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button registerButton;
+    private Button returnButton; // Add this button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,21 @@ public class Register extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         registerButton = findViewById(R.id.registerButton);
+        returnButton = findViewById(R.id.returnID); // Initialize the return button
 
+        // Set an OnClickListener for the return button
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create an Intent to navigate to the Login activity
+                Intent intent = new Intent(Register.this, MainActivity.class); // Replace "LoginActivity" with your actual class name.
+
+                // Start the LoginActivity
+                startActivity(intent);
+            }
+        });
+
+        // Set an OnClickListener for the register button
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

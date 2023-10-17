@@ -2,11 +2,11 @@ package com.example.gravasend;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ImageButton;
+import android.util.Log;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class TripHistory extends AppCompatActivity {
-    private ImageButton b1;
-    private EditText firstMaintenanceItem;
-    private EditText secondMaintenanceItem;
-    private CheckBox firstMaintenanceItemCheckBox;
-    private CheckBox secondMaintenanceItemCheckBox;
+    private ImageButton backButton;
+    private TextView firstMaintenanceItem;
+    private TextView firstMaintenanceDate;
+    private TextView secondMaintenanceItem;
+    private TextView secondMaintenanceDate;
 
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
@@ -37,75 +37,99 @@ public class TripHistory extends AppCompatActivity {
         // Get the current user's ID
         String userId = auth.getCurrentUser().getUid();
 
-        // Initialize Firebase Database reference for the current user
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Trip History").child(userId).child("trips");
+        // Initialize the Firebase Database reference for the current user
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("TripHistory").child(userId);
 
-        b1 = findViewById(R.id.backButton);
-       // firstMaintenanceItem = findViewById(R.id.firstMaintenanceItem);
-       // secondMaintenanceItem = findViewById(R.id.secondMaintenanceItem);
-        //firstMaintenanceItemCheckBox = findViewById(R.id.firstMaintenanceItemCheckBox);
-        //secondMaintenanceItemCheckBox = findViewById(R.id.secondMaintenanceItemCheckBox);
+        backButton = findViewById(R.id.backButton);
+        firstMaintenanceItem = findViewById(R.id.firstMaintenanceItem);
+        firstMaintenanceDate = findViewById(R.id.firstMaintenanceDate);
+        secondMaintenanceItem = findViewById(R.id.secondMaintenanceItem);
+        secondMaintenanceDate = findViewById(R.id.secondMaintenanceDate);
 
         // Handle the back button click
-        b1.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TripHistory.this, MyTrips.class);
                 startActivity(intent);
             }
         });
-/*
-        // Save data to Firebase when the checkboxes are clicked
-        firstMaintenanceItemCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveDataToFirebase(firstMaintenanceItem.getText().toString(), firstMaintenanceItemCheckBox.isChecked(), "trip1");
-            }
-        });
 
-        secondMaintenanceItemCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveDataToFirebase(secondMaintenanceItem.getText().toString(), secondMaintenanceItemCheckBox.isChecked(), "trip2");
-            }
-        });
-
-        // Load data from Firebase
-        loadDataFromFirebase("trip1");
-        loadDataFromFirebase("trip2");
+        // Read data from the Firebase database and display it
+        readDataFromFirebase();
     }
 
-    private void saveDataToFirebase(String jobOrder, boolean completed, String tripId) {
-        // Create a trip object
-        Trip trip = new Trip(jobOrder, completed);
-
-        // Save the trip to Firebase under the given tripId
-        databaseReference.child(tripId).setValue(trip);
-
-        Toast.makeText(this, "Data saved to Firebase", Toast.LENGTH_SHORT).show();
-    }
-
-    private void loadDataFromFirebase(final String tripId) {
-        // Read data from Firebase under the given tripId
-        databaseReference.child(tripId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+    private void readDataFromFirebase() {
+        // Read data for firstMaintenanceItem
+        databaseReference.child("firstMaintenanceItem").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
+            public void onComplete(Task<DataSnapshot> task) {
                 if (task.isSuccessful()) {
                     DataSnapshot dataSnapshot = task.getResult();
                     if (dataSnapshot.exists()) {
-                        Trip trip = dataSnapshot.getValue(Trip.class);
-                        if (trip != null) {
-                            if (tripId.equals("trip1")) {
-                                firstMaintenanceItem.setText(trip.getJobOrder());
-                                firstMaintenanceItemCheckBox.setChecked(trip.isCompleted());
-                            } else if (tripId.equals("trip2")) {
-                                secondMaintenanceItem.setText(trip.getJobOrder());
-                                secondMaintenanceItemCheckBox.setChecked(trip.isCompleted());
-                            }
-                        }
+                        String item = dataSnapshot.getValue(String.class);
+                        firstMaintenanceItem.setText(item);
+                    } else {
+                        Log.d("Firebase Data", "Data for firstMaintenanceItem does not exist.");
                     }
+                } else {
+                    Log.e("Firebase Error", "Data retrieval for firstMaintenanceItem failed: " + task.getException());
                 }
             }
-        });*/
+        });
+
+        // Read data for firstMaintenanceDate
+        databaseReference.child("firstMaintenanceDate").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DataSnapshot dataSnapshot = task.getResult();
+                    if (dataSnapshot.exists()) {
+                        String date = dataSnapshot.getValue(String.class);
+                        firstMaintenanceDate.setText(date);
+                    } else {
+                        Log.d("Firebase Data", "Data for firstMaintenanceDate does not exist.");
+                    }
+                } else {
+                    Log.e("Firebase Error", "Data retrieval for firstMaintenanceDate failed: " + task.getException());
+                }
+            }
+        });
+
+        // Read data for secondMaintenanceItem
+        databaseReference.child("secondMaintenanceItem").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DataSnapshot dataSnapshot = task.getResult();
+                    if (dataSnapshot.exists()) {
+                        String item = dataSnapshot.getValue(String.class);
+                        secondMaintenanceItem.setText(item);
+                    } else {
+                        Log.d("Firebase Data", "Data for secondMaintenanceItem does not exist.");
+                    }
+                } else {
+                    Log.e("Firebase Error", "Data retrieval for secondMaintenanceItem failed: " + task.getException());
+                }
+            }
+        });
+
+        // Read data for secondMaintenanceDate
+        databaseReference.child("secondMaintenanceDate").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DataSnapshot dataSnapshot = task.getResult();
+                    if (dataSnapshot.exists()) {
+                        String date = dataSnapshot.getValue(String.class);
+                        secondMaintenanceDate.setText(date);
+                    } else {
+                        Log.d("Firebase Data", "Data for secondMaintenanceDate does not exist.");
+                    }
+                } else {
+                    Log.e("Firebase Error", "Data retrieval for secondMaintenanceDate failed: " + task.getException());
+                }
+            }
+        });
     }
 }

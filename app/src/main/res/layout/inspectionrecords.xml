@@ -58,17 +58,17 @@
         tools:ignore="MissingConstraints">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingEnd="140dp">
 
             <TextView
                 android:id="@+id/DateView1"
-                android:layout_width="match_parent"
+                android:layout_width="359dp"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:text="July 20, 2023 9:00AM"
+                android:text="Input Date"
                 android:textColor="#004aad"
                 android:textSize="22sp" />
 
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="CYZ52 M"
+                android:text="Plate No."
                 android:textColor="#004aad" />
         </LinearLayout>
     </LinearLayout>
@@ -97,7 +97,7 @@
         tools:ignore="MissingConstraints">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingEnd="140dp">
@@ -107,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:text="July 22, 2023 9:00AM"
+                android:text="Input Date"
                 android:textColor="#004aad"
                 android:textSize="22sp" />
 
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="CYZ52 M"
+                android:text="Plate No."
                 android:textColor="#004aad" />
         </LinearLayout>
     </LinearLayout>
