@@ -124,21 +124,16 @@
 
         <activity
             android:name=".ProofOfDeliveryActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true"
+            tools:ignore="ExtraText">
+            tools:ignore="DuplicateActivity">
         </activity>
 
         <activity
             android:name=".SpeedTrack"
             android:label="Speed Track"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            tools:ignore="DuplicateActivity">
         </activity>
 
     </application>

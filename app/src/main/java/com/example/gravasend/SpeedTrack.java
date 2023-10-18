@@ -21,22 +21,24 @@ public class SpeedTrack extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private DatabaseReference speedRef;
     private double totalSpeed = 0;
+    private double maxSpeed = 0; // New variable to store max speed
     private int speedCount = 0;
     private TextView averageSpeedTextView;
+    private TextView maxSpeedTextView; // TextView for displaying maximum speed
     private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.speedtracker); // Make sure you have the correct XML layout file
+        setContentView(R.layout.speedtracker);
 
         averageSpeedTextView = findViewById(R.id.averageSpeedTextView);
+        maxSpeedTextView = findViewById(R.id.maxSpeedTextView); // Find the maxSpeedTextView
 
         auth = FirebaseAuth.getInstance();
-        String userUid = auth.getCurrentUser().getUid(); // Get the UID of the current user
+        String userUid = auth.getCurrentUser().getUid();
 
-        // Construct the database reference using the user's UID under "SpeedTracker"
-        speedRef = FirebaseDatabase.getInstance().getReference("SpeedTracker").child(userUid).child("average_speed");
+        speedRef = FirebaseDatabase.getInstance().getReference("SpeedTracker").child(userUid);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
@@ -44,7 +46,7 @@ public class SpeedTrack extends AppCompatActivity {
 
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(1000); // Update interval in milliseconds
+        locationRequest.setInterval(1000);
 
         LocationCallback locationCallback = new LocationCallback() {
             @Override
@@ -52,13 +54,28 @@ public class SpeedTrack extends AppCompatActivity {
                 super.onLocationResult(locationResult);
                 for (android.location.Location location : locationResult.getLocations()) {
                     if (location.hasSpeed()) {
-                        totalSpeed += location.getSpeed();
+                        double currentSpeed = location.getSpeed() * 3.6; // Convert m/s to KM/s
+                        totalSpeed += currentSpeed;
                         speedCount++;
                         double averageSpeed = totalSpeed / speedCount;
 
+                        // Check if the current speed exceeds 80 km/h
+                        if (currentSpeed > 80.0) {
+                            // Store an error in the database
+                            speedRef.child("speed_errors").push().setValue("Speed exceeded 80 km/h");
+                        }
+
+                        // Update the maximum speed if necessary
+                        if (currentSpeed > maxSpeed) {
+                            maxSpeed = currentSpeed;
+                            speedRef.child("max_speed").setValue(maxSpeed);
+                        }
+
                         // Update the user's average speed in the database
-                        speedRef.setValue(averageSpeed);
+                        speedRef.child("average_speed").setValue(averageSpeed);
+
                         updateAverageSpeedUI(averageSpeed);
+                        updateMaxSpeedUI(maxSpeed);
                     }
                 }
             }
@@ -69,7 +86,12 @@ public class SpeedTrack extends AppCompatActivity {
     }
 
     private void updateAverageSpeedUI(double averageSpeed) {
-        averageSpeedTextView.setText("Average Speed: " + averageSpeed + " m/s");
+        averageSpeedTextView.setText("Average Speed: " + averageSpeed + " KM/s");
+    }
+
+    // Method to update the maximum speed TextView
+    private void updateMaxSpeedUI(double maxSpeed) {
+        maxSpeedTextView.setText("Maximum Speed: " + maxSpeed + " KM/s");
     }
 
     @Override

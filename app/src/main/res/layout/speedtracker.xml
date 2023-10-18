@@ -14,4 +14,24 @@
         android:text="Average Speed: N/A"
         android:textSize="20sp"
         android:layout_centerInParent="true"/>
+
+    <!-- Add a TextView to display Maximum Speed -->
+    <TextView
+        android:id="@+id/maxSpeedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maximum Speed: N/A"
+        android:textSize="20sp"
+        android:layout_below="@id/averageSpeedTextView"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Add a TextView to display Speed Error -->
+    <TextView
+        android:id="@+id/speedErrorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed Error: N/A"
+        android:textSize="20sp"
+        android:layout_below="@id/maxSpeedTextView"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
