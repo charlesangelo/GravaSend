@@ -46,7 +46,7 @@
 
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="600dp"
+        android:layout_height="500dp"
         android:background="#bebcbb"
         android:orientation="vertical"
         android:paddingTop="10dp"
@@ -54,8 +54,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.671">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.166">
 
         <LinearLayout
             android:layout_width="320dp"
@@ -235,6 +235,7 @@
                 android:layout_gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingBottom="20dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/ic_circle" />
 
             <TextView
@@ -242,7 +243,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text=""
+                android:text="Sample Instructions"
                 android:textColor="#004aad"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -252,7 +253,7 @@
             android:layout_width="256dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="150dp"
             android:backgroundTint="#004aad"
             android:text="Complete trip" />
     </LinearLayout>
