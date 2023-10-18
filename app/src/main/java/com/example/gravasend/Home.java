@@ -47,6 +47,16 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        // Handle mapsButton click
+        findViewById(R.id.mapsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to the SpeedTracker activity
+                Intent intent = new Intent(Home.this, SpeedTrack.class);
+                startActivity(intent);
+            }
+        });
+
         // Handle logout button click
         findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
