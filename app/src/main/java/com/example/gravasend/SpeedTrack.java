@@ -21,10 +21,15 @@ public class SpeedTrack extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private DatabaseReference speedRef;
     private double totalSpeed = 0;
-    private double maxSpeed = 0; // New variable to store max speed
+    private double maxSpeed = 0;
+    private double previousSpeed = -1;
+    private int harshBrakingCount = 0;
+    private int suddenAccelerationCount = 0;
     private int speedCount = 0;
     private TextView averageSpeedTextView;
-    private TextView maxSpeedTextView; // TextView for displaying maximum speed
+    private TextView maxSpeedTextView;
+    private TextView harshBrakingTextView; // TextView for displaying harsh braking incidents
+    private TextView suddenAccelerationTextView; // TextView for displaying sudden acceleration incidents
     private FirebaseAuth auth;
 
     @Override
@@ -33,7 +38,9 @@ public class SpeedTrack extends AppCompatActivity {
         setContentView(R.layout.speedtracker);
 
         averageSpeedTextView = findViewById(R.id.averageSpeedTextView);
-        maxSpeedTextView = findViewById(R.id.maxSpeedTextView); // Find the maxSpeedTextView
+        maxSpeedTextView = findViewById(R.id.maxSpeedTextView);
+        harshBrakingTextView = findViewById(R.id.harshBrakingTextView); // Find the harshBrakingTextView
+        suddenAccelerationTextView = findViewById(R.id.suddenAccelerationTextView); // Find the suddenAccelerationTextView
 
         auth = FirebaseAuth.getInstance();
         String userUid = auth.getCurrentUser().getUid();
@@ -54,24 +61,37 @@ public class SpeedTrack extends AppCompatActivity {
                 super.onLocationResult(locationResult);
                 for (android.location.Location location : locationResult.getLocations()) {
                     if (location.hasSpeed()) {
-                        double currentSpeed = location.getSpeed() * 3.6; // Convert m/s to KM/s
+                        double currentSpeed = location.getSpeed() * 3.6;
+
+                        if (previousSpeed != -1) {
+                            if (previousSpeed - currentSpeed > 5) {
+                                harshBrakingCount++;
+                                speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
+                                updateHarshBrakingUI(harshBrakingCount); // Update the UI
+                            }
+
+                            if (currentSpeed - previousSpeed > 5) {
+                                suddenAccelerationCount++;
+                                speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
+                                updateSuddenAccelerationUI(suddenAccelerationCount); // Update the UI
+                            }
+                        }
+
+                        previousSpeed = currentSpeed;
+
                         totalSpeed += currentSpeed;
                         speedCount++;
                         double averageSpeed = totalSpeed / speedCount;
 
-                        // Check if the current speed exceeds 80 km/h
-                        if (currentSpeed > 80.0) {
-                            // Store an error in the database
-                            speedRef.child("speed_errors").push().setValue("Speed exceeded 80 km/h");
+                        if (currentSpeed > 100.0) {
+                            speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
                         }
 
-                        // Update the maximum speed if necessary
                         if (currentSpeed > maxSpeed) {
                             maxSpeed = currentSpeed;
                             speedRef.child("max_speed").setValue(maxSpeed);
                         }
 
-                        // Update the user's average speed in the database
                         speedRef.child("average_speed").setValue(averageSpeed);
 
                         updateAverageSpeedUI(averageSpeed);
@@ -89,9 +109,18 @@ public class SpeedTrack extends AppCompatActivity {
         averageSpeedTextView.setText("Average Speed: " + averageSpeed + " KM/s");
     }
 
-    // Method to update the maximum speed TextView
     private void updateMaxSpeedUI(double maxSpeed) {
         maxSpeedTextView.setText("Maximum Speed: " + maxSpeed + " KM/s");
+    }
+
+    // Method to update the harsh braking TextView
+    private void updateHarshBrakingUI(int count) {
+        harshBrakingTextView.setText("Harsh Braking Incidents: " + count);
+    }
+
+    // Method to update the sudden acceleration TextView
+    private void updateSuddenAccelerationUI(int count) {
+        suddenAccelerationTextView.setText("Sudden Acceleration Incidents: " + count);
     }
 
     @Override
