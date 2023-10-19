@@ -81,7 +81,7 @@ public class TripDashboard extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         date.setText(dataSnapshot.child("date").getValue(String.class));
                         idDelivery.setText(dataSnapshot.child("id_delivery").getValue(String.class));
-                        location.setText(dataSnapshot.child("location").getValue(String.class));
+                        location.setText(dataSnapshot.child("Location").getValue(String.class));
                         destination.setText(dataSnapshot.child("destination").getValue(String.class));
                         cargoDetailsDescription.setText(dataSnapshot.child("cargoDetailsDescription").getValue(String.class));
                         cargoDetailsDescription2.setText(dataSnapshot.child("cargoDetailsDescription2").getValue(String.class));

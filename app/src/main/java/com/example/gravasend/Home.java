@@ -57,6 +57,15 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.locationButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to the SpeedTracker activity
+                Intent intent = new Intent(Home.this, Location.class);
+                startActivity(intent);
+            }
+        });
+
         // Handle logout button click
         findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
