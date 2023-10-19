@@ -126,6 +126,10 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Clear the signature
                 signatureView.clearSignature();
+
+                // Clear the input fields
+                dateInput.setText("");
+                timeInput.setText("");
             }
         });
     }
