@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SpeedTrack">
+    android:orientation="vertical">
+
+    <!-- Location Information -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location Information"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/addressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Speed Information -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Speed Information"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/averageSpeedTextView"
@@ -46,8 +71,10 @@
         android:id="@+id/currentSpeedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Speed: N/A"
-        android:textSize="20sp"
         android:layout_below="@id/suddenAccelerationCountTextView"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="119dp"
+        android:text="Current Speed: N/A"
+        android:textSize="20sp" />
+</LinearLayout>
