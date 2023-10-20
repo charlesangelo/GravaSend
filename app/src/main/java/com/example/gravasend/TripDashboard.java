@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import android.content.Intent; // Import Intent class for navigation
+import android.content.Intent;
 
 public class TripDashboard extends AppCompatActivity {
     private ImageButton backButton;
@@ -61,9 +61,23 @@ public class TripDashboard extends AppCompatActivity {
         completeTripButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Implement the action for completing the trip if needed
-                // For example, you can add code to mark the trip as completed in the database.
+                // Clear the input fields
+                date.setText("");
+                idDelivery.setText("");
+                location.setText("");
+                destination.setText("");
+                cargoDetailsDescription.setText("");
+                cargoDetailsDescription2.setText("");
+                specialInstructionsDescription.setText("");
+
+                // Display a toast message
                 Toast.makeText(TripDashboard.this, "Trip completed.", Toast.LENGTH_SHORT).show();
+
+                // Delete data from the database
+                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                if (currentUser != null) {
+                    tripDashboardRef.child(currentUser.getUid()).removeValue(); // Remove data associated with the current user
+                }
 
                 // Redirect to the ProofOfDeliveryActivity
                 Intent intent = new Intent(TripDashboard.this, ProofOfDeliveryActivity.class);

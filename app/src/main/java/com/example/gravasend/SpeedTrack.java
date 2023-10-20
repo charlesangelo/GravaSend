@@ -28,8 +28,9 @@ public class SpeedTrack extends AppCompatActivity {
     private int speedCount = 0;
     private TextView averageSpeedTextView;
     private TextView maxSpeedTextView;
-    private TextView harshBrakingTextView; // TextView for displaying harsh braking incidents
-    private TextView suddenAccelerationTextView; // TextView for displaying sudden acceleration incidents
+    private TextView harshBrakingCountTextView; // Updated TextView for displaying harsh braking count
+    private TextView suddenAccelerationCountTextView; // Updated TextView for displaying sudden acceleration count
+    private TextView currentSpeedTextView;
     private FirebaseAuth auth;
 
     @Override
@@ -39,8 +40,9 @@ public class SpeedTrack extends AppCompatActivity {
 
         averageSpeedTextView = findViewById(R.id.averageSpeedTextView);
         maxSpeedTextView = findViewById(R.id.maxSpeedTextView);
-        harshBrakingTextView = findViewById(R.id.harshBrakingTextView); // Find the harshBrakingTextView
-        suddenAccelerationTextView = findViewById(R.id.suddenAccelerationTextView); // Find the suddenAccelerationTextView
+        currentSpeedTextView = findViewById(R.id.currentSpeedTextView);
+        harshBrakingCountTextView = findViewById(R.id.harshBrakingCountTextView); // Updated TextView
+        suddenAccelerationCountTextView = findViewById(R.id.suddenAccelerationCountTextView); // Updated TextView
 
         auth = FirebaseAuth.getInstance();
         String userUid = auth.getCurrentUser().getUid();
@@ -67,13 +69,13 @@ public class SpeedTrack extends AppCompatActivity {
                             if (previousSpeed - currentSpeed > 5) {
                                 harshBrakingCount++;
                                 speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
-                                updateHarshBrakingUI(harshBrakingCount); // Update the UI
+                                updateHarshBrakingUI(harshBrakingCount);
                             }
 
                             if (currentSpeed - previousSpeed > 5) {
                                 suddenAccelerationCount++;
                                 speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
-                                updateSuddenAccelerationUI(suddenAccelerationCount); // Update the UI
+                                updateSuddenAccelerationUI(suddenAccelerationCount);
                             }
                         }
 
@@ -82,6 +84,7 @@ public class SpeedTrack extends AppCompatActivity {
                         totalSpeed += currentSpeed;
                         speedCount++;
                         double averageSpeed = totalSpeed / speedCount;
+                        averageSpeed = Math.round(averageSpeed * 100.0) / 100.0;
 
                         if (currentSpeed > 100.0) {
                             speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
@@ -96,6 +99,7 @@ public class SpeedTrack extends AppCompatActivity {
 
                         updateAverageSpeedUI(averageSpeed);
                         updateMaxSpeedUI(maxSpeed);
+                        updateCurrentSpeedUI(currentSpeed);
                     }
                 }
             }
@@ -106,21 +110,24 @@ public class SpeedTrack extends AppCompatActivity {
     }
 
     private void updateAverageSpeedUI(double averageSpeed) {
-        averageSpeedTextView.setText("Average Speed: " + averageSpeed + " KM/s");
+        averageSpeedTextView.setText("Average Speed: " + averageSpeed + " KM/h");
     }
 
     private void updateMaxSpeedUI(double maxSpeed) {
-        maxSpeedTextView.setText("Maximum Speed: " + maxSpeed + " KM/s");
+        maxSpeedTextView.setText("Maximum Speed: " + maxSpeed + " KM/h");
     }
 
-    // Method to update the harsh braking TextView
+    private void updateCurrentSpeedUI(double currentSpeed) {
+        String formattedSpeed = String.format("%.2f", currentSpeed);
+        currentSpeedTextView.setText("Current Speed: " + formattedSpeed + " KM/h");
+    }
+
     private void updateHarshBrakingUI(int count) {
-        harshBrakingTextView.setText("Harsh Braking Incidents: " + count);
+        harshBrakingCountTextView.setText("Harsh Braking Count: " + count);
     }
 
-    // Method to update the sudden acceleration TextView
     private void updateSuddenAccelerationUI(int count) {
-        suddenAccelerationTextView.setText("Sudden Acceleration Incidents: " + count);
+        suddenAccelerationCountTextView.setText("Sudden Acceleration Count: " + count);
     }
 
     @Override

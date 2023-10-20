@@ -15,7 +15,6 @@
         android:textSize="20sp"
         android:layout_centerInParent="true"/>
 
-    <!-- Add a TextView to display Maximum Speed -->
     <TextView
         android:id="@+id/maxSpeedTextView"
         android:layout_width="wrap_content"
@@ -25,42 +24,30 @@
         android:layout_below="@id/averageSpeedTextView"
         android:layout_centerHorizontal="true"/>
 
-    <!-- Add a TextView to display Speed Error -->
     <TextView
-        android:id="@+id/speedErrorTextView"
+        android:id="@+id/harshBrakingCountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Speed Error: N/A"
+        android:text="Harsh Braking Count: 0"
         android:textSize="20sp"
         android:layout_below="@id/maxSpeedTextView"
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/harshBrakingTextView"
+        android:id="@+id/suddenAccelerationCountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="628dp"
-        android:text="Harsh Braking" />
+        android:text="Sudden Acceleration Count: 0"
+        android:textSize="20sp"
+        android:layout_below="@id/harshBrakingCountTextView"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/suddenAccelerationTextView"
+        android:id="@+id/currentSpeedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="185dp"
-        android:layout_marginEnd="141dp"
-        android:layout_marginBottom="527dp"
-        android:text="Sudden Acceleration" />
-
+        android:text="Current Speed: N/A"
+        android:textSize="20sp"
+        android:layout_below="@id/suddenAccelerationCountTextView"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

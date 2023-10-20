@@ -43,7 +43,7 @@ public class Location extends AppCompatActivity {
         setContentView(R.layout.location);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        locationText = findViewById(R.id.locationText);
+        locationText = findViewById(R.id.addressTextView);
         mAuth = FirebaseAuth.getInstance(); // Initialize Firebase Authentication
         geocoder = new Geocoder(this, Locale.getDefault()); // Initialize Geocoder
 
