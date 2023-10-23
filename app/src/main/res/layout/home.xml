@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Map"
+        android:text="Tracker"
         android:textColor="#FFFF"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/mapsButton"

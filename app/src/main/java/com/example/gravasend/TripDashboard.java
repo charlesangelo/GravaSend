@@ -70,20 +70,48 @@ public class TripDashboard extends AppCompatActivity {
                 cargoDetailsDescription2.setText("");
                 specialInstructionsDescription.setText("");
 
-                // Display a toast message
-                Toast.makeText(TripDashboard.this, "Trip completed.", Toast.LENGTH_SHORT).show();
-
                 // Delete data from the database
                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                 if (currentUser != null) {
-                    tripDashboardRef.child(currentUser.getUid()).removeValue(); // Remove data associated with the current user
-                }
+                    String uid = currentUser.getUid();
 
-                // Redirect to the ProofOfDeliveryActivity
-                Intent intent = new Intent(TripDashboard.this, ProofOfDeliveryActivity.class);
-                startActivity(intent);
+                    DatabaseReference userRef = tripDashboardRef.child(uid);
+                    userRef.removeValue();
+
+                    // Delete SafetyChecklist
+                    DatabaseReference safetyChecklistRef = FirebaseDatabase.getInstance().getReference("SafetyChecklist").child(uid);
+                    safetyChecklistRef.removeValue();
+
+                    // Delete DocumentCheck
+                    DatabaseReference documentCheckRef = FirebaseDatabase.getInstance().getReference("DocumentCheck").child(uid);
+                    documentCheckRef.removeValue();
+
+                    // Delete DocumentCheckSignatures
+                    DatabaseReference documentCheckSignaturesRef = FirebaseDatabase.getInstance().getReference("DocumentCheckSignatures").child(uid);
+                    documentCheckSignaturesRef.removeValue();
+
+                    // Delete Cargo
+                    DatabaseReference cargoRef = FirebaseDatabase.getInstance().getReference("Cargo").child(uid);
+                    cargoRef.removeValue();
+
+                    // Delete SpeedTracker
+                    DatabaseReference speedTrackerRef = FirebaseDatabase.getInstance().getReference("SpeedTracker").child(uid);
+                    speedTrackerRef.removeValue();
+
+                    // Delete Locations
+                    DatabaseReference locationsRef = FirebaseDatabase.getInstance().getReference("Locations").child(uid);
+                    locationsRef.removeValue();
+
+                    // Display a toast message
+                    Toast.makeText(TripDashboard.this, "Trip completed and data deleted.", Toast.LENGTH_SHORT).show();
+
+                    // Redirect to the ProofOfDeliveryActivity
+                    Intent intent = new Intent(TripDashboard.this, ProofOfDeliveryActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+
     }
 
     private void loadAndDisplayData() {
@@ -94,7 +122,7 @@ public class TripDashboard extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         date.setText(dataSnapshot.child("date").getValue(String.class));
-                        idDelivery.setText(dataSnapshot.child("id_delivery").getValue(String.class));
+                        idDelivery.setText(String.valueOf(dataSnapshot.child("id_delivery").getValue(Long.class)));
                         location.setText(dataSnapshot.child("Location").getValue(String.class));
                         destination.setText(dataSnapshot.child("destination").getValue(String.class));
                         cargoDetailsDescription.setText(dataSnapshot.child("cargoDetailsDescription").getValue(String.class));
