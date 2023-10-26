@@ -1,18 +1,20 @@
 package com.example.gravasend;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.pm.PackageInfoCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -33,7 +35,7 @@ public class Location extends AppCompatActivity {
     private DatabaseReference speedRef;
     private DatabaseReference locationRef;
     private double totalSpeed = 0;
-    private double maxSpeed = 0;
+    private double maxSpeed = 0; // Added maxSpeed variable
     private double previousSpeed = -1;
     private int harshBrakingCount = 0;
     private int suddenAccelerationCount = 0;
@@ -52,7 +54,7 @@ public class Location extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.speedtracker);
+        setContentView(R.layout.speedtracker); // Make sure your XML file name matches
 
         averageSpeedTextView = findViewById(R.id.averageSpeedTextView);
         maxSpeedTextView = findViewById(R.id.maxSpeedTextView);
@@ -90,44 +92,65 @@ public class Location extends AppCompatActivity {
                 super.onLocationResult(locationResult);
                 for (android.location.Location location : locationResult.getLocations()) {
                     if (location.hasSpeed()) {
-                        double currentSpeed = location.getSpeed() * 3.6;
+                        double currentSpeedMps = location.getSpeed(); // Speed in m/s
+                        double currentSpeedKph = currentSpeedMps * 3.6; // Convert to km/h
 
                         if (previousSpeed != -1) {
-                            if (previousSpeed - currentSpeed > 5) {
+                            if (previousSpeed - currentSpeedKph > 5) {
                                 harshBrakingCount++;
                                 speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
                                 updateHarshBrakingUI(harshBrakingCount);
+
+                                // Vibrate for 500 milliseconds when harsh braking occurs
+                                vibrateDevice(500);
+
+                                // Show a pop-up dialog for harsh braking
+                                showAlertDialog("Harsh Braking", "You've experienced harsh braking.");
                             }
 
-                            if (currentSpeed - previousSpeed > 5) {
+                            if (currentSpeedKph - previousSpeed > 5) {
                                 suddenAccelerationCount++;
                                 speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
                                 updateSuddenAccelerationUI(suddenAccelerationCount);
+
+                                // Vibrate for 500 milliseconds when sudden acceleration occurs
+                                vibrateDevice(500);
+
+                                // Show a pop-up dialog for sudden acceleration
+                                showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration.");
                             }
                         }
 
-                        previousSpeed = currentSpeed;
+                        previousSpeed = currentSpeedKph;
 
-                        totalSpeed += currentSpeed;
+                        totalSpeed += currentSpeedKph;
                         speedCount++;
                         double averageSpeed = totalSpeed / speedCount;
                         averageSpeed = Math.round(averageSpeed * 100.0) / 100.0;
 
-                        if (currentSpeed > 100.0) {
-                            speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
+                        if (currentSpeedKph > maxSpeed) {
+                            maxSpeed = currentSpeedKph; // Update maxSpeed if a new maximum is encountered
+                            speedRef.child("max_speed").setValue(maxSpeed); // Update the maximum speed in Firebase
+                            updateMaxSpeedUI(maxSpeed); // Update the UI
                         }
 
-                        if (currentSpeed > maxSpeed) {
-                            maxSpeed = currentSpeed;
-                            speedRef.child("max_speed").setValue(maxSpeed);
+                        if (currentSpeedKph > 100.0) {
+                            // Handle speeds exceeding 100 km/h
+                            Log.d("SpeedTracker", "Speed exceeded 100 km/h: " + currentSpeedKph + " KM/h");
+                            speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
+
+                            // Vibrate for 1000 milliseconds when speed exceeds 100 km/h
+                            vibrateDevice(1000);
+
+                            // Show a pop-up dialog for exceeding 100 km/h
+                            showAlertDialog("Speed Exceeded", "You've exceeded 100 km/h.");
                         }
 
                         speedRef.child("average_speed").setValue(averageSpeed);
-                        speedRef.child("current_speed").setValue(currentSpeed);
+                        speedRef.child("current_speed").setValue(currentSpeedKph);
 
                         updateAverageSpeedUI(averageSpeed);
-                        updateMaxSpeedUI(maxSpeed);
-                        updateCurrentSpeedUI(currentSpeed);
+                        updateCurrentSpeedUI(currentSpeedKph);
                     }
 
                     // Update the location information
@@ -137,14 +160,8 @@ public class Location extends AppCompatActivity {
         };
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Handle the case where the user doesn't grant the permission
             return;
         }
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
@@ -155,7 +172,8 @@ public class Location extends AppCompatActivity {
     }
 
     private void updateMaxSpeedUI(double maxSpeed) {
-        maxSpeedTextView.setText("Maximum Speed: " + maxSpeed + " KM/h");
+        String formattedMaxSpeed = String.format("%.2f", maxSpeed);
+        maxSpeedTextView.setText("Maximum Speed: " + formattedMaxSpeed + " KM/h");
     }
 
     private void updateCurrentSpeedUI(double currentSpeed) {
@@ -201,5 +219,26 @@ public class Location extends AppCompatActivity {
                 Log.e("SpeedTracker", "Location permission denied.");
             }
         }
+    }
+
+    private void vibrateDevice(long milliseconds) {
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        if (vibrator.hasVibrator()) {
+            vibrator.vibrate(milliseconds);
+        }
+    }
+
+    private void showAlertDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Handle the OK button click if needed
+            }
+        });
+        builder.setCancelable(false); // Prevent the user from dismissing the dialog by tapping outside.
+        builder.show();
     }
 }
