@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,11 +51,12 @@ public class Location extends AppCompatActivity {
     private Geocoder geocoder;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+    private MediaPlayer mediaPlayer; // MediaPlayer for playing the sound
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.speedtracker); // Make sure your XML file name matches
+        setContentView(R.layout.speedtracker);
 
         averageSpeedTextView = findViewById(R.id.averageSpeedTextView);
         maxSpeedTextView = findViewById(R.id.maxSpeedTextView);
@@ -101,8 +103,8 @@ public class Location extends AppCompatActivity {
                                 speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
                                 updateHarshBrakingUI(harshBrakingCount);
 
-                                // Vibrate for 500 milliseconds when harsh braking occurs
-                                vibrateDevice(500);
+                                // Vibrate and play sound for harsh braking
+                                vibrateAndPlaySound(500);
 
                                 // Show a pop-up dialog for harsh braking
                                 showAlertDialog("Harsh Braking", "You've experienced harsh braking.");
@@ -113,8 +115,8 @@ public class Location extends AppCompatActivity {
                                 speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
                                 updateSuddenAccelerationUI(suddenAccelerationCount);
 
-                                // Vibrate for 500 milliseconds when sudden acceleration occurs
-                                vibrateDevice(500);
+                                // Vibrate and play sound for sudden acceleration
+                                vibrateAndPlaySound(500);
 
                                 // Show a pop-up dialog for sudden acceleration
                                 showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration.");
@@ -139,8 +141,8 @@ public class Location extends AppCompatActivity {
                             Log.d("SpeedTracker", "Speed exceeded 100 km/h: " + currentSpeedKph + " KM/h");
                             speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
 
-                            // Vibrate for 1000 milliseconds when speed exceeds 100 km/h
-                            vibrateDevice(1000);
+                            // Vibrate and play sound for exceeding 100 km/h
+                            vibrateAndPlaySound(1000);
 
                             // Show a pop-up dialog for exceeding 100 km/h
                             showAlertDialog("Speed Exceeded", "You've exceeded 100 km/h.");
@@ -208,6 +210,22 @@ public class Location extends AppCompatActivity {
         locationRef.setValue(location);
     }
 
+    private void vibrateAndPlaySound(long milliseconds) {
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        if (vibrator.hasVibrator()) {
+            vibrator.vibrate(milliseconds);
+        }
+
+        // Play the notification sound
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.notification_sound);
+        }
+
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -218,13 +236,6 @@ public class Location extends AppCompatActivity {
                 Toast.makeText(this, "Location permission denied. App cannot function.", Toast.LENGTH_SHORT).show();
                 Log.e("SpeedTracker", "Location permission denied.");
             }
-        }
-    }
-
-    private void vibrateDevice(long milliseconds) {
-        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        if (vibrator.hasVibrator()) {
-            vibrator.vibrate(milliseconds);
         }
     }
 
@@ -240,5 +251,14 @@ public class Location extends AppCompatActivity {
         });
         builder.setCancelable(false); // Prevent the user from dismissing the dialog by tapping outside.
         builder.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }
