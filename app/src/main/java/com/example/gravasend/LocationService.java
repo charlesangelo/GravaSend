@@ -1,12 +1,16 @@
 package com.example.gravasend;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Vibrator;
@@ -16,9 +20,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -38,7 +44,7 @@ public class LocationService extends Service {
     private DatabaseReference speedRef;
     private DatabaseReference locationRef;
     private double totalSpeed = 0;
-    private double maxSpeed = 0; // Added maxSpeed variable
+    private double maxSpeed = 0;
     private double previousSpeed = -1;
     private int harshBrakingCount = 0;
     private int suddenAccelerationCount = 0;
@@ -53,7 +59,10 @@ public class LocationService extends Service {
     private Geocoder geocoder;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
-    private MediaPlayer mediaPlayer; // MediaPlayer for playing the sound
+    private MediaPlayer mediaPlayer;
+    private NotificationManagerCompat notificationManager;
+
+    private static final String CHANNEL_ID = "LocationServiceChannel";
 
     @Override
     public void onCreate() {
@@ -68,29 +77,56 @@ public class LocationService extends Service {
         geocoder = new Geocoder(this, Locale.getDefault());
 
         startLocationTracking();
+
+        notificationManager = NotificationManagerCompat.from(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String name = "Location Service Channel";
+            String description = "Channel for Location Service";
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            createNotificationChannel(CHANNEL_ID, name, description, importance);
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Notification notification = createNotification();
+        startForeground(1, notification);
         return START_STICKY;
     }
 
+    private Notification createNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.logofinal) // Replace with your notification icon
+                .setContentTitle("Location Service")
+                .setContentText("Location Service is running in the background")
+                .setPriority(NotificationCompat.PRIORITY_LOW);
+        return builder.build();
+    }
+
+    private void createNotificationChannel(String id, String name, String description, int importance) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(id, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
     private void startLocationTracking() {
-        // Configure Location request
         locationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10000) // 10 seconds
-                .setFastestInterval(5000); // 5 seconds
+                .setInterval(10000)
+                .setFastestInterval(5000);
 
-        // Initialize Location callback
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 for (android.location.Location location : locationResult.getLocations()) {
                     if (location.hasSpeed()) {
-                        double currentSpeedMps = location.getSpeed(); // Speed in m/s
-                        double currentSpeedKph = currentSpeedMps * 3.6; // Convert to km/h
+                        double currentSpeedMps = location.getSpeed();
+                        double currentSpeedKph = currentSpeedMps * 3.6;
 
                         if (previousSpeed != -1) {
                             if (previousSpeed - currentSpeedKph > 5) {
@@ -98,10 +134,8 @@ public class LocationService extends Service {
                                 speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
                                 updateHarshBrakingUI(harshBrakingCount);
 
-                                // Vibrate and play sound for harsh braking
                                 vibrateAndPlaySound(500);
 
-                                // Show a pop-up dialog for harsh braking
                                 showAlertDialog("Harsh Braking", "You've experienced harsh braking.");
                             }
 
@@ -110,10 +144,8 @@ public class LocationService extends Service {
                                 speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
                                 updateSuddenAccelerationUI(suddenAccelerationCount);
 
-                                // Vibrate and play sound for sudden acceleration
                                 vibrateAndPlaySound(500);
 
-                                // Show a pop-up dialog for sudden acceleration
                                 showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration.");
                             }
                         }
@@ -126,20 +158,15 @@ public class LocationService extends Service {
                         averageSpeed = Math.round(averageSpeed * 100.0) / 100.0;
 
                         if (currentSpeedKph > maxSpeed) {
-                            maxSpeed = currentSpeedKph; // Update maxSpeed if a new maximum is encountered
-                            speedRef.child("max_speed").setValue(maxSpeed); // Update the maximum speed in Firebase
-                            updateMaxSpeedUI(maxSpeed); // Update the UI
+                            maxSpeed = currentSpeedKph;
+                            speedRef.child("max_speed").setValue(maxSpeed);
+                            updateMaxSpeedUI(maxSpeed);
                         }
 
                         if (currentSpeedKph > 100.0) {
-                            // Handle speeds exceeding 100 km/h
                             Log.d("SpeedTracker", "Speed exceeded 100 km/h: " + currentSpeedKph + " KM/h");
                             speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
-
-                            // Vibrate and play sound for exceeding 100 km/h
                             vibrateAndPlaySound(1000);
-
-                            // Show a pop-up dialog for exceeding 100 km/h
                             showAlertDialog("Speed Exceeded", "You've exceeded 100 km/h.");
                         }
 
@@ -150,7 +177,6 @@ public class LocationService extends Service {
                         updateCurrentSpeedUI(currentSpeedKph);
                     }
 
-                    // Update the location information
                     updateLocationInfo(location);
                 }
             }
@@ -158,7 +184,6 @@ public class LocationService extends Service {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Handle the case where the user doesn't grant the permission
             return;
         }
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
@@ -200,7 +225,6 @@ public class LocationService extends Service {
             e.printStackTrace();
         }
 
-        // Update the location information in Firebase
         locationRef.setValue(location);
     }
 
@@ -210,9 +234,8 @@ public class LocationService extends Service {
             vibrator.vibrate(milliseconds);
         }
 
-        // Play the notification sound
         if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.notification_sound);
+            mediaPlayer = MediaPlayer.create(this, R.raw.notification_sound); // Replace with your sound resource
         }
 
         if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
@@ -230,10 +253,11 @@ public class LocationService extends Service {
                 // Handle the OK button click if needed
             }
         });
-        builder.setCancelable(false); // Prevent the user from dismissing the dialog by tapping outside.
+        builder.setCancelable(false);
         builder.show();
     }
 
+    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
