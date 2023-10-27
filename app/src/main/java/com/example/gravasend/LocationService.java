@@ -1,6 +1,7 @@
 package com.example.gravasend;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -21,8 +22,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -75,6 +76,8 @@ public class LocationService extends Service {
         locationRef = FirebaseDatabase.getInstance().getReference("locations").child(userUid);
 
         geocoder = new Geocoder(this, Locale.getDefault());
+
+        requestLocationPermissions(); // Request location permissions
 
         startLocationTracking();
 
@@ -183,10 +186,9 @@ public class LocationService extends Service {
         };
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
         }
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
 
     private void updateAverageSpeedUI(double averageSpeed) {
@@ -255,6 +257,10 @@ public class LocationService extends Service {
         });
         builder.setCancelable(false);
         builder.show();
+    }
+
+    private void requestLocationPermissions() {
+        // Moved the permission request to the MainActivity, do not request here in the Service.
     }
 
     @Nullable
