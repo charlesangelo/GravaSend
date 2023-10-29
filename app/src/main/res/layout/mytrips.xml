@@ -47,7 +47,8 @@
         android:id="@+id/currentTripButton"
         android:layout_width="318dp"
         android:layout_height="94dp"
-        android:backgroundTint="#bebcbb"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#d7f0e9"
         android:src="@drawable/ic_bluetruckfull"
         android:paddingRight="240dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,16 +63,17 @@
         android:id="@+id/tripHistoryButton"
         android:layout_width="318dp"
         android:layout_height="94dp"
-        android:backgroundTint="#bebcbb"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#d7f0e9"
         android:gravity="center"
         android:paddingRight="240dp"
         android:src="@drawable/ic_history"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentTripButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.034" />
 
     <TextView
         android:id="@+id/textView3"

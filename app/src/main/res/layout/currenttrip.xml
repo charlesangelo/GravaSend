@@ -28,7 +28,7 @@
             android:id="@+id/backButton"
             android:layout_width="48dp"
             android:layout_height="50dp"
-            android:backgroundTint="#00FFFFFF"
+            android:backgroundTint="#004aad"
             android:src="@drawable/ic_back"
             tools:ignore="MissingConstraints" />
 
@@ -49,12 +49,14 @@
         android:id="@+id/btnMyTruck"
         android:layout_width="318dp"
         android:layout_height="94dp"
-        android:backgroundTint="#bebcbb"
-        android:src="@drawable/ic_bluetruckfull"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#d7f0e9"
         android:paddingRight="240dp"
+        android:src="@drawable/ic_bluetruckfull"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.131" />
@@ -63,7 +65,9 @@
         android:id="@+id/btnMaintenanceReminders"
         android:layout_width="318dp"
         android:layout_height="94dp"
-        android:backgroundTint="#bebcbb"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#d7f0e9"
         android:paddingRight="240dp"
         android:src="@drawable/ic_document"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,12 +78,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
-
     <ImageButton
         android:id="@+id/btnMaintenanceHistory"
         android:layout_width="318dp"
         android:layout_height="94dp"
-        android:backgroundTint="#bebcbb"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#d7f0e9"
         android:gravity="center"
         android:paddingRight="240dp"
         android:src="@drawable/ic_checklist"
@@ -94,7 +99,9 @@
         android:id="@+id/btnInspectionRecords"
         android:layout_width="318dp"
         android:layout_height="94dp"
-        android:backgroundTint="#bebcbb"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#d7f0e9"
         android:paddingRight="240dp"
         android:src="@drawable/ic_load_verification"
         app:layout_constraintBottom_toBottomOf="parent"

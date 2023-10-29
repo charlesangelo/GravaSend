@@ -135,7 +135,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/white"
                 android:text="Clear"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="#004aad" />
 
             <Button
                 android:id="@+id/completeTripButton"
@@ -144,6 +144,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#004aad"
+                android:textColor="@color/white"
                 android:text="Complete Trip" />
         </LinearLayout>
     </LinearLayout>

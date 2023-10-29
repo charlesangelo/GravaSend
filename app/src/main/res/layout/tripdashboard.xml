@@ -252,6 +252,8 @@
             android:id="@+id/doneButton"
             android:layout_width="256dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_image_background"
+
             android:layout_gravity="center"
             android:layout_marginTop="150dp"
             android:backgroundTint="#004aad"

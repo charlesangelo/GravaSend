@@ -113,89 +113,486 @@
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/imageTextContainer"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="#EEEEEE"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="0.065">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="375dp"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-        <!-- ImageView for Image Selection -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/imageDescriptionInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:layout_toEndOf="@id/imagePlaceholder"
-                android:hint="Enter Image Description"
-                android:inputType="text"
-                android:textSize="12dp" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:text="" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imagePlaceholder"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="#CCCCCC"
-            android:clickable="true"
-            android:src="@drawable/ic_launcher_foreground" />
-
-        <EditText
-            android:id="@+id/editTextTextMultiLine"
-            android:layout_width="match_parent"
+            android:id="@+id/imageTextContainer"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="Notes"
-            android:inputType="textMultiLine" />
+            android:background="#EEEEEE"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/selectImageButton"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="25dp"
-            android:backgroundTint="#004aad"
-            android:foregroundGravity="center"
-            android:gravity="center"
-            android:text="Select Image" />
+            <!-- ImageView for Image Selection -->
 
-        <!-- EditText for Image Description -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <!-- CheckBox (Upper Right) -->
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/imageDescriptionInput3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Enter Image Description"
+                                android:inputType="text"
+                                android:textSize="12dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imagePlaceholder3"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#CCCCCC"
+                            android:clickable="true"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <EditText
+                            android:id="@+id/editTextTextMultiLine4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:hint="Notes"
+                            android:inputType="textMultiLine" />
+
+                        <Button
+                            android:id="@+id/selectImageButton4"
+                            android:layout_width="150dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/rounded_image_background"
+                            android:layout_gravity="center"
+                            android:backgroundTint="#004aad"
+                            android:foregroundGravity="center"
+                            android:gravity="center"
+                            android:text="Select Image" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/imageDescriptionInput4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Enter Image Description"
+                                android:inputType="text"
+                                android:textSize="12dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imagePlaceholder5"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#CCCCCC"
+                            android:clickable="true"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <EditText
+                            android:id="@+id/editTextTextMultiLine5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:hint="Notes"
+                            android:inputType="textMultiLine" />
+
+                        <Button
+                            android:id="@+id/selectImageButton5"
+                            android:layout_width="150dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/rounded_image_background"
+
+                            android:layout_gravity="center"
+                            android:backgroundTint="#004aad"
+                            android:foregroundGravity="center"
+                            android:gravity="center"
+                            android:text="Select Image" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/imageDescriptionInput6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Enter Image Description"
+                                android:inputType="text"
+                                android:textSize="12dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imagePlaceholder6"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#CCCCCC"
+                            android:clickable="true"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <EditText
+                            android:id="@+id/editTextTextMultiLine6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:hint="Notes"
+                            android:inputType="textMultiLine" />
+
+                        <Button
+                            android:id="@+id/selectImageButto6"
+                            android:layout_width="150dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/rounded_image_background"
+
+                            android:layout_gravity="center"
+                            android:backgroundTint="#004aad"
+                            android:foregroundGravity="center"
+                            android:gravity="center"
+                            android:text="Select Image" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/imageDescriptionInput1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Enter Image Description"
+                                android:inputType="text"
+                                android:textSize="12dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imagePlaceholder1"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#CCCCCC"
+                            android:clickable="true"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <EditText
+                            android:id="@+id/editTextTextMultiLine1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:hint="Notes"
+                            android:inputType="textMultiLine" />
+
+                        <Button
+                            android:id="@+id/selectImageButton1"
+                            android:layout_width="150dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/rounded_image_background"
+
+                            android:layout_gravity="center"
+                            android:backgroundTint="#004aad"
+                            android:foregroundGravity="center"
+                            android:gravity="center"
+                            android:text="Select Image" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/imageDescriptionInput2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Enter Image Description"
+                                android:inputType="text"
+                                android:textSize="12dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imagePlaceholder2"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#CCCCCC"
+                            android:clickable="true"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <EditText
+                            android:id="@+id/editTextTextMultiLine2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:hint="Notes"
+                            android:inputType="textMultiLine" />
+
+                        <Button
+                            android:id="@+id/selectImageButton2"
+                            android:layout_width="150dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/rounded_image_background"
+
+                            android:layout_gravity="center"
+                            android:backgroundTint="#004aad"
+                            android:foregroundGravity="center"
+                            android:gravity="center"
+                            android:text="Select Image" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/imageDescriptionInput"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Enter Image Description"
+                                android:inputType="text"
+                                android:textSize="12dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imagePlaceholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#CCCCCC"
+                            android:clickable="true"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <EditText
+                            android:id="@+id/editTextTextMultiLine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:hint="Notes"
+                            android:inputType="textMultiLine" />
+
+                        <Button
+                            android:id="@+id/selectImageButton"
+                            android:layout_width="150dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/rounded_image_background"
+
+                            android:layout_gravity="center"
+                            android:backgroundTint="#004aad"
+                            android:foregroundGravity="center"
+                            android:gravity="center"
+                            android:text="Select Image" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- CheckBox (Upper Right) -->
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button4"
@@ -203,6 +600,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#004aad"
         android:text="Save Changes"
+        android:background="@drawable/rounded_image_background"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.829"
@@ -217,13 +616,15 @@
         android:backgroundTint="#F3EEEC"
         android:shadowColor="@color/black"
         android:text="Clear"
+        android:background="@drawable/rounded_image_background"
+
         android:textColor="@color/black"
         android:textColorHighlight="@color/black"
         android:textColorHint="@color/black"
         android:textColorLink="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         app:layout_constraintVertical_bias="0.928"

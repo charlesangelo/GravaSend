@@ -70,7 +70,7 @@ public class SafetyChecklist extends AppCompatActivity {
         plateNumberInput = findViewById(R.id.plateNumberInput);
         odometerInput = findViewById(R.id.odometerInput);
         imageDescriptionInput = findViewById(R.id.imageDescriptionInput);
-        checkBox = findViewById(R.id.checkBox);
+        checkBox = findViewById(R.id.checkBox1);
         imagePlaceholder = findViewById(R.id.imagePlaceholder);
 
         loadUserData();

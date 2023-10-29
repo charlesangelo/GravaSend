@@ -83,6 +83,7 @@
                 android:id="@+id/SignInButton"
                 android:layout_width="112dp"
                 android:layout_height="47dp"
+                android:background="@drawable/rounded_image_background"
                 android:backgroundTint="#004aad"
                 android:text="Login" />
         </LinearLayout>
@@ -97,6 +98,7 @@
                 android:layout_width="112dp"
                 android:layout_height="47dp"
                 android:layout_below="@+id/SignInButton"
+                android:background="@drawable/rounded_image_background"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="37dp"
                 android:backgroundTint="#004aad"
