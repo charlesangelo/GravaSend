@@ -174,13 +174,14 @@
         app:layout_constraintVertical_bias="0.028"
         app:srcCompat="@drawable/ic_location" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="107dp"
-        android:layout_height="20dp"
+    <EditText
+        android:id="@+id/edittext11"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
         android:foregroundGravity="center"
         android:gravity="center"
-        android:text="Sample Name"
+        android:hint="Driver Name"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView6"
         app:layout_constraintHorizontal_bias="0.481"
@@ -188,5 +189,16 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/editProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Update"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/edittext11"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="@+id/edittext11"
+        app:layout_constraintTop_toBottomOf="@+id/edittext11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
