@@ -2,6 +2,7 @@ package com.example.gravasend;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.media.MediaPlayer;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,8 +81,24 @@ public class Location extends AppCompatActivity {
         } else {
             startLocationTracking();
         }
-    }
 
+        ImageButton backButton = findViewById(R.id.imageButton);
+
+        // Add an OnClickListener to navigate to the home screen when the button is clicked
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Define an Intent to go to the home screen or any other screen you desire
+                Intent intent = new Intent(Location.this, Home.class);
+
+                // Start the new activity
+                startActivity(intent);
+
+                // Finish the current activity (optional, if you don't want to go back to it)
+                finish();
+            }
+        });
+    }
     private void startLocationTracking() {
         // Configure Location request
         locationRequest = LocationRequest.create()
