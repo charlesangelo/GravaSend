@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <!-- Location Information -->
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/ic_back" />
+    <!-- Header (Gray) -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#004aad"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#004aad"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/truckInformationTag"
+            android:layout_width="241dp"
+            android:layout_height="51dp"
+            android:gravity=""
+            android:paddingLeft="20dp"
+            android:text="Speed Tracker"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"

@@ -31,7 +31,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#004aad"
+        android:backgroundTint="#d7f0e9"
         android:src="@drawable/ic_truck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#004aad"
+        android:backgroundTint="#d7f0e9"
 
         android:src="@drawable/ic_map"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,8 +70,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#004aad"
-
+        android:backgroundTint="#d7f0e9"
         android:src="@drawable/ic_logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Tracker"
-        android:textColor="#FFFF"
+        android:textColor="#004aad"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/mapsButton"
         app:layout_constraintEnd_toEndOf="@+id/mapsButton"
@@ -100,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Truck Information"
-        android:textColor="#ffff"
+        android:textColor="#004aad"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/truckInfoButton"
         app:layout_constraintEnd_toEndOf="@+id/truckInfoButton"
@@ -116,7 +115,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#004aad"
+        android:backgroundTint="#d7f0e9"
 
         android:src="@drawable/ic_trips"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,28 +131,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="My Trips"
-        android:textColor="#ffff"
+        android:textColor="#004aad"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/myTripsButton"
         app:layout_constraintEnd_toEndOf="@+id/myTripsButton"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="@+id/myTripsButton"
         app:layout_constraintTop_toTopOf="@+id/myTripsButton"
-        app:layout_constraintVertical_bias="0.925" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Logout"
-        android:textColor="#FFFF"
-        android:textSize="13dp"
-        app:layout_constraintBottom_toBottomOf="@+id/logoutButton"
-        app:layout_constraintEnd_toEndOf="@+id/logoutButton"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/logoutButton"
-        app:layout_constraintTop_toTopOf="@+id/logoutButton"
         app:layout_constraintVertical_bias="0.925" />
 
 
@@ -200,5 +184,20 @@
         app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintStart_toStartOf="@+id/edittext11"
         app:layout_constraintTop_toBottomOf="@+id/edittext11" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Logout"
+        android:textColor="#004aad"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/logoutButton"
+        app:layout_constraintEnd_toEndOf="@+id/logoutButton"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/logoutButton"
+        app:layout_constraintTop_toTopOf="@+id/logoutButton"
+        app:layout_constraintVertical_bias="0.925" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
