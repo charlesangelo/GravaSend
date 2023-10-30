@@ -117,7 +117,9 @@
         android:layout_width="match_parent"
         android:layout_height="375dp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-31dp">
 
         <LinearLayout
             android:id="@+id/imageTextContainer"
@@ -201,8 +203,8 @@
                             android:id="@+id/selectImageButton4"
                             android:layout_width="150dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/rounded_image_background"
                             android:layout_gravity="center"
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="#004aad"
                             android:foregroundGravity="center"
                             android:gravity="center"
@@ -274,9 +276,9 @@
                             android:id="@+id/selectImageButton5"
                             android:layout_width="150dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/rounded_image_background"
-
                             android:layout_gravity="center"
+
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="#004aad"
                             android:foregroundGravity="center"
                             android:gravity="center"
@@ -345,12 +347,12 @@
                             android:inputType="textMultiLine" />
 
                         <Button
-                            android:id="@+id/selectImageButto6"
+                            android:id="@+id/selectImageButton6"
                             android:layout_width="150dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/rounded_image_background"
-
                             android:layout_gravity="center"
+
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="#004aad"
                             android:foregroundGravity="center"
                             android:gravity="center"
@@ -428,9 +430,9 @@
                             android:id="@+id/selectImageButton1"
                             android:layout_width="150dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/rounded_image_background"
-
                             android:layout_gravity="center"
+
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="#004aad"
                             android:foregroundGravity="center"
                             android:gravity="center"
@@ -502,9 +504,9 @@
                             android:id="@+id/selectImageButton2"
                             android:layout_width="150dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/rounded_image_background"
-
                             android:layout_gravity="center"
+
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="#004aad"
                             android:foregroundGravity="center"
                             android:gravity="center"
@@ -576,9 +578,9 @@
                             android:id="@+id/selectImageButton"
                             android:layout_width="150dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/rounded_image_background"
-
                             android:layout_gravity="center"
+
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="#004aad"
                             android:foregroundGravity="center"
                             android:gravity="center"
