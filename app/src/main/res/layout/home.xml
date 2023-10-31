@@ -24,10 +24,10 @@
         android:src="@drawable/ic_truck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editProfileButton"
-        app:layout_constraintVertical_bias="0.523"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -45,10 +45,10 @@
         android:src="@drawable/ic_map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintHorizontal_bias="0.308"
         app:layout_constraintStart_toEndOf="@+id/truckInfoButton"
         app:layout_constraintTop_toBottomOf="@+id/editProfileButton"
-        app:layout_constraintVertical_bias="0.523"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -65,10 +65,10 @@
         android:src="@drawable/ic_logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toEndOf="@+id/myTripsButton"
         app:layout_constraintTop_toBottomOf="@+id/mapsButton"
-        app:layout_constraintVertical_bias="0.272"
+        app:layout_constraintVertical_bias="0.703"
         tools:ignore="MissingConstraints,UnknownId" />
 
     <TextView
@@ -112,10 +112,10 @@
         android:src="@drawable/ic_trips"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/truckInfoButton"
-        app:layout_constraintVertical_bias="0.043"
+        app:layout_constraintVertical_bias="0.046"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -148,7 +148,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.104"
         app:srcCompat="@drawable/ic_location" />
 
     <EditText
