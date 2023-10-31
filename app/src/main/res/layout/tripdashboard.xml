@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#faf2db"
+    >
 
     <!-- Header (Gray) -->
 
@@ -13,7 +15,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#004aad"
+        android:background="#d0a586"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +40,7 @@
             android:gravity=""
             android:paddingLeft="20dp"
             android:text="Trip Dashboard"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
@@ -47,7 +49,8 @@
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="500dp"
-        android:background="#bebcbb"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#dac3a6"
         android:orientation="vertical"
         android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +64,8 @@
             android:layout_width="320dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:background="@color/white"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#FFFF"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="5dp">
@@ -77,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date"
-                    android:textColor="#004aad"
+                    android:textColor="#000000"
                     android:textColorHighlight="#004aad"
                     android:textColorHint="#004aad"
                     android:textColorLink="#004aad"
@@ -90,8 +94,8 @@
                     android:paddingLeft="130dp"
                     android:shadowColor="#004aad"
                     android:text="ID no."
-                    android:textColor="#004aad"
-                    android:textColorHighlight="#004aad"
+                    android:textColor="#000000"
+                    android:textColorHighlight="#000000"
                     android:textColorHint="#004aad"
                     android:textColorLink="#004aad"
                     android:textSize="16sp" />
@@ -117,12 +121,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
-                    android:shadowColor="#004aad"
+                    android:shadowColor="#000000"
                     android:text="Location"
-                    android:textColor="#004aad"
-                    android:textColorHighlight="#004aad"
-                    android:textColorHint="#004aad"
-                    android:textColorLink="#004aad"
+                    android:textColor="#000000"
+                    android:textColorHighlight="#000000"
+                    android:textColorHint="#000000"
+                    android:textColorLink="#000000"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -155,12 +159,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
-                    android:shadowColor="#004aad"
+                    android:shadowColor="#000000"
                     android:text="Destination"
-                    android:textColor="#004aad"
-                    android:textColorHighlight="#004aad"
-                    android:textColorHint="#004aad"
-                    android:textColorLink="#004aad"
+                    android:textColor="#000000"
+                    android:textColorHighlight="#000000"
+                    android:textColorHint="#000000"
+                    android:textColorLink="#000000"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -175,14 +179,15 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Cargo Details"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/white"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#FFFF"
             android:orientation="vertical">
 
             <TextView
@@ -193,8 +198,8 @@
                 android:gravity="center"
                 android:hint="Product information 1"
                 android:paddingLeft="5dp"
-                android:textColor="#004aad"
-                android:textColorHint="#004aad"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <TextView
@@ -205,8 +210,8 @@
                 android:gravity="center"
                 android:hint="Product information 2"
                 android:paddingLeft="5dp"
-                android:textColor="#004aad"
-                android:textColorHint="#004aad"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -218,14 +223,15 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Special Instructions"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/white"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#FFFF"
             android:orientation="horizontal">
 
             <ImageView
@@ -233,7 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:paddingBottom="20dp"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/ic_circle" />
@@ -244,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Sample Instructions"
-                android:textColor="#004aad"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -256,7 +262,7 @@
 
             android:layout_gravity="center"
             android:layout_marginTop="150dp"
-            android:backgroundTint="#004aad"
+            android:backgroundTint="#838b81"
             android:text="Complete trip" />
     </LinearLayout>
 

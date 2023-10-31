@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#faf2db">
 
     <!-- Header (Gray) -->
 
@@ -12,9 +13,11 @@
         android:id="@+id/linearLayout4"
         android:layout_width="350dp"
         android:layout_height="200dp"
-        android:background="#bebcbb"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#dac3a6"
         android:orientation="vertical"
         android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -32,7 +35,8 @@
             android:paddingTop="7dp"
             android:paddingBottom="10dp"
             android:text="Plate Number"
-            android:textColor="@color/white" />
+            android:textColor="@color/black"
+            />
 
         <EditText
             android:id="@+id/plateNumberInput"
@@ -40,14 +44,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#FFFF"
             android:foregroundGravity="center"
             android:hint="Enter Plate Number"
             android:inputType="text"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:id="@+id/odometerTag"
@@ -59,7 +64,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Odometer"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/odometerInput"
@@ -67,14 +72,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#FFFF"
             android:foregroundGravity="center"
             android:hint="Enter Odometer Reading"
             android:inputType="text"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:paddingLeft="5dp"/>
 
     </LinearLayout>
 
@@ -82,7 +88,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#004aad"
+        android:background="#d0a586"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,9 +129,10 @@
 
         <LinearLayout
             android:id="@+id/imageTextContainer"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#EEEEEE"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#faf2db"
             android:orientation="vertical">
 
             <!-- ImageView for Image Selection -->
@@ -180,9 +187,10 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:background="#CCCCCC"
+                            android:background="@drawable/rounded_image_background"
+                            android:backgroundTint="#FFFF"
                             android:clickable="true"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/gravasend_logo" />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine4"
@@ -192,12 +200,13 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@color/white"
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="@color/white"
                             android:ems="10"
                             android:gravity="start|top"
                             android:hint="Notes"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:paddingLeft="5dp"/>
 
                         <Button
                             android:id="@+id/selectImageButton4"
@@ -205,7 +214,7 @@
                             android:layout_height="45dp"
                             android:layout_gravity="center"
                             android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="#004aad"
+                            android:backgroundTint="#838b81"
                             android:foregroundGravity="center"
                             android:gravity="center"
                             android:text="Select Image" />
@@ -253,9 +262,10 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:background="#CCCCCC"
+                            android:background="@drawable/rounded_image_background"
+                            android:backgroundTint="#FFFF"
                             android:clickable="true"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/gravasend_logo" />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine5"
@@ -265,12 +275,13 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@color/white"
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="@color/white"
                             android:ems="10"
                             android:gravity="start|top"
                             android:hint="Notes"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:paddingLeft="5dp"/>
 
                         <Button
                             android:id="@+id/selectImageButton5"
@@ -279,7 +290,7 @@
                             android:layout_gravity="center"
 
                             android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="#004aad"
+                            android:backgroundTint="#838b81"
                             android:foregroundGravity="center"
                             android:gravity="center"
                             android:text="Select Image" />
@@ -327,9 +338,10 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:background="#CCCCCC"
+                            android:background="@drawable/rounded_image_background"
+                            android:backgroundTint="#FFFF"
                             android:clickable="true"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/gravasend_logo" />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine6"
@@ -339,12 +351,13 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@color/white"
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="@color/white"
                             android:ems="10"
                             android:gravity="start|top"
                             android:hint="Notes"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:paddingLeft="5dp"/>
 
                         <Button
                             android:id="@+id/selectImageButton6"
@@ -353,7 +366,7 @@
                             android:layout_gravity="center"
 
                             android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="#004aad"
+                            android:backgroundTint="#838b81"
                             android:foregroundGravity="center"
                             android:gravity="center"
                             android:text="Select Image" />
@@ -407,9 +420,10 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:background="#CCCCCC"
+                            android:background="@drawable/rounded_image_background"
+                            android:backgroundTint="#FFFF"
                             android:clickable="true"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/gravasend_logo"  />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine1"
@@ -419,12 +433,13 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@color/white"
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="@color/white"
                             android:ems="10"
                             android:gravity="start|top"
                             android:hint="Notes"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:paddingLeft="5dp"/>
 
                         <Button
                             android:id="@+id/selectImageButton1"
@@ -433,7 +448,7 @@
                             android:layout_gravity="center"
 
                             android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="#004aad"
+                            android:backgroundTint="#838b81"
                             android:foregroundGravity="center"
                             android:gravity="center"
                             android:text="Select Image" />
@@ -481,9 +496,10 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:background="#CCCCCC"
+                            android:background="@drawable/rounded_image_background"
+                            android:backgroundTint="#FFFF"
                             android:clickable="true"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/gravasend_logo" />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine2"
@@ -493,12 +509,13 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@color/white"
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="@color/white"
                             android:ems="10"
                             android:gravity="start|top"
                             android:hint="Notes"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:paddingLeft="5dp"/>
 
                         <Button
                             android:id="@+id/selectImageButton2"
@@ -507,7 +524,7 @@
                             android:layout_gravity="center"
 
                             android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="#004aad"
+                            android:backgroundTint="#838b81"
                             android:foregroundGravity="center"
                             android:gravity="center"
                             android:text="Select Image" />
@@ -555,9 +572,10 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:background="#CCCCCC"
+                            android:background="@drawable/rounded_image_background"
+                            android:backgroundTint="#FFFF"
                             android:clickable="true"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/gravasend_logo" />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine"
@@ -567,12 +585,13 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@color/white"
+                            android:background="@drawable/rounded_image_background"
                             android:backgroundTint="@color/white"
                             android:ems="10"
                             android:gravity="start|top"
                             android:hint="Notes"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:paddingLeft="5dp"/>
 
                         <Button
                             android:id="@+id/selectImageButton"
@@ -581,7 +600,7 @@
                             android:layout_gravity="center"
 
                             android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="#004aad"
+                            android:backgroundTint="#838b81"
                             android:foregroundGravity="center"
                             android:gravity="center"
                             android:text="Select Image" />
@@ -600,15 +619,14 @@
         android:id="@+id/button4"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#004aad"
+        android:backgroundTint="#838b81"
 
         android:text="Save Changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         app:layout_constraintVertical_bias="0.928" />
 
@@ -618,7 +636,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#F3EEEC"
+        android:backgroundTint="#838b81"
         android:shadowColor="@color/black"
 
         android:text="Clear"
@@ -628,7 +646,7 @@
         android:textColorLink="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         app:layout_constraintVertical_bias="0.928"

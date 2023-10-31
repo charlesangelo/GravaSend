@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#fbf0de">
 
     <!-- Header (Gray) -->
 
@@ -14,7 +15,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#004aad"
+        android:background="#d0a586"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +29,7 @@
             android:id="@+id/backButton"
             android:layout_width="48dp"
             android:layout_height="50dp"
-            android:backgroundTint="#004aad"
+            android:backgroundTint="#d0a586"
             android:src="@drawable/ic_back"
             tools:ignore="MissingConstraints" />
 
@@ -39,7 +40,7 @@
             android:gravity=""
             android:paddingLeft="20dp"
             android:text="Truck Information"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
@@ -51,7 +52,7 @@
         android:layout_height="94dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
+        android:backgroundTint="#dac3a6"
         android:paddingRight="240dp"
         android:src="@drawable/ic_bluetruckfull"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.129" />
 
     <ImageButton
         android:id="@+id/btnMaintenanceReminders"
@@ -67,7 +68,7 @@
         android:layout_height="94dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
+        android:backgroundTint="#dac3a6"
         android:paddingRight="240dp"
         android:src="@drawable/ic_document"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +85,7 @@
         android:layout_height="94dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
+        android:backgroundTint="#dac3a6"
         android:gravity="center"
         android:paddingRight="240dp"
         android:src="@drawable/ic_checklist"
@@ -101,7 +102,7 @@
         android:layout_height="94dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
+        android:backgroundTint="#dac3a6"
         android:paddingRight="240dp"
         android:src="@drawable/ic_load_verification"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -117,7 +118,7 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:text="Trip Dashboard"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnMyTruck"
         app:layout_constraintEnd_toEndOf="@+id/btnMyTruck"
@@ -132,7 +133,7 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:text="Safety Checklist"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/btnMaintenanceReminders"
         app:layout_constraintEnd_toEndOf="@+id/btnMaintenanceHistory"
@@ -147,7 +148,7 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:text="Document Checklist"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnMaintenanceReminders"
         app:layout_constraintEnd_toEndOf="@+id/btnMaintenanceReminders"
@@ -161,7 +162,7 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:text="Load Verification"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnInspectionRecords"
         app:layout_constraintEnd_toEndOf="@+id/btnInspectionRecords"

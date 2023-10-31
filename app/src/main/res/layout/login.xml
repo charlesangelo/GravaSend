@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fbf0de">
+
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="275dp"
+        android:layout_height="240dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -17,11 +19,23 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/gravasend_logo" />
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Gravasend"
+        android:textColor="#000000"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:background="#bebcbb"
-        android:backgroundTint="#bebcbb"
+        android:layout_height="310dp"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#dac3a6"
         android:orientation="vertical"
         android:paddingTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +43,9 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.361"
+        >
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/unameInput"
@@ -41,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:backgroundTint="#fafbf5"
+                android:backgroundTint="#838b81"
                 android:hint="Email Address"
                 android:textColorHint="#1B1010" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:backgroundTint="#fafbf5"
+                android:backgroundTint="#838b81"
                 android:hint="Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,16 +91,36 @@
                 android:backgroundTint="#FFFF"
                 android:backgroundTintMode="src_in"
                 android:paddingRight="43dp"
-                android:shadowColor="@color/white"
+                android:shadowColor="@color/black"
                 android:text="Remember me"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="113dp"
+                android:layout_height="21dp"
+                android:background="@android:color/transparent"
+                android:paddingLeft="2dp"
+                android:text="Forgot my password"
+                android:textColor="#000000"
+                android:textSize="8sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/SignInButton"
-                android:layout_width="112dp"
+                android:layout_width="match_parent"
                 android:layout_height="47dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginRight="75dp"
                 android:background="@drawable/rounded_image_background"
-                android:backgroundTint="#004aad"
+                android:backgroundTint="#838b81"
                 android:text="Login" />
         </LinearLayout>
 
@@ -95,28 +131,15 @@
 
             <Button
                 android:id="@+id/RegisterButton"
-                android:layout_width="112dp"
+                android:layout_width="match_parent"
                 android:layout_height="47dp"
-                android:layout_below="@+id/SignInButton"
+                android:layout_marginLeft="75dp"
+                android:layout_marginRight="75dp"
                 android:background="@drawable/rounded_image_background"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="37dp"
-                android:backgroundTint="#004aad"
-                android:padding="10dp"
-                android:paddingRight="50dp"
-                android:text="Register"
-                tools:ignore="MissingConstraints" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="51dp"
-                android:background="@android:color/transparent"
-                android:paddingLeft="55dp"
-                android:text="Forgot my password"
-                android:textColor="#FFFF"
-                android:textSize="8sp" />
+                android:backgroundTint="#838b81"
+                android:text="Register" />
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

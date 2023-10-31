@@ -4,14 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#faf2db">
 
     <!-- Back Button -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#004aad"
+        android:background="#d0a586"
         android:orientation="horizontal"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
@@ -32,7 +33,7 @@
             android:gravity=""
             android:paddingLeft="20dp"
             android:text="My Truck"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
@@ -46,8 +47,8 @@
         android:id="@+id/linearContainer"
         android:layout_width="370dp"
         android:layout_height="550dp"
-        android:background="#bebcbb"
-        android:backgroundTint="#bebcbb"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#dac3a6"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +65,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
             android:text="Plate No."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             tools:ignore="MissingConstraints,NotSibling" />
 
         <TextView
@@ -78,10 +79,11 @@
             android:backgroundTint="@color/white"
             android:hint="Enter Plate No."
             android:shadowColor="@color/white"
-            android:textColor="#004aad"
-            android:textColorHint="#004aad"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:textSize="22sp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:id="@+id/chassisNoTag"
@@ -92,7 +94,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
             android:text="Chassis No."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -105,10 +107,11 @@
             android:background="@color/white"
             android:backgroundTint="@color/white"
             android:hint="Enter Chassis No."
-            android:textColor="#004aad"
-            android:textColorHint="#004aad"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:textSize="22sp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:id="@+id/engineNoTag"
@@ -119,7 +122,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
             android:text="Engine No."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -132,9 +135,10 @@
             android:background="@color/white"
             android:backgroundTint="@color/white"
             android:hint="Enter Engine No."
-            android:textColor="#004aad"
-            android:textColorHint="#004aad"
-            android:textSize="22sp" />
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:textSize="22sp"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:id="@+id/modelTag"
@@ -145,7 +149,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
             android:text="Model"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/modelEditText"
@@ -157,9 +161,10 @@
             android:background="@color/white"
             android:backgroundTint="@color/white"
             android:hint="Enter Model"
-            android:textColor="#004aad"
-            android:textColorHint="#004aad"
-            android:textSize="22sp" />
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:textSize="22sp"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:id="@+id/mileageTag"
@@ -170,7 +175,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
             android:text="Mileage"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/mileageEditText"
@@ -182,9 +187,10 @@
             android:background="@color/white"
             android:backgroundTint="@color/white"
             android:hint="Enter Mileage"
-            android:textColor="#004aad"
-            android:textColorHint="#004aad"
-            android:textSize="22sp" />
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:textSize="22sp"
+            android:paddingLeft="5dp"/>
 
 
         <Button
@@ -196,7 +202,8 @@
             android:layout_alignParentEnd="true"
             android:layout_gravity="bottom|center"
             android:layout_marginTop="55dp"
-            android:backgroundTint="#004aad"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#838b81"
             android:text="Refresh
 " />
     </LinearLayout>

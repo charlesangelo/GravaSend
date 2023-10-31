@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#faf2db">
 
     <!-- Header (Gray) -->
 
@@ -12,7 +13,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#004aad"
+        android:background="#d0a586"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +38,7 @@
             android:gravity=""
             android:paddingLeft="20dp"
             android:text="Load Verification"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
@@ -48,7 +49,8 @@
         android:layout_height="500dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="40dp"
-        android:background="#bebcbb"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#dac3a6"
         android:orientation="vertical"
         android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +70,8 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Cargo Type"
-            android:textColor="@color/white" />
+            android:textColor="@color/black"
+            />
 
         <EditText
             android:id="@+id/cargoTypeInput"
@@ -76,14 +79,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#FFFF"
             android:foregroundGravity="center"
             android:hint="Cargo Type"
             android:inputType="text"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:id="@+id/textView9"
@@ -95,7 +99,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Cargo Weight"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/cargoWeightInput"
@@ -103,14 +107,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_image_background"
+            android:backgroundTint="#FFFF"
             android:foregroundGravity="center"
             android:hint="6.5 tons"
             android:inputType="text"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:paddingLeft="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -124,17 +129,19 @@
             tools:ignore="MissingConstraints">
 
             <!-- Clear Button -->
+
+            <!-- Complete Trip Button -->
             <Button
                 android:id="@+id/clearLV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/white"
+                android:background="@drawable/rounded_image_background"
+                android:backgroundTint="#838b81"
                 android:text="Clear"
-                android:textColor="#004aad" />
+                android:textColor="#000000" />
 
-            <!-- Complete Trip Button -->
             <Button
                 android:id="@+id/VerifyLV"
                 android:layout_width="0dp"
@@ -142,7 +149,8 @@
                 android:layout_gravity="clip_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#004aad"
+                android:background="@drawable/rounded_image_background"
+                android:backgroundTint="#838b81"
                 android:text="Verify Load" />
         </LinearLayout>
     </LinearLayout>

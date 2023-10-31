@@ -4,23 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#faf2db"
     tools:visibility="visible">
 
     <!-- Title -->
 
     <!-- Set background color to blue (#0000FF) -->
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="164dp"
-        android:layout_height="157dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08"
-        app:srcCompat="@drawable/gravasend_logo" />
 
     <ImageButton
         android:id="@+id/truckInfoButton"
@@ -29,15 +18,16 @@
         android:layout_below="@+id/titleTextView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="316dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
+        android:backgroundTint="#dac3a6"
         android:src="@drawable/ic_truck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.006"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileButton"
+        app:layout_constraintVertical_bias="0.523"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -48,16 +38,17 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="316dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
 
+        android:backgroundTint="#dac3a6"
         android:src="@drawable/ic_map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_truckInfo2"
-        app:layout_constraintVertical_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toEndOf="@+id/truckInfoButton"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileButton"
+        app:layout_constraintVertical_bias="0.523"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -68,15 +59,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="176dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
+        android:backgroundTint="#dac3a6"
         android:src="@drawable/ic_logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintStart_toEndOf="@+id/myTripsButton"
         app:layout_constraintTop_toBottomOf="@+id/mapsButton"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.272"
         tools:ignore="MissingConstraints,UnknownId" />
 
     <TextView
@@ -85,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Tracker"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/mapsButton"
         app:layout_constraintEnd_toEndOf="@+id/mapsButton"
@@ -99,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Truck Information"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/truckInfoButton"
         app:layout_constraintEnd_toEndOf="@+id/truckInfoButton"
@@ -115,14 +107,15 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#d7f0e9"
 
+        android:backgroundTint="#dac3a6"
         android:src="@drawable/ic_trips"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/truckInfoButton"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.043"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -131,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="My Trips"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/myTripsButton"
         app:layout_constraintEnd_toEndOf="@+id/myTripsButton"
@@ -152,10 +145,10 @@
         android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/ic_location" />
 
     <EditText
@@ -178,7 +171,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#d7f0e9"
+        android:background="@drawable/rounded_image_background"
+        android:backgroundTint="#838b81"
         android:text="Update"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@+id/edittext11"
@@ -192,7 +186,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Logout"
-        android:textColor="#004aad"
+        android:textColor="#000000"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/logoutButton"
         app:layout_constraintEnd_toEndOf="@+id/logoutButton"
