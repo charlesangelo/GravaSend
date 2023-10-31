@@ -221,6 +221,14 @@ public class SafetyChecklist extends AppCompatActivity {
                 uploadUserData("Image4", imageDescriptionInput2, checkBox2, editTextTextMultiLine2, plateNumberInput, odometerInput);
                 uploadUserData("Image5", imageDescriptionInput6, checkBox6, editTextTextMultiLine6, plateNumberInput, odometerInput);
                 uploadUserData("Image6", imageDescriptionInput, checkBox, editTextTextMultiLine, plateNumberInput, odometerInput);
+
+                // Upload images for each image placeholder
+                uploadImageForPlaceholder(imagePlaceholder3, 3);
+                uploadImageForPlaceholder(imagePlaceholder1, 1);
+                uploadImageForPlaceholder(imagePlaceholder5, 5);
+                uploadImageForPlaceholder(imagePlaceholder2, 2);
+                uploadImageForPlaceholder(imagePlaceholder6, 6);
+                uploadImageForPlaceholder(imagePlaceholder, 4);
             }
 
             private void uploadUserData(String imageKey, EditText imageDescriptionInput, CheckBox checkBox, EditText editTextTextMultiLine, EditText plateNumberInput, EditText odometerInput) {
@@ -320,6 +328,23 @@ public class SafetyChecklist extends AppCompatActivity {
                     });
         }
     }
+// Define the uploadImageToStorageAndCacheURL method as previously shown
+
+    // Define the uploadImageForPlaceholder method to handle image uploads
+    private void uploadImageForPlaceholder(ImageView imageView, int imageId) {
+        if (selectedImageUriList.size() > imageId - 1) {
+            Uri selectedUri = selectedImageUriList.get(imageId - 1);
+            if (selectedUri != null) {
+                uploadImageToStorageAndCacheURL(userUid, selectedUri, imageId);
+                // You can also set the selected image in the selectedImageView if needed.
+                if (imageView != null) {
+                    imageView.setImageURI(selectedUri);
+                }
+            }
+        }
+    }
+
+// Continue with the rest of your code, such as the button4 click listener
 
     private void addImageTagToDatabase(int imageId, String imageUrl) {
         // Construct the path for storing image tags in the database
