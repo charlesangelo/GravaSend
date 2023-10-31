@@ -96,6 +96,29 @@ public class Home extends AppCompatActivity {
             }
 
             private void updateDriverDetailsInFirebase(String newName) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                if (user != null) {
+                    String userId = user.getUid();
+
+                    // Create a reference to the "Driver Name" path in the database for the current user
+                    DatabaseReference userReference = databaseReference.child("Driver Name").child(userId);
+
+                    // Update the user's name
+                    userReference.child("Driver details").setValue(newName)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // User's name updated successfully
+                                    Toast.makeText(Home.this, "Name updated successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(Home.this, "Failed to update name in the database", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
 
         });

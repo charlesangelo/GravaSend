@@ -117,7 +117,7 @@ public class Location extends AppCompatActivity {
                         double currentSpeedKph = currentSpeedMps * 3.6; // Convert to km/h
 
                         if (previousSpeed != -1) {
-                            if (previousSpeed - currentSpeedKph > 5) {
+                            if (previousSpeed - currentSpeedKph > 20) {
                                 harshBrakingCount++;
                                 speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
                                 updateHarshBrakingUI(harshBrakingCount);
@@ -129,7 +129,7 @@ public class Location extends AppCompatActivity {
                                 showAlertDialog("Harsh Braking", "You've experienced harsh braking.");
                             }
 
-                            if (currentSpeedKph - previousSpeed > 5) {
+                            if (currentSpeedKph - previousSpeed > 20) {
                                 suddenAccelerationCount++;
                                 speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
                                 updateSuddenAccelerationUI(suddenAccelerationCount);
@@ -155,7 +155,7 @@ public class Location extends AppCompatActivity {
                             updateMaxSpeedUI(maxSpeed); // Update the UI
                         }
 
-                        if (currentSpeedKph > 100.0) {
+                        if (currentSpeedKph > 60.0) {
                             // Handle speeds exceeding 100 km/h
                             Log.d("SpeedTracker", "Speed exceeded 100 km/h: " + currentSpeedKph + " KM/h");
                             speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
