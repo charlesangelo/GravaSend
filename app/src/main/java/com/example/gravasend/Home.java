@@ -256,7 +256,10 @@ public class Home extends AppCompatActivity {
                         // Load the profile image
                         String imageUrl = dataSnapshot.child("ProfileImageURL").getValue(String.class);
                         if (imageUrl != null && !imageUrl.isEmpty()) {
-                            Picasso.get().load(imageUrl).into(imageView6);
+                            Picasso.get().load(imageUrl)
+                                    .fit() // Set the fit() method to fit the image within the ImageView
+                                    .centerCrop() // Set the centerCrop() method to crop the image if needed
+                                    .into(imageView6);
                         }
                     } else {
                         edittext11.setText("");
@@ -270,6 +273,7 @@ public class Home extends AppCompatActivity {
             });
         }
     }
+
 
     private String getDriverNameLocally() {
         // Get the driver's name from SharedPreferences
