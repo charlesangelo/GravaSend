@@ -283,23 +283,27 @@ public class Location extends AppCompatActivity {
             vibrator.vibrate(3000); // Vibrate for 3 seconds
         }
 
-        // Play the notification sound
-        if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.notifsoundwarning);
-            mediaPlayer.setVolume(1.0f, 1.0f); // Max volume
+        // Release the MediaPlayer if it's currently playing
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
 
-        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
-            mediaPlayer.start();
-            mediaPlayer.setLooping(true); // Play the sound for 3 seconds
-            // Stop the sound after 3 seconds
-            new android.os.Handler().postDelayed(new Runnable() {
-                public void run() {
-                    mediaPlayer.stop();
-                }
-            }, 3000);
-        }
+        // Create and prepare the MediaPlayer again
+        mediaPlayer = MediaPlayer.create(this, R.raw.notifsoundwarning);
+        mediaPlayer.setVolume(1.0f, 1.0f); // Max volume
+
+        // Play the sound for 3 seconds
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
+        new android.os.Handler().postDelayed(new Runnable() {
+            public void run() {
+                mediaPlayer.stop();
+            }
+        }, 3000);
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
