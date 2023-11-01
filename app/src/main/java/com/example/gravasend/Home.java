@@ -258,9 +258,9 @@ public class Home extends AppCompatActivity {
                         if (imageUrl != null && !imageUrl.isEmpty()) {
                             Picasso.get().load(imageUrl)
                                     .fit() // Set the fit() method to fit the image within the ImageView
-                                    .centerCrop() // Set the centerCrop() method to crop the image if needed
                                     .into(imageView6);
                         }
+
                     } else {
                         edittext11.setText("");
                     }
