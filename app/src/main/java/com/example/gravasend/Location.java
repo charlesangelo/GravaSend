@@ -128,7 +128,7 @@ public class Location extends AppCompatActivity {
                                     updateHarshBrakingUI(harshBrakingCount, "0-30 km/h");
 
                                     // Vibrate and play sound for harsh braking
-                                    vibrateAndPlaySound(500);
+                                    vibrateAndPlaySound(3000);
 
                                     // Show a pop-up dialog for harsh braking
                                     showAlertDialog("Harsh Braking", "You've experienced harsh braking at 0-30 km/h.");
@@ -138,7 +138,7 @@ public class Location extends AppCompatActivity {
                                     updateHarshBrakingUI(harshBrakingCount, "30-60 km/h");
 
                                     // Vibrate and play sound for harsh braking
-                                    vibrateAndPlaySound(500);
+                                    vibrateAndPlaySound(3000);
 
                                     // Show a pop-up dialog for harsh braking
                                     showAlertDialog("Harsh Braking", "You've experienced harsh braking at 30-60 km/h.");
@@ -148,7 +148,7 @@ public class Location extends AppCompatActivity {
                                     updateHarshBrakingUI(harshBrakingCount, "60-100 km/h");
 
                                     // Vibrate and play sound for harsh braking
-                                    vibrateAndPlaySound(500);
+                                    vibrateAndPlaySound(3000);
 
                                     // Show a pop-up dialog for harsh braking
                                     showAlertDialog("Harsh Braking", "You've experienced harsh braking at 60-100 km/h.");
@@ -162,7 +162,7 @@ public class Location extends AppCompatActivity {
                                     updateSuddenAccelerationUI(suddenAccelerationCount, "0-30 km/h");
 
                                     // Vibrate and play sound for sudden acceleration
-                                    vibrateAndPlaySound(500);
+                                    vibrateAndPlaySound(3000);
 
                                     // Show a pop-up dialog for sudden acceleration
                                     showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 0-30 km/h.");
@@ -172,7 +172,7 @@ public class Location extends AppCompatActivity {
                                     updateSuddenAccelerationUI(suddenAccelerationCount, "30-60 km/h");
 
                                     // Vibrate and play sound for sudden acceleration
-                                    vibrateAndPlaySound(500);
+                                    vibrateAndPlaySound(3000);
 
                                     // Show a pop-up dialog for sudden acceleration
                                     showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 30-60 km/h.");
@@ -182,7 +182,7 @@ public class Location extends AppCompatActivity {
                                     updateSuddenAccelerationUI(suddenAccelerationCount, "60-100 km/h");
 
                                     // Vibrate and play sound for sudden acceleration
-                                    vibrateAndPlaySound(500);
+                                    vibrateAndPlaySound(3000);
 
                                     // Show a pop-up dialog for sudden acceleration
                                     showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 60-100 km/h.");
@@ -203,13 +203,13 @@ public class Location extends AppCompatActivity {
                             updateMaxSpeedUI(maxSpeed); // Update the UI
                         }
 
-                        if (currentSpeedKph > 60.0) {
+                        if (currentSpeedKph > 100.0) {
                             // Handle speeds exceeding 100 km/h
                             Log.d("SpeedTracker", "Speed exceeded 100 km/h: " + currentSpeedKph + " KM/h");
                             speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
 
                             // Vibrate and play sound for exceeding 100 km/h
-                            vibrateAndPlaySound(1000);
+                            vibrateAndPlaySound(3000);
 
                             // Show a pop-up dialog for exceeding 100 km/h
                             showAlertDialog("Speed Exceeded", "You've exceeded 100 km/h.");
