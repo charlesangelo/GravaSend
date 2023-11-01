@@ -122,7 +122,7 @@ public class Location extends AppCompatActivity {
 
                         if (previousSpeed != -1) {
                             if (currentSpeedKph - previousSpeed > 0) {
-                                if (currentSpeedKph <= 30) {
+                                if (currentSpeedKph > 30) {
                                     harshBrakingCount++;
                                     speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
                                     updateHarshBrakingUI(harshBrakingCount, "0-30 km/h");
@@ -132,7 +132,7 @@ public class Location extends AppCompatActivity {
 
                                     // Show a pop-up dialog for harsh braking
                                     showAlertDialog("Harsh Braking", "You've experienced harsh braking at 0-30 km/h.");
-                                } else if (currentSpeedKph <= 60) {
+                                } else if (currentSpeedKph > 60) {
                                     harshBrakingCount++;
                                     speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
                                     updateHarshBrakingUI(harshBrakingCount, "30-60 km/h");
@@ -142,7 +142,7 @@ public class Location extends AppCompatActivity {
 
                                     // Show a pop-up dialog for harsh braking
                                     showAlertDialog("Harsh Braking", "You've experienced harsh braking at 30-60 km/h.");
-                                } else if (currentSpeedKph <= 100) {
+                                } else if (currentSpeedKph > 100) {
                                     harshBrakingCount++;
                                     speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
                                     updateHarshBrakingUI(harshBrakingCount, "60-100 km/h");
@@ -156,7 +156,7 @@ public class Location extends AppCompatActivity {
                             }
 
                             if (currentSpeedKph - previousSpeed > 0) {
-                                if (currentSpeedKph <= 30) {
+                                if (currentSpeedKph > 30) {
                                     suddenAccelerationCount++;
                                     speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
                                     updateSuddenAccelerationUI(suddenAccelerationCount, "0-30 km/h");
@@ -166,7 +166,7 @@ public class Location extends AppCompatActivity {
 
                                     // Show a pop-up dialog for sudden acceleration
                                     showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 0-30 km/h.");
-                                } else if (currentSpeedKph <= 60) {
+                                } else if (currentSpeedKph > 60) {
                                     suddenAccelerationCount++;
                                     speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
                                     updateSuddenAccelerationUI(suddenAccelerationCount, "30-60 km/h");
@@ -176,7 +176,7 @@ public class Location extends AppCompatActivity {
 
                                     // Show a pop-up dialog for sudden acceleration
                                     showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 30-60 km/h.");
-                                } else if (currentSpeedKph <= 100) {
+                                } else if (currentSpeedKph > 100) {
                                     suddenAccelerationCount++;
                                     speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
                                     updateSuddenAccelerationUI(suddenAccelerationCount, "60-100 km/h");
