@@ -1,12 +1,14 @@
 package com.example.gravasend;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.os.Vibrator;
 import android.media.MediaPlayer;
 import android.util.Log;
@@ -55,6 +57,7 @@ public class Location extends AppCompatActivity {
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
     private MediaPlayer mediaPlayer; // MediaPlayer for playing the sound
+    private PowerManager.WakeLock wakeLock; // Declare the WakeLock
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,7 @@ public class Location extends AppCompatActivity {
             }
         });
     }
+
     private void startLocationTracking() {
         // Configure Location request
         locationRequest = LocationRequest.create()
@@ -117,28 +121,72 @@ public class Location extends AppCompatActivity {
                         double currentSpeedKph = currentSpeedMps * 3.6; // Convert to km/h
 
                         if (previousSpeed != -1) {
-                            if (previousSpeed - currentSpeedKph > 20) {
-                                harshBrakingCount++;
-                                speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
-                                updateHarshBrakingUI(harshBrakingCount);
+                            if (currentSpeedKph - previousSpeed > 0) {
+                                if (currentSpeedKph <= 30) {
+                                    harshBrakingCount++;
+                                    speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
+                                    updateHarshBrakingUI(harshBrakingCount, "0-30 km/h");
 
-                                // Vibrate and play sound for harsh braking
-                                vibrateAndPlaySound(500);
+                                    // Vibrate and play sound for harsh braking
+                                    vibrateAndPlaySound(500);
 
-                                // Show a pop-up dialog for harsh braking
-                                showAlertDialog("Harsh Braking", "You've experienced harsh braking.");
+                                    // Show a pop-up dialog for harsh braking
+                                    showAlertDialog("Harsh Braking", "You've experienced harsh braking at 0-30 km/h.");
+                                } else if (currentSpeedKph <= 60) {
+                                    harshBrakingCount++;
+                                    speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
+                                    updateHarshBrakingUI(harshBrakingCount, "30-60 km/h");
+
+                                    // Vibrate and play sound for harsh braking
+                                    vibrateAndPlaySound(500);
+
+                                    // Show a pop-up dialog for harsh braking
+                                    showAlertDialog("Harsh Braking", "You've experienced harsh braking at 30-60 km/h.");
+                                } else if (currentSpeedKph <= 100) {
+                                    harshBrakingCount++;
+                                    speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
+                                    updateHarshBrakingUI(harshBrakingCount, "60-100 km/h");
+
+                                    // Vibrate and play sound for harsh braking
+                                    vibrateAndPlaySound(500);
+
+                                    // Show a pop-up dialog for harsh braking
+                                    showAlertDialog("Harsh Braking", "You've experienced harsh braking at 60-100 km/h.");
+                                }
                             }
 
-                            if (currentSpeedKph - previousSpeed > 20) {
-                                suddenAccelerationCount++;
-                                speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
-                                updateSuddenAccelerationUI(suddenAccelerationCount);
+                            if (currentSpeedKph - previousSpeed > 0) {
+                                if (currentSpeedKph <= 30) {
+                                    suddenAccelerationCount++;
+                                    speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
+                                    updateSuddenAccelerationUI(suddenAccelerationCount, "0-30 km/h");
 
-                                // Vibrate and play sound for sudden acceleration
-                                vibrateAndPlaySound(500);
+                                    // Vibrate and play sound for sudden acceleration
+                                    vibrateAndPlaySound(500);
 
-                                // Show a pop-up dialog for sudden acceleration
-                                showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration.");
+                                    // Show a pop-up dialog for sudden acceleration
+                                    showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 0-30 km/h.");
+                                } else if (currentSpeedKph <= 60) {
+                                    suddenAccelerationCount++;
+                                    speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
+                                    updateSuddenAccelerationUI(suddenAccelerationCount, "30-60 km/h");
+
+                                    // Vibrate and play sound for sudden acceleration
+                                    vibrateAndPlaySound(500);
+
+                                    // Show a pop-up dialog for sudden acceleration
+                                    showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 30-60 km/h.");
+                                } else if (currentSpeedKph <= 100) {
+                                    suddenAccelerationCount++;
+                                    speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
+                                    updateSuddenAccelerationUI(suddenAccelerationCount, "60-100 km/h");
+
+                                    // Vibrate and play sound for sudden acceleration
+                                    vibrateAndPlaySound(500);
+
+                                    // Show a pop-up dialog for sudden acceleration
+                                    showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 60-100 km/h.");
+                                }
                             }
                         }
 
@@ -202,12 +250,12 @@ public class Location extends AppCompatActivity {
         currentSpeedTextView.setText("Current Speed: " + formattedSpeed + " KM/h");
     }
 
-    private void updateHarshBrakingUI(int count) {
-        harshBrakingCountTextView.setText("Harsh Braking Count: " + count);
+    private void updateHarshBrakingUI(int count, String speedRange) {
+        harshBrakingCountTextView.setText("Harsh Braking Count (" + speedRange + "): " + count);
     }
 
-    private void updateSuddenAccelerationUI(int count) {
-        suddenAccelerationCountTextView.setText("Sudden Acceleration Count: " + count);
+    private void updateSuddenAccelerationUI(int count, String speedRange) {
+        suddenAccelerationCountTextView.setText("Sudden Acceleration Count (" + speedRange + "): " + count);
     }
 
     private void updateLocationInfo(android.location.Location location) {
@@ -232,16 +280,24 @@ public class Location extends AppCompatActivity {
     private void vibrateAndPlaySound(long milliseconds) {
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         if (vibrator.hasVibrator()) {
-            vibrator.vibrate(milliseconds);
+            vibrator.vibrate(3000); // Vibrate for 3 seconds
         }
 
         // Play the notification sound
         if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.notification_sound);
+            mediaPlayer = MediaPlayer.create(this, R.raw.notifsoundwarning);
+            mediaPlayer.setVolume(1.0f, 1.0f); // Max volume
         }
 
         if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
+            mediaPlayer.setLooping(true); // Play the sound for 3 seconds
+            // Stop the sound after 3 seconds
+            new android.os.Handler().postDelayed(new Runnable() {
+                public void run() {
+                    mediaPlayer.stop();
+                }
+            }, 3000);
         }
     }
 
@@ -255,6 +311,26 @@ public class Location extends AppCompatActivity {
                 Toast.makeText(this, "Location permission denied. App cannot function.", Toast.LENGTH_SHORT).show();
                 Log.e("SpeedTracker", "Location permission denied.");
             }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Acquire the WakeLock to keep the screen on
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "Location::WakeLockTag");
+        wakeLock.acquire();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Release the WakeLock when the activity is paused
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
         }
     }
 
