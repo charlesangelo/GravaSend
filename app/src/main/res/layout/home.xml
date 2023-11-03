@@ -160,6 +160,8 @@
         android:gravity="center"
         android:hint="Driver Name"
         android:textSize="14sp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView6"
         app:layout_constraintHorizontal_bias="0.481"

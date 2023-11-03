@@ -82,17 +82,7 @@ public class Home extends AppCompatActivity {
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Allow the user to edit their profile name
-                String newName = edittext11.getText().toString();
 
-                if (!newName.isEmpty()) {
-                    // Update the "Driver details" path in Firebase Realtime Database
-                    updateDriverDetailsInFirebase(newName);
-                    // Update the local SharedPreferences with the new name
-                    saveDriverNameLocally(newName);
-                } else {
-                    Toast.makeText(Home.this, "Name cannot be empty", Toast.LENGTH_SHORT).show();
-                }
             }
 
             private void updateDriverDetailsInFirebase(String newName) {
@@ -100,24 +90,8 @@ public class Home extends AppCompatActivity {
                 if (user != null) {
                     String userId = user.getUid();
 
-                    // Create a reference to the "Driver Name" path in the database for the current user
-                    DatabaseReference userReference = databaseReference.child("Driver Name").child(userId);
 
-                    // Update the user's name
-                    userReference.child("Driver details").setValue(newName)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // User's name updated successfully
-                                    Toast.makeText(Home.this, "Name updated successfully", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Home.this, "Failed to update name in the database", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+
                 }
             }
 
@@ -208,7 +182,7 @@ public class Home extends AppCompatActivity {
                                     String imageUrl = uri.toString();
 
                                     // Store the image URL in the Realtime Database
-                                    DatabaseReference userReference = databaseReference.child("Driver Name").child(userId);
+                                    DatabaseReference userReference = databaseReference.child("DriverManagement").child(userId);
                                     userReference.child("ProfileImageURL").setValue(imageUrl)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
@@ -244,13 +218,13 @@ public class Home extends AppCompatActivity {
         if (user != null) {
             String userId = user.getUid();
 
-            DatabaseReference userReference = databaseReference.child("Driver Name").child(userId);
+            DatabaseReference userReference = databaseReference.child("DriverManagement").child(userId);
 
             userReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String driverName = dataSnapshot.child("Driver details").getValue(String.class);
+                        String driverName = dataSnapshot.child("driverName").getValue(String.class);
                         edittext11.setText(driverName);
 
                         // Load the profile image

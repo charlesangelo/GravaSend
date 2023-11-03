@@ -121,13 +121,20 @@ public class TripDashboard extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
+                        // Data exists, populate the fields
                         date.setText(dataSnapshot.child("date").getValue(String.class));
-                        idDelivery.setText(String.valueOf(dataSnapshot.child("id_delivery").getValue(Long.class)));
-                        location.setText(dataSnapshot.child("Location").getValue(String.class));
+                        idDelivery.setText(String.valueOf(dataSnapshot.child("dateTime").getValue(String.class)));
+                        location.setText(dataSnapshot.child("origin").getValue(String.class));
                         destination.setText(dataSnapshot.child("destination").getValue(String.class));
-                        cargoDetailsDescription.setText(dataSnapshot.child("cargoDetailsDescription").getValue(String.class));
-                        cargoDetailsDescription2.setText(dataSnapshot.child("cargoDetailsDescription2").getValue(String.class));
+                        cargoDetailsDescription.setText("Cargo Details: " + dataSnapshot.child("cargo").getValue(String.class));
+                        cargoDetailsDescription2.setText(dataSnapshot.child("weight").getValue(String.class)+" cu. mt.");
                         specialInstructionsDescription.setText(dataSnapshot.child("specialInstructionsDescription").getValue(String.class));
+
+                        // Enable the Complete Trip button
+                        completeTripButton.setEnabled(true);
+                    } else {
+                        // Data is empty, disable the Complete Trip button
+                        completeTripButton.setEnabled(false);
                     }
                 }
 
@@ -138,5 +145,4 @@ public class TripDashboard extends AppCompatActivity {
                 }
             });
         }
-    }
-}
+    }}

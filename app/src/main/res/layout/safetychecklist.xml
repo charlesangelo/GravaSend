@@ -163,9 +163,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:hint="Enter Image Description"
-                                android:inputType="text"
-                                android:textSize="12dp" />
+                                android:text="Suspension System"
+                                android:textSize="12dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:clickable="false"
+                                android:background="@null" />
+
+
 
                             <CheckBox
                                 android:id="@+id/checkBox3"
@@ -238,9 +243,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:hint="Enter Image Description"
-                                android:inputType="text"
-                                android:textSize="12dp" />
+                                android:text="Steering System"
+                                android:textSize="12dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:clickable="false"
+                                android:background="@null" />
+
 
                             <CheckBox
                                 android:id="@+id/checkBox4"
@@ -314,9 +323,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:hint="Enter Image Description"
-                                android:inputType="text"
-                                android:textSize="12dp" />
+                                android:text="Safety Equipments"
+                                android:textSize="12dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:clickable="false"
+                                android:background="@null" />
+
 
                             <CheckBox
                                 android:id="@+id/checkBox6"
@@ -396,9 +409,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:hint="Enter Image Description"
-                                android:inputType="text"
-                                android:textSize="12dp" />
+                                android:text="Brake system"
+                                android:textSize="12dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:clickable="false"
+                                android:background="@null" />
+
 
                             <CheckBox
                                 android:id="@+id/checkBox1"
@@ -472,9 +489,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:hint="Enter Image Description"
-                                android:inputType="text"
-                                android:textSize="12dp" />
+                                android:text="Tires and Wheels"
+                                android:textSize="12dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:clickable="false"
+                                android:background="@null" />
+
 
                             <CheckBox
                                 android:id="@+id/checkBox2"
@@ -548,9 +569,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:hint="Enter Image Description"
-                                android:inputType="text"
-                                android:textSize="12dp" />
+                                android:text="Lights and Reflectors"
+                                android:textSize="12dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:clickable="false"
+                                android:background="@null" />
+
 
                             <CheckBox
                                 android:id="@+id/checkBox"

@@ -54,10 +54,13 @@ public class SafetyChecklist extends AppCompatActivity {
         // Initialize the Firebase Realtime Database reference
         databaseReference = FirebaseDatabase.getInstance().getReference("Safety Checklist");
 
+
         // Initialize Firebase Storage reference
         storageReference = FirebaseStorage.getInstance().getReference();
         Button clearButton = findViewById(R.id.button3);
         Button button4 = findViewById(R.id.button4); // Added button4
+
+
 
         View backButton = findViewById(R.id.backButton);
         // Back Button

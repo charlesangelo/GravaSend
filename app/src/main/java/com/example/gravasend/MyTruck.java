@@ -71,20 +71,19 @@ public class MyTruck extends AppCompatActivity {
 
     private void fetchDataFromFirebase() {
         if (currentUser != null) {
-            String uid = currentUser.getUid();
+            String id = currentUser.getUid();
 
-            databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            databaseReference.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        Truck truck = snapshot.getValue(Truck.class);
-                        if (truck != null) {
-                            plateNoTextView.setText("Plate No: " + truck.getPlateNo());
-                            chassisNoTextView.setText("Chassis No: " + truck.getChassisNo());
-                            engineNoTextView.setText("Engine No: " + truck.getEngineNo());
-                            modelTextView.setText("Model: " + truck.getModel());
-                            mileageTextView.setText("Mileage: " + truck.getMileage());
-                        }
+
+                            plateNoTextView.setText( snapshot.child("plateNo").getValue(String.class));
+                            chassisNoTextView.setText(snapshot.child("chassisNo").getValue(String.class));
+                            engineNoTextView.setText(snapshot.child("engineNo").getValue(String.class));
+                            modelTextView.setText( snapshot.child("model").getValue(String.class));
+                            mileageTextView.setText( snapshot.child("plateNo2").getValue(String.class));
+
                     }
                 }
 

@@ -2,7 +2,7 @@ package com.example.gravasend;
 
 public class Truck {
     private String id;
-    private String plateNo;
+    private String plateNo2;
     private String chassisNo;
     private String engineNo;
     private String model;
@@ -12,27 +12,14 @@ public class Truck {
     public Truck() {
     }
 
-    public Truck(String id, String plateNo, String chassisNo, String engineNo, String model, Long mileage) {
+    public Truck(String id, String plateNo2, String chassisNo, String engineNo, String model, Long mileage) {
         this.id = id;
-        this.plateNo = plateNo;
-        this.chassisNo = chassisNo;
-        this.engineNo = engineNo;
+        this.plateNo2 = plateNo2;
         this.model = model;
         this.mileage = mileage;
+        this.chassisNo = chassisNo;
+        this.engineNo = engineNo;
     }
-
-    public Long getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(Long mileage) {
-        this.mileage = mileage;
-    }
-
-    public String getPlateNo() {
-        return plateNo;
-    }
-
     public String getChassisNo() {
         return chassisNo;
     }
@@ -44,6 +31,13 @@ public class Truck {
     public String getModel() {
         return model;
     }
+    public String getPlateNo() {
+        return plateNo2;
+    }
+    public Long getMileage() {
+        return mileage;
+    }
+
 
     // Other getters and setters
 }
