@@ -21,8 +21,10 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -47,6 +49,7 @@ public class DocumentCheck extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.documentcheck);
 
@@ -67,7 +70,7 @@ public class DocumentCheck extends AppCompatActivity {
         verifyLoadButton = findViewById(R.id.verifyLoadButton); // Initialize the "Verify Load" button
         clearButton = findViewById(R.id.clearButton); // Initialize the "Clear" button
         signatureView = findViewById(R.id.signatureView); // Initialize the SignatureView
-
+        checkIfUserHasTrip();
         // Handle the back button click
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +104,7 @@ public class DocumentCheck extends AppCompatActivity {
                     // Perform the "Verify Load" action (you can add your verification logic here)
 
                     // For example, show a toast message
-                    Toast.makeText(DocumentCheck.this, "Load verified!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DocumentCheck.this, "Document List Submitted!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -329,6 +332,33 @@ public class DocumentCheck extends AppCompatActivity {
                             // Handle the failure to delete the image
                         }
                     });
+
+
+        }
+
+    }
+    private void checkIfUserHasTrip() {
+        String userId = getCurrentUserId(); // Get the user's ID
+
+        if (userId != null) {
+            // Check if the user's trip dashboard contains their UID
+            databaseReference.child("Trip Dashboard").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        // User does not have a trip dashboard, disable the "Verify Load" button
+                        verifyLoadButton.setEnabled(false);
+                        // You can also display a message or take other actions
+                        Toast.makeText(DocumentCheck.this, "You do not have a trip.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle error here if needed
+                }
+            });
         }
     }
+
 }

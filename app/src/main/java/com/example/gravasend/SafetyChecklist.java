@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,13 +43,15 @@ public class SafetyChecklist extends AppCompatActivity {
     private String userUid;
     private SharedPreferences sharedPreferences;
     private ArrayList<Uri> selectedImageUriList = new ArrayList<>();
+    private FirebaseUser currentUser;
+    private Button button4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.safetychecklist);
 
-        // Get the user's UID
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
         userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Initialize SharedPreferences for image URL caching
         sharedPreferences = getSharedPreferences("image_urls", MODE_PRIVATE);
@@ -58,9 +62,8 @@ public class SafetyChecklist extends AppCompatActivity {
         // Initialize Firebase Storage reference
         storageReference = FirebaseStorage.getInstance().getReference();
         Button clearButton = findViewById(R.id.button3);
-        Button button4 = findViewById(R.id.button4); // Added button4
-
-
+        button4 = findViewById(R.id.button4); // Added button4
+        checkIfUserHasTripDashboard();
 
         View backButton = findViewById(R.id.backButton);
         // Back Button
@@ -113,12 +116,7 @@ public class SafetyChecklist extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Clear EditText fields
-                imageDescriptionInput3.setText("");
-                imageDescriptionInput1.setText("");
-                imageDescriptionInput4.setText("");
-                imageDescriptionInput2.setText("");
-                imageDescriptionInput6.setText("");
-                imageDescriptionInput.setText("");
+
                 plateNumberInput.setText("");
                 odometerInput.setText("");
 
@@ -217,7 +215,8 @@ public class SafetyChecklist extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Upload data for each input field
+
+
                 uploadUserData("Image1", imageDescriptionInput3, checkBox3, editTextTextMultiLine4, plateNumberInput, odometerInput);
                 uploadUserData("Image2", imageDescriptionInput1, checkBox1, editTextTextMultiLine1, plateNumberInput, odometerInput);
                 uploadUserData("Image3", imageDescriptionInput4, checkBox4, editTextTextMultiLine5, plateNumberInput, odometerInput);
@@ -232,7 +231,10 @@ public class SafetyChecklist extends AppCompatActivity {
                 uploadImageForPlaceholder(imagePlaceholder2, 2);
                 uploadImageForPlaceholder(imagePlaceholder6, 6);
                 uploadImageForPlaceholder(imagePlaceholder, 4);
+
             }
+
+
 
             private void uploadUserData(String imageKey, EditText imageDescriptionInput, CheckBox checkBox, EditText editTextTextMultiLine, EditText plateNumberInput, EditText odometerInput) {
                 // Construct the path in the database based on imageKey
@@ -272,6 +274,29 @@ public class SafetyChecklist extends AppCompatActivity {
             }
         });
     }
+
+    private void checkIfUserHasTripDashboard() {
+        String userId = currentUser.getUid();
+
+        if (userId != null) {
+            databaseReference.child("Trip Dashboard").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        // User does not have a trip dashboard, disable the "Verify Load" button
+                        button4.setEnabled(false);
+                        // You can also display a message or take other actions
+                        Toast.makeText(SafetyChecklist.this, "You do not have a trip.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle error here if needed
+                }
+            });
+        }
+    }
+
 
     // Update the openFileChooser method to add selected URIs to the list and include the image ID
     private void openFileChooser(int imageId) {
@@ -396,6 +421,7 @@ public class SafetyChecklist extends AppCompatActivity {
         }
     }
 
+
     // Retrieve and populate user data from Firebase
     private void retrieveAndPopulateUserData(String userUid, String imageIdentifier, final EditText imageDescriptionInput, final CheckBox checkBox, final EditText editTextTextMultiLine, final EditText plateNumberInput, final EditText odometerInput) {
         // Construct the reference to the user's data in Firebase
@@ -433,5 +459,7 @@ public class SafetyChecklist extends AppCompatActivity {
             }
         });
     }
+
+
 
 }

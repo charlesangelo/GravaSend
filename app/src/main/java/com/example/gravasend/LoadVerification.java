@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +15,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoadVerification extends AppCompatActivity {
     private ImageButton b1;
@@ -45,7 +49,7 @@ public class LoadVerification extends AppCompatActivity {
         cargoTypeInput = findViewById(R.id.cargoTypeInput);
         cargoWeightInput = findViewById(R.id.cargoWeightInput);
 
-
+        checkIfUserHasTrip();
 
         // Handle the back button click
         b1.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +65,7 @@ public class LoadVerification extends AppCompatActivity {
         verifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Save cargo type and weight to Firebase
                 saveCargoData();
             }
@@ -73,6 +78,7 @@ public class LoadVerification extends AppCompatActivity {
                 // Clear the input fields
                 cargoTypeInput.getText().clear();
                 cargoWeightInput.getText().clear();
+                Toast.makeText(LoadVerification.this, "Load Data Cleared!", Toast.LENGTH_SHORT).show();
 
                 // Add any additional data clearing logic here if needed
             }
@@ -103,6 +109,7 @@ public class LoadVerification extends AppCompatActivity {
                                 // Data saved successfully
                                 cargoTypeInput.getText().clear();
                                 cargoWeightInput.getText().clear();
+                                Toast.makeText(LoadVerification.this, "Load Verified!", Toast.LENGTH_SHORT).show();
                             } else {
                                 // Handle the failure to save data
                             }
@@ -110,5 +117,28 @@ public class LoadVerification extends AppCompatActivity {
                     });
         }
 
+    }
+    private void checkIfUserHasTrip() {
+        String userId = currentUser.getUid(); // Get the user's ID
+
+        if (userId != null) {
+            // Check if the user's trip dashboard contains their UID
+            databaseReference.child("Trip Dashboard").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        // User does not have a trip dashboard, disable the "Verify Load" button
+                        verifyButton.setEnabled(false);
+                        // You can also display a message or take other actions
+                        Toast.makeText(LoadVerification.this, "You do not have a trip.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle error here if needed
+                }
+            });
+        }
     }
 }
