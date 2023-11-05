@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.gravasend.SignatureView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -93,7 +98,9 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
         completeTripButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the user's input
+                String uid = currentUser.getUid();
+
+
                 String eSignature = captureESignature();
                 String date = dateInput.getText().toString();
                 String time = timeInput.getText().toString();
@@ -112,13 +119,180 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                     ProofOfDeliveryData deliveryData = new ProofOfDeliveryData(eSignatureUrl, date, time);
                     userRef.setValue(deliveryData);
 
+                    DatabaseReference truckRef = FirebaseDatabase.getInstance().getReference("trucks").child(uid);
+                    truckRef.child("status").setValue("available")
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("truck status", "success");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("truck status", "failed");
+                                }
+                            });
+
+                    DatabaseReference tripDashboardRef = FirebaseDatabase.getInstance().getReference("Trip Dashboard").child(uid);
+
+
+                    tripDashboardRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                String dateTime=dataSnapshot.child("dateTime").getValue(String.class);
+                                String origin=dataSnapshot.child("origin").getValue(String.class);
+                                String destination=dataSnapshot.child("destination").getValue(String.class);
+                                String cargo=dataSnapshot.child("cargo").getValue(String.class);
+                                String weight=dataSnapshot.child("weight").getValue(String.class);
+                                String instructions=dataSnapshot.child("instructions").getValue(String.class);
+                                Log.d("cargo", cargo);
+                                TripHistoryData tripHistory = new TripHistoryData(dateTime,origin,destination,cargo,weight,instructions);
+
+                                DatabaseReference triphistory = FirebaseDatabase.getInstance().getReference("TripHistory").child(uid);
+                                String tripHistoryKey = triphistory.push().getKey();
+                                triphistory.child(tripHistoryKey).setValue(tripHistory)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d("Trip History", "Value added successfully");
+
+                                                } else {
+                                                    Log.d("Trip History", "failed");
+                                                }
+                                            }
+                                        });
+
+
+                            } else {
+
+                            }
+
+
+                    tripDashboardRef.removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                // Removal successful
+                                Log.d("Trip Dashboard", "Value removed successfully");
+                            } else {
+                                // Error occurred
+                                Log.e("Trip Dashboard", "Error removing value: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+
+                    // Delete SafetyChecklist
+                    DatabaseReference safetyChecklistRef = FirebaseDatabase.getInstance().getReference("Safety Checklist").child(uid);
+                    safetyChecklistRef.removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                // Removal successful
+                                Log.d("Safety Checklist", "Value removed successfully");
+                            } else {
+                                // Error occurred
+                                Log.e("Safety Checklist", "Error removing value: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+
+                    // Delete DocumentCheck
+                    DatabaseReference documentCheckRef = FirebaseDatabase.getInstance().getReference("Document Check").child(uid);
+                    documentCheckRef.removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                // Removal successful
+                                Log.d("Document Checklist", "Value removed successfully");
+                            } else {
+                                // Error occurred
+                                Log.e("Document Checklist", "Error removing value: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+
+                    DatabaseReference documentCheckSignaturesRef = FirebaseDatabase.getInstance().getReference("Document Check Signatures").child(uid);
+
+                    documentCheckSignaturesRef.removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                // Removal successful
+                                Log.d("Document CheckSignatures", "Value removed successfully");
+                            } else {
+                                // Error occurred
+                                Log.e("Document CheckSignatures", "Error removing value: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+
+                    // Delete Cargo
+                    DatabaseReference cargoRef = FirebaseDatabase.getInstance().getReference("Cargo").child(uid);
+
+                    cargoRef.removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                // Removal successful
+                                Log.d("Cargo", "Value removed successfully");
+                            } else {
+                                // Error occurred
+                                Log.e("Cargo", "Error removing value: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+
+                    // Delete SpeedTracker
+                    DatabaseReference speedTrackerRef = FirebaseDatabase.getInstance().getReference("SpeedTracker").child(uid);
+
+                    speedTrackerRef.removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                // Removal successful
+                                Log.d("SpeedTracker", "Value removed successfully");
+                            } else {
+                                // Error occurred
+                                Log.e("SpeedTracker", "Error removing value: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+
+                    // Delete Locations
+                    DatabaseReference locationsRef = FirebaseDatabase.getInstance().getReference("locations").child(uid);
+
+                    locationsRef.removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                // Removal successful
+                                Log.d("Locations", "Value removed successfully");
+                            } else {
+                                // Error occurred
+                                Log.e("Locations", "Error removing value: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+
                     // Optionally, reset the input fields
                     dateInput.setText("");
                     timeInput.setText("");
                     signatureView.clear();
+                    Toast.makeText(ProofOfDeliveryActivity.this, "Trip Completed Successfully.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ProofOfDeliveryActivity.this, CurrentTrip.class);
+                    startActivity(intent);
                 }
-            }
-        });
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        };
+
 
         // Clear Button
         clearButton.setOnClickListener(new View.OnClickListener() {
@@ -150,5 +324,5 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
-}
+});}}
 

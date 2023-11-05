@@ -3,6 +3,7 @@ package com.example.gravasend;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -45,6 +46,7 @@ public class SafetyChecklist extends AppCompatActivity {
     private ArrayList<Uri> selectedImageUriList = new ArrayList<>();
     private FirebaseUser currentUser;
     private Button button4;
+    private EditText odometerInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class SafetyChecklist extends AppCompatActivity {
         Button clearButton = findViewById(R.id.button3);
         button4 = findViewById(R.id.button4); // Added button4
         checkIfUserHasTripDashboard();
-
+        databaseReference = FirebaseDatabase.getInstance().getReference("Safety Checklist");
         View backButton = findViewById(R.id.backButton);
         // Back Button
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +84,7 @@ public class SafetyChecklist extends AppCompatActivity {
         final EditText imageDescriptionInput6 = findViewById(R.id.imageDescriptionInput6);
         final EditText imageDescriptionInput = findViewById(R.id.imageDescriptionInput);
         final EditText plateNumberInput = findViewById(R.id.plateNumberInput);
-        final EditText odometerInput = findViewById(R.id.odometerInput);
+         odometerInput = findViewById(R.id.odometerInput);
 
         final CheckBox checkBox3 = findViewById(R.id.checkBox3);
         final CheckBox checkBox1 = findViewById(R.id.checkBox1);
@@ -204,12 +206,14 @@ public class SafetyChecklist extends AppCompatActivity {
         });
 
         // Retrieve and populate user data from Firebase for each image
-        retrieveAndPopulateUserData(userUid, "Image1", imageDescriptionInput3, checkBox3, editTextTextMultiLine4, plateNumberInput, odometerInput);
-        retrieveAndPopulateUserData(userUid, "Image2", imageDescriptionInput1, checkBox1, editTextTextMultiLine1, plateNumberInput, odometerInput);
-        retrieveAndPopulateUserData(userUid, "Image3", imageDescriptionInput4, checkBox4, editTextTextMultiLine5, plateNumberInput, odometerInput);
-        retrieveAndPopulateUserData(userUid, "Image4", imageDescriptionInput2, checkBox2, editTextTextMultiLine2, plateNumberInput, odometerInput);
-        retrieveAndPopulateUserData(userUid, "Image5", imageDescriptionInput6, checkBox6, editTextTextMultiLine6, plateNumberInput, odometerInput);
-        retrieveAndPopulateUserData(userUid, "Image6", imageDescriptionInput, checkBox, editTextTextMultiLine, plateNumberInput, odometerInput);
+        retrieveAndPopulateUserData(userUid, "Suspension System", imageDescriptionInput3, checkBox3, editTextTextMultiLine4);
+        retrieveAndPopulateUserData(userUid, "Brake System", imageDescriptionInput1, checkBox1, editTextTextMultiLine1);
+        retrieveAndPopulateUserData(userUid, "Steering System", imageDescriptionInput4, checkBox4, editTextTextMultiLine5);
+        retrieveAndPopulateUserData(userUid, "Tires and Wheels", imageDescriptionInput2, checkBox2, editTextTextMultiLine2);
+        retrieveAndPopulateUserData(userUid, "Safety Equipments", imageDescriptionInput6, checkBox6, editTextTextMultiLine6);
+        retrieveAndPopulateUserData(userUid, "Lights and Reflectors", imageDescriptionInput, checkBox, editTextTextMultiLine);
+        retrieveAndPopulateMileageData();
+
 
         // Set click listener for the Save Changes button (button4)
         button4.setOnClickListener(new View.OnClickListener() {
@@ -217,13 +221,14 @@ public class SafetyChecklist extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                uploadUserData("Image1", imageDescriptionInput3, checkBox3, editTextTextMultiLine4, plateNumberInput, odometerInput);
-                uploadUserData("Image2", imageDescriptionInput1, checkBox1, editTextTextMultiLine1, plateNumberInput, odometerInput);
-                uploadUserData("Image3", imageDescriptionInput4, checkBox4, editTextTextMultiLine5, plateNumberInput, odometerInput);
-                uploadUserData("Image4", imageDescriptionInput2, checkBox2, editTextTextMultiLine2, plateNumberInput, odometerInput);
-                uploadUserData("Image5", imageDescriptionInput6, checkBox6, editTextTextMultiLine6, plateNumberInput, odometerInput);
-                uploadUserData("Image6", imageDescriptionInput, checkBox, editTextTextMultiLine, plateNumberInput, odometerInput);
-
+                uploadUserData("Suspension System", imageDescriptionInput3, checkBox3, editTextTextMultiLine4);
+                uploadUserData("Brake System", imageDescriptionInput1, checkBox1, editTextTextMultiLine1);
+                uploadUserData("Steering System", imageDescriptionInput4, checkBox4, editTextTextMultiLine5);
+                uploadUserData("Tires and Wheels", imageDescriptionInput2, checkBox2, editTextTextMultiLine2);
+                uploadUserData("Safety Equipments", imageDescriptionInput6, checkBox6, editTextTextMultiLine6);
+                uploadUserData("Lights and Reflectors", imageDescriptionInput, checkBox, editTextTextMultiLine);
+                uploadOdometerValue(odometerInput);
+                databaseReference = FirebaseDatabase.getInstance().getReference("Safety Checklist");
                 // Upload images for each image placeholder
                 uploadImageForPlaceholder(imagePlaceholder3, 3);
                 uploadImageForPlaceholder(imagePlaceholder1, 1);
@@ -235,32 +240,20 @@ public class SafetyChecklist extends AppCompatActivity {
             }
 
 
-
-            private void uploadUserData(String imageKey, EditText imageDescriptionInput, CheckBox checkBox, EditText editTextTextMultiLine, EditText plateNumberInput, EditText odometerInput) {
+            private void uploadOdometerValue( EditText odometerInput) {
                 // Construct the path in the database based on imageKey
-                String path = "Safety Check/" + userUid + "/" + imageKey;
+                String path = userUid  + "/mileage";
 
-                // Extract data from the input fields
-                String imageDescription = imageDescriptionInput.getText().toString();
-                boolean isChecked = checkBox.isChecked();
-                String notes = editTextTextMultiLine.getText().toString();
-                String plateNumber = plateNumberInput.getText().toString();
-                String odometerValue = odometerInput.getText().toString();
+                // Extract the odometer value from the input field
+                String odometerValueString = odometerInput.getText().toString();
+                int odometerValue = Integer.parseInt(odometerValueString);
 
-                // Create a HashMap to store the data
-                HashMap<String, Object> userData = new HashMap<>();
-                userData.put("Description", imageDescription);
-                userData.put("CheckBox", isChecked);
-                userData.put("Notes", notes);
-                userData.put("PlateNumber", plateNumber);
-                userData.put("Odometer", odometerValue);
-
-                // Upload the data to the Firebase Realtime Database
-                databaseReference.child(path).setValue(userData)
+                databaseReference = FirebaseDatabase.getInstance().getReference("trucks");
+                databaseReference.child(path).setValue(odometerValue)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                // Data successfully uploaded
+                                // Odometer value successfully uploaded
                                 // You can add any necessary feedback or actions here
                             }
                         })
@@ -272,6 +265,44 @@ public class SafetyChecklist extends AppCompatActivity {
                             }
                         });
             }
+
+
+            private void uploadUserData(String imageKey, EditText imageDescriptionInput, CheckBox checkBox, EditText editTextTextMultiLine) {
+                // Construct the path in the database based on imageKey
+                String path = userUid + "/" + imageKey;
+
+                // Extract data from the input fields
+                String imageDescription = imageDescriptionInput.getText().toString();
+                boolean isChecked = checkBox.isChecked();
+                String notes = editTextTextMultiLine.getText().toString();
+
+
+                // Create a HashMap to store the data
+                HashMap<String, Object> userData = new HashMap<>();
+                userData.put("Description", imageDescription);
+                userData.put("CheckBox", isChecked);
+                userData.put("Notes", notes);
+
+
+                // Upload the data to the Firebase Realtime Database
+                databaseReference.child(path).setValue(userData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(SafetyChecklist.this, "Safety Checklist Saved.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SafetyChecklist.this, CurrentTrip.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Handle any errors that occur during data upload
+                                // You can provide error messages or take appropriate actions
+                            }
+                        });
+
+            }
         });
     }
 
@@ -279,13 +310,14 @@ public class SafetyChecklist extends AppCompatActivity {
         String userId = currentUser.getUid();
 
         if (userId != null) {
-            databaseReference.child("Trip Dashboard").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            databaseReference = FirebaseDatabase.getInstance().getReference("Trip Dashboard");
+            databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                     if (!dataSnapshot.exists()) {
-                        // User does not have a trip dashboard, disable the "Verify Load" button
+
                         button4.setEnabled(false);
-                        // You can also display a message or take other actions
                         Toast.makeText(SafetyChecklist.this, "You do not have a trip.", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -376,7 +408,7 @@ public class SafetyChecklist extends AppCompatActivity {
 
     private void addImageTagToDatabase(int imageId, String imageUrl) {
         // Construct the path for storing image tags in the database
-        String path = "ImageTags/" + userUid + "/Image" + imageId;
+        String path =  userUid + "/Image" + imageId;
 
         // Create a HashMap to store the image tag
         HashMap<String, Object> imageTagData = new HashMap<>();
@@ -421,11 +453,30 @@ public class SafetyChecklist extends AppCompatActivity {
         }
     }
 
+    private void retrieveAndPopulateMileageData() {
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("trucks");
+        databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String odometerValue = dataSnapshot.child("mileage").getValue(Integer.class).toString();
+                    odometerInput.setText(odometerValue);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors if needed
+            }
+        });
+    }
 
     // Retrieve and populate user data from Firebase
-    private void retrieveAndPopulateUserData(String userUid, String imageIdentifier, final EditText imageDescriptionInput, final CheckBox checkBox, final EditText editTextTextMultiLine, final EditText plateNumberInput, final EditText odometerInput) {
+    private void retrieveAndPopulateUserData(String userUid, String imageIdentifier, final EditText imageDescriptionInput, final CheckBox checkBox, final EditText editTextTextMultiLine    ) {
         // Construct the reference to the user's data in Firebase
-        String path = "Safety Check/" + userUid + "/" + imageIdentifier;
+        String path =  userUid + "/" + imageIdentifier;
 
         // Retrieve the user's data from Firebase
         databaseReference.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -441,15 +492,7 @@ public class SafetyChecklist extends AppCompatActivity {
                     // Populate the multi-line EditText field
                     editTextTextMultiLine.setText(dataSnapshot.child("Notes").getValue(String.class));
 
-                    // Check if PlateNumber and Odometer exist and populate the corresponding fields
-                    if (dataSnapshot.child("PlateNumber").exists()) {
-                        String plateNumber = dataSnapshot.child("PlateNumber").getValue(String.class);
-                        plateNumberInput.setText(plateNumber);
-                    }
-                    if (dataSnapshot.child("Odometer").exists()) {
-                        String odometer = dataSnapshot.child("Odometer").getValue(String.class);
-                        odometerInput.setText(odometer);
-                    }
+
                 }
             }
 
@@ -459,6 +502,7 @@ public class SafetyChecklist extends AppCompatActivity {
             }
         });
     }
+
 
 
 

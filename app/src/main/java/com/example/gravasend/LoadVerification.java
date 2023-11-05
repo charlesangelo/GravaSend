@@ -2,6 +2,7 @@ package com.example.gravasend;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -101,15 +102,15 @@ public class LoadVerification extends AppCompatActivity {
             Cargo cargo = new Cargo(cargoId, cargoType, cargoWeight);
 
             // Save cargo data to Firebase under the user's UID
-            databaseReference.child("Cargo").child(userId).child(cargoId).setValue(cargo)
+            databaseReference.child("Cargo").child(userId).setValue(cargo)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                // Data saved successfully
-                                cargoTypeInput.getText().clear();
-                                cargoWeightInput.getText().clear();
+
                                 Toast.makeText(LoadVerification.this, "Load Verified!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoadVerification.this, CurrentTrip.class);
+                                startActivity(intent);
                             } else {
                                 // Handle the failure to save data
                             }
@@ -126,8 +127,9 @@ public class LoadVerification extends AppCompatActivity {
             databaseReference.child("Trip Dashboard").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                     if (!dataSnapshot.exists()) {
-                        // User does not have a trip dashboard, disable the "Verify Load" button
+
                         verifyButton.setEnabled(false);
                         // You can also display a message or take other actions
                         Toast.makeText(LoadVerification.this, "You do not have a trip.", Toast.LENGTH_SHORT).show();

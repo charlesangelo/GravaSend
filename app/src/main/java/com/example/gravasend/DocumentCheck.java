@@ -147,7 +147,8 @@ public class DocumentCheck extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            // Data saved successfully
+                            Intent intent = new Intent(DocumentCheck.this, CurrentTrip.class);
+                            startActivity(intent);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

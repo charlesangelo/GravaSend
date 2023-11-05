@@ -64,7 +64,7 @@ public class Home extends AppCompatActivity {
         b3 = findViewById(R.id.logoutButton);
         imageView6 = findViewById(R.id.imageView6); // Display profile image
         edittext11 = findViewById(R.id.edittext11);
-        editProfileButton = findViewById(R.id.editProfileButton);
+
 
         // Make imageView6 clickable
         imageView6.setOnClickListener(new View.OnClickListener() {
@@ -79,23 +79,7 @@ public class Home extends AppCompatActivity {
         loadUserProfileData();
 
         // Set a click listener for the editProfileButton
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-
-            private void updateDriverDetailsInFirebase(String newName) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                if (user != null) {
-                    String userId = user.getUid();
-
-
-
-                }
-            }
-
-        });
 
         // Initialize the SignInButton and set an OnClickListener
         findViewById(R.id.truckInfoButton).setOnClickListener(new View.OnClickListener() {

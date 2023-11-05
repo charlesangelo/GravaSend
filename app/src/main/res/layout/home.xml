@@ -169,19 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/editProfileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/rounded_image_background"
-        android:backgroundTint="#838b81"
-        android:text="Update"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="@+id/edittext11"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toStartOf="@+id/edittext11"
-        app:layout_constraintTop_toBottomOf="@+id/edittext11" />
+
 
     <TextView
         android:id="@+id/textView"
