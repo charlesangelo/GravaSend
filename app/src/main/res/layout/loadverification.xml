@@ -110,7 +110,7 @@
             android:background="@drawable/rounded_image_background"
             android:backgroundTint="#FFFF"
             android:foregroundGravity="center"
-            android:hint="6.5 tons"
+            android:hint="cubic"
             android:inputType="text"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"

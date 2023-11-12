@@ -92,7 +92,7 @@ public class TripDashboard extends AppCompatActivity {
                         location.setText(dataSnapshot.child("origin").getValue(String.class));
                         destination.setText(dataSnapshot.child("destination").getValue(String.class));
                         cargoDetailsDescription.setText("Cargo Details: " + dataSnapshot.child("cargo").getValue(String.class));
-                        cargoDetailsDescription2.setText(dataSnapshot.child("weight").getValue(String.class)+" cu. mt.");
+                        cargoDetailsDescription2.setText(dataSnapshot.child("weight").getValue(String.class)+" cubic");
                         specialInstructionsDescription.setText(dataSnapshot.child("instructions").getValue(String.class));
 
                         // Enable the Complete Trip button

@@ -34,7 +34,7 @@
             android:foregroundGravity="center"
             android:paddingTop="7dp"
             android:paddingBottom="10dp"
-            android:text="Plate Number"
+            android:text="Tractor Plate Number"
             android:textColor="@color/black"
             />
 
@@ -47,7 +47,8 @@
             android:background="@drawable/rounded_image_background"
             android:backgroundTint="#FFFF"
             android:foregroundGravity="center"
-            android:hint="Enter Plate Number"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:inputType="text"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -197,21 +198,7 @@
                             android:clickable="true"
                             android:src="@drawable/gravasend_logo" />
 
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:hint="Notes"
-                            android:inputType="textMultiLine"
-                            android:paddingLeft="5dp"/>
+
 
                         <Button
                             android:id="@+id/selectImageButton4"
@@ -276,21 +263,7 @@
                             android:clickable="true"
                             android:src="@drawable/gravasend_logo" />
 
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:hint="Notes"
-                            android:inputType="textMultiLine"
-                            android:paddingLeft="5dp"/>
+
 
                         <Button
                             android:id="@+id/selectImageButton5"
@@ -356,21 +329,7 @@
                             android:clickable="true"
                             android:src="@drawable/gravasend_logo" />
 
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:hint="Notes"
-                            android:inputType="textMultiLine"
-                            android:paddingLeft="5dp"/>
+
 
                         <Button
                             android:id="@+id/selectImageButton6"
@@ -442,21 +401,7 @@
                             android:clickable="true"
                             android:src="@drawable/gravasend_logo"  />
 
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:hint="Notes"
-                            android:inputType="textMultiLine"
-                            android:paddingLeft="5dp"/>
+
 
                         <Button
                             android:id="@+id/selectImageButton1"
@@ -522,21 +467,7 @@
                             android:clickable="true"
                             android:src="@drawable/gravasend_logo" />
 
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:hint="Notes"
-                            android:inputType="textMultiLine"
-                            android:paddingLeft="5dp"/>
+
 
                         <Button
                             android:id="@+id/selectImageButton2"
@@ -602,21 +533,7 @@
                             android:clickable="true"
                             android:src="@drawable/gravasend_logo" />
 
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/rounded_image_background"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:hint="Notes"
-                            android:inputType="textMultiLine"
-                            android:paddingLeft="5dp"/>
+
 
                         <Button
                             android:id="@+id/selectImageButton"
