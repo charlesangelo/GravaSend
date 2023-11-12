@@ -147,7 +147,9 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                 String cargo=dataSnapshot.child("cargo").getValue(String.class);
                                 String weight=dataSnapshot.child("weight").getValue(String.class);
                                 String instructions=dataSnapshot.child("instructions").getValue(String.class);
-                                Log.d("cargo", cargo);
+
+
+
                                 TripHistoryData tripHistory = new TripHistoryData(dateTime,origin,destination,cargo,weight,instructions);
 
                                 DatabaseReference triphistory = FirebaseDatabase.getInstance().getReference("TripHistory").child(uid);

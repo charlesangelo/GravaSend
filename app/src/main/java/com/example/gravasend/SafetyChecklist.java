@@ -47,6 +47,7 @@ public class SafetyChecklist extends AppCompatActivity {
     private FirebaseUser currentUser;
     private Button button4;
     private EditText odometerInput;
+    private EditText plateNumberInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +84,8 @@ public class SafetyChecklist extends AppCompatActivity {
         final EditText imageDescriptionInput2 = findViewById(R.id.imageDescriptionInput2);
         final EditText imageDescriptionInput6 = findViewById(R.id.imageDescriptionInput6);
         final EditText imageDescriptionInput = findViewById(R.id.imageDescriptionInput);
-        final EditText plateNumberInput = findViewById(R.id.plateNumberInput);
-         odometerInput = findViewById(R.id.odometerInput);
+        odometerInput = findViewById(R.id.odometerInput);
+        plateNumberInput=findViewById(R.id.plateNumberInput);
 
         final CheckBox checkBox3 = findViewById(R.id.checkBox3);
         final CheckBox checkBox1 = findViewById(R.id.checkBox1);
@@ -93,12 +94,6 @@ public class SafetyChecklist extends AppCompatActivity {
         final CheckBox checkBox6 = findViewById(R.id.checkBox6);
         final CheckBox checkBox = findViewById(R.id.checkBox);
 
-        final EditText editTextTextMultiLine4 = findViewById(R.id.editTextTextMultiLine4);
-        final EditText editTextTextMultiLine1 = findViewById(R.id.editTextTextMultiLine1);
-        final EditText editTextTextMultiLine5 = findViewById(R.id.editTextTextMultiLine5);
-        final EditText editTextTextMultiLine2 = findViewById(R.id.editTextTextMultiLine2);
-        final EditText editTextTextMultiLine6 = findViewById(R.id.editTextTextMultiLine6);
-        final EditText editTextTextMultiLine = findViewById(R.id.editTextTextMultiLine);
 
         // Find ImageView placeholders and Select Image buttons
         final ImageView imagePlaceholder3 = findViewById(R.id.imagePlaceholder3);
@@ -119,7 +114,7 @@ public class SafetyChecklist extends AppCompatActivity {
             public void onClick(View view) {
                 // Clear EditText fields
 
-                plateNumberInput.setText("");
+
                 odometerInput.setText("");
 
                 // Uncheck the CheckBoxes
@@ -130,13 +125,7 @@ public class SafetyChecklist extends AppCompatActivity {
                 checkBox6.setChecked(false);
                 checkBox.setChecked(false);
 
-                // Clear the multi-line EditText fields
-                editTextTextMultiLine4.setText("");
-                editTextTextMultiLine1.setText("");
-                editTextTextMultiLine5.setText("");
-                editTextTextMultiLine2.setText("");
-                editTextTextMultiLine6.setText("");
-                editTextTextMultiLine.setText("");
+
 
                 // Remove data from the database
                 String path = "Safety Checklist/" + userUid;
@@ -206,12 +195,12 @@ public class SafetyChecklist extends AppCompatActivity {
         });
 
         // Retrieve and populate user data from Firebase for each image
-        retrieveAndPopulateUserData(userUid, "Suspension System", imageDescriptionInput3, checkBox3, editTextTextMultiLine4);
-        retrieveAndPopulateUserData(userUid, "Brake System", imageDescriptionInput1, checkBox1, editTextTextMultiLine1);
-        retrieveAndPopulateUserData(userUid, "Steering System", imageDescriptionInput4, checkBox4, editTextTextMultiLine5);
-        retrieveAndPopulateUserData(userUid, "Tires and Wheels", imageDescriptionInput2, checkBox2, editTextTextMultiLine2);
-        retrieveAndPopulateUserData(userUid, "Safety Equipments", imageDescriptionInput6, checkBox6, editTextTextMultiLine6);
-        retrieveAndPopulateUserData(userUid, "Lights and Reflectors", imageDescriptionInput, checkBox, editTextTextMultiLine);
+        retrieveAndPopulateUserData(userUid, "Suspension System", imageDescriptionInput3, checkBox3);
+        retrieveAndPopulateUserData(userUid, "Brake System", imageDescriptionInput1, checkBox1);
+        retrieveAndPopulateUserData(userUid, "Steering System", imageDescriptionInput4, checkBox4);
+        retrieveAndPopulateUserData(userUid, "Tires and Wheels", imageDescriptionInput2, checkBox2);
+        retrieveAndPopulateUserData(userUid, "Safety Equipments", imageDescriptionInput6, checkBox6);
+        retrieveAndPopulateUserData(userUid, "Lights and Reflectors", imageDescriptionInput, checkBox);
         retrieveAndPopulateMileageData();
 
 
@@ -221,13 +210,13 @@ public class SafetyChecklist extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                uploadUserData("Suspension System", imageDescriptionInput3, checkBox3, editTextTextMultiLine4);
-                uploadUserData("Brake System", imageDescriptionInput1, checkBox1, editTextTextMultiLine1);
-                uploadUserData("Steering System", imageDescriptionInput4, checkBox4, editTextTextMultiLine5);
-                uploadUserData("Tires and Wheels", imageDescriptionInput2, checkBox2, editTextTextMultiLine2);
-                uploadUserData("Safety Equipments", imageDescriptionInput6, checkBox6, editTextTextMultiLine6);
-                uploadUserData("Lights and Reflectors", imageDescriptionInput, checkBox, editTextTextMultiLine);
-                uploadOdometerValue(odometerInput);
+                uploadUserData("suspension", imageDescriptionInput3, checkBox3);
+                uploadUserData("brake", imageDescriptionInput1, checkBox1);
+                uploadUserData("steering", imageDescriptionInput4, checkBox4);
+                uploadUserData("tireswheels", imageDescriptionInput2, checkBox2);
+                uploadUserData("safetyequipment", imageDescriptionInput6, checkBox6);
+                uploadUserData("lights", imageDescriptionInput, checkBox);
+                uploadOdometerPlateValue(odometerInput);
                 databaseReference = FirebaseDatabase.getInstance().getReference("Safety Checklist");
                 // Upload images for each image placeholder
                 uploadImageForPlaceholder(imagePlaceholder3, 3);
@@ -236,11 +225,14 @@ public class SafetyChecklist extends AppCompatActivity {
                 uploadImageForPlaceholder(imagePlaceholder2, 2);
                 uploadImageForPlaceholder(imagePlaceholder6, 6);
                 uploadImageForPlaceholder(imagePlaceholder, 4);
+                Toast.makeText(SafetyChecklist.this, "Safety Checklist Saved.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SafetyChecklist.this, CurrentTrip.class);
+                startActivity(intent);
 
             }
 
 
-            private void uploadOdometerValue( EditText odometerInput) {
+            private void uploadOdometerPlateValue( EditText odometerInput) {
                 // Construct the path in the database based on imageKey
                 String path = userUid  + "/mileage";
 
@@ -267,40 +259,49 @@ public class SafetyChecklist extends AppCompatActivity {
             }
 
 
-            private void uploadUserData(String imageKey, EditText imageDescriptionInput, CheckBox checkBox, EditText editTextTextMultiLine) {
+            private void uploadUserData(String imageKey, EditText imageDescriptionInput, CheckBox checkBox) {
                 // Construct the path in the database based on imageKey
-                String path = userUid + "/" + imageKey;
+                String path = userUid ;
 
-                // Extract data from the input fields
-                String imageDescription = imageDescriptionInput.getText().toString();
+
                 boolean isChecked = checkBox.isChecked();
-                String notes = editTextTextMultiLine.getText().toString();
-
 
                 // Create a HashMap to store the data
                 HashMap<String, Object> userData = new HashMap<>();
-                userData.put("Description", imageDescription);
-                userData.put("CheckBox", isChecked);
-                userData.put("Notes", notes);
+                userData.put(imageKey, isChecked);
 
 
-                // Upload the data to the Firebase Realtime Database
-                databaseReference.child(path).setValue(userData)
+
+                databaseReference.child(path).updateChildren(userData)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(SafetyChecklist.this, "Safety Checklist Saved.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SafetyChecklist.this, CurrentTrip.class);
-                                startActivity(intent);
+                                // Handle success if needed
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                // Handle any errors that occur during data upload
+                                // Handle any errors that occur during data update
                                 // You can provide error messages or take appropriate actions
                             }
                         });
+                databaseReference = FirebaseDatabase.getInstance().getReference("SafetyChecklistRecords");
+                databaseReference.child(path).updateChildren(userData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Handle success if needed
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Handle any errors that occur during data update
+                                // You can provide error messages or take appropriate actions
+                            }
+                        });
+                databaseReference = FirebaseDatabase.getInstance().getReference("Safety Checklist");
 
             }
         });
@@ -463,6 +464,8 @@ public class SafetyChecklist extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     String odometerValue = dataSnapshot.child("mileage").getValue(Integer.class).toString();
                     odometerInput.setText(odometerValue);
+                    String plateNo = dataSnapshot.child("plateNo2").getValue(String.class);
+                    plateNumberInput.setText((plateNo));
                 }
             }
 
@@ -471,10 +474,11 @@ public class SafetyChecklist extends AppCompatActivity {
                 // Handle errors if needed
             }
         });
+        databaseReference = FirebaseDatabase.getInstance().getReference("Safety Checklist");
     }
 
     // Retrieve and populate user data from Firebase
-    private void retrieveAndPopulateUserData(String userUid, String imageIdentifier, final EditText imageDescriptionInput, final CheckBox checkBox, final EditText editTextTextMultiLine    ) {
+    private void retrieveAndPopulateUserData(String userUid, String imageIdentifier, final EditText imageDescriptionInput, final CheckBox checkBox    ) {
         // Construct the reference to the user's data in Firebase
         String path =  userUid + "/" + imageIdentifier;
 
@@ -484,13 +488,12 @@ public class SafetyChecklist extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Populate the EditText fields with the retrieved data
-                    imageDescriptionInput.setText(dataSnapshot.child("Description").getValue(String.class));
+                    //imageDescriptionInput.setText(dataSnapshot.child("Description").getValue(String.class));
 
                     // Set the state of the CheckBox
-                    checkBox.setChecked(dataSnapshot.child("CheckBox").getValue(Boolean.class));
+                    //checkBox.setChecked(dataSnapshot.child("CheckBox").getValue(Boolean.class));
 
-                    // Populate the multi-line EditText field
-                    editTextTextMultiLine.setText(dataSnapshot.child("Notes").getValue(String.class));
+
 
 
                 }
