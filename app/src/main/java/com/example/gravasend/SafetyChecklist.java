@@ -286,21 +286,7 @@ public class SafetyChecklist extends AppCompatActivity {
                                 // You can provide error messages or take appropriate actions
                             }
                         });
-                databaseReference = FirebaseDatabase.getInstance().getReference("SafetyChecklistRecords");
-                databaseReference.child(path).updateChildren(userData)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                // Handle success if needed
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Handle any errors that occur during data update
-                                // You can provide error messages or take appropriate actions
-                            }
-                        });
+
                 databaseReference = FirebaseDatabase.getInstance().getReference("Safety Checklist");
 
             }

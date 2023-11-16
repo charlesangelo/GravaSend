@@ -28,6 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProofOfDeliveryActivity extends AppCompatActivity {
     private SignatureView signatureView;
@@ -38,8 +40,10 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private String eSignatureUrl; // URL for the e-signature
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String commonKey = FirebaseDatabase.getInstance().getReference().push().getKey();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.proofofdelivery);
 
@@ -71,7 +75,9 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
 
         // Retrieve and set retained data, if available
         if (currentUser != null) {
+
             DatabaseReference userRef = proofOfDeliveryRef.child(currentUser.getUid());
+
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,7 +123,170 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                     // Update the e-signature URL
                     eSignatureUrl = eSignature;
                     ProofOfDeliveryData deliveryData = new ProofOfDeliveryData(eSignatureUrl, date, time);
-                    userRef.setValue(deliveryData);
+
+                    userRef.child(commonKey).setValue(deliveryData);
+
+
+                    DatabaseReference safetyChecklistRef = FirebaseDatabase.getInstance().getReference("Safety Checklist").child(uid);
+                    safetyChecklistRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                            if (snapshot2.exists()) {
+                                boolean brake=snapshot2.child("brake").getValue(Boolean.class);
+                                boolean lights=snapshot2.child("lights").getValue(Boolean.class);
+                                boolean safetyequipment=snapshot2.child("safetyequipment").getValue(Boolean.class);
+                                boolean steering=snapshot2.child("steering").getValue(Boolean.class);
+                                boolean suspension=snapshot2.child("suspension").getValue(Boolean.class);
+                                boolean tireswheels=snapshot2.child("tireswheels").getValue(Boolean.class);
+
+                                Map<String, Object> checkboxData = new HashMap<>();
+                                checkboxData.put("brake", brake);
+                                checkboxData.put("lights", lights);
+                                checkboxData.put("safetyequipment", safetyequipment);
+                                checkboxData.put("steering", steering);
+                                checkboxData.put("suspension", suspension);
+                                checkboxData.put("tireswheels", tireswheels);
+
+                                DatabaseReference safetyChecklistRef = FirebaseDatabase.getInstance().getReference("SafetyChecklistRecord").child(uid);
+
+                                safetyChecklistRef.child(commonKey).setValue(checkboxData)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+
+
+                                                } else {
+
+                                                }
+                                            }
+                                        });
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    DatabaseReference documentCheckRef = FirebaseDatabase.getInstance().getReference("Document Check").child(uid);
+                    documentCheckRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Log.d("Record", dataSnapshot.toString());
+                            if (dataSnapshot.exists()) {
+
+                                boolean driversLicenseChecked=dataSnapshot.child("driversLicenseChecked").getValue(Boolean.class);
+                                boolean orcrChecked=dataSnapshot.child("orcrChecked").getValue(Boolean.class);
+                                boolean localTransportPermitChecked=dataSnapshot.child("localTransportPermitChecked").getValue(Boolean.class);
+
+                                Map<String, Object> checkboxData = new HashMap<>();
+                                checkboxData.put("driversLicenseChecked", driversLicenseChecked);
+                                checkboxData.put("orcrChecked", orcrChecked);
+                                checkboxData.put("localTransportPermitChecked", localTransportPermitChecked);
+
+                                FirebaseDatabase.getInstance().getReference("DocumentCheckRecord").child(uid).child(commonKey).setValue(checkboxData)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d("Document Checklist Record", "Value removed successfully");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.d("Document Checklist Record", "Value removed failed");
+                                            }
+                                        });
+
+
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+                    DatabaseReference documentCheckSignaturesRef = FirebaseDatabase.getInstance().getReference("Document Check Signatures").child(uid);
+                    documentCheckSignaturesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                            if (snapshot2.exists()) {
+                                String url=snapshot2.getValue(String.class);
+
+                                DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("DocumentCheckSignaturesRecord").child(uid);
+                                signRef.child(commonKey).setValue(url)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+
+
+                                                } else {
+
+                                                }
+                                            }
+                                        });
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+
+                    DatabaseReference cargoRef = FirebaseDatabase.getInstance().getReference("Cargo").child(uid);
+                    cargoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                            if (snapshot2.exists()) {
+                                String cargoType=snapshot2.child("cargoType").getValue(String.class);
+                                String cargoWeight=snapshot2.child("cargoWeight").getValue(String.class);
+
+
+                                Map<String, Object> cargoval = new HashMap<>();
+                                cargoval.put("cargoType", cargoType);
+                                cargoval.put("cargoWeight", cargoWeight);
+
+                                DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("CargoRecord").child(uid);
+
+                                signRef.child(commonKey).setValue(cargoval)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+
+
+                                                } else {
+
+                                                }
+                                            }
+                                        });
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
 
                     DatabaseReference truckRef = FirebaseDatabase.getInstance().getReference("trucks").child(uid);
                     truckRef.child("status").setValue("available")
@@ -136,7 +305,6 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
 
                     DatabaseReference tripDashboardRef = FirebaseDatabase.getInstance().getReference("Trip Dashboard").child(uid);
 
-
                     tripDashboardRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -153,8 +321,8 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                 TripHistoryData tripHistory = new TripHistoryData(dateTime,origin,destination,cargo,weight,instructions);
 
                                 DatabaseReference triphistory = FirebaseDatabase.getInstance().getReference("TripHistory").child(uid);
-                                String tripHistoryKey = triphistory.push().getKey();
-                                triphistory.child(tripHistoryKey).setValue(tripHistory)
+
+                                triphistory.child(commonKey).setValue(tripHistory)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -167,8 +335,6 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                             }
                                         });
 
-
-                            } else {
 
                             }
 
@@ -186,9 +352,14 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                         }
                     });
 
-                    // Delete SafetyChecklist
-                    DatabaseReference safetyChecklistRef = FirebaseDatabase.getInstance().getReference("Safety Checklist").child(uid);
-                    safetyChecklistRef.removeValue(new DatabaseReference.CompletionListener() {
+
+
+
+
+
+                            DatabaseReference safetyChecklistRef2 = FirebaseDatabase.getInstance().getReference("Safety Checklist").child(uid);
+
+                            safetyChecklistRef2.removeValue(new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError == null) {
@@ -201,9 +372,11 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                         }
                     });
 
-                    // Delete DocumentCheck
-                    DatabaseReference documentCheckRef = FirebaseDatabase.getInstance().getReference("Document Check").child(uid);
-                    documentCheckRef.removeValue(new DatabaseReference.CompletionListener() {
+
+
+
+                            DatabaseReference documentCheckRef2 = FirebaseDatabase.getInstance().getReference("Document Check").child(uid);
+                    documentCheckRef2.removeValue(new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError == null) {
@@ -216,9 +389,11 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference documentCheckSignaturesRef = FirebaseDatabase.getInstance().getReference("Document Check Signatures").child(uid);
 
-                    documentCheckSignaturesRef.removeValue(new DatabaseReference.CompletionListener() {
+
+                            DatabaseReference documentCheckSignaturesRef2 = FirebaseDatabase.getInstance().getReference("Document Check Signatures").child(uid);
+
+                            documentCheckSignaturesRef2.removeValue(new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError == null) {

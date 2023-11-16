@@ -71,17 +71,21 @@ public class MaintenanceReminders extends AppCompatActivity {
                     // Retrieve each trip key and add it to the list
                     String maintenanceKey = keySnapshot.getKey();
                     keys.add(maintenanceKey);
+
                 }
 
                 // Iterate through the trip keys and read data for each key
                 for (String key : keys) {
-                    DatabaseReference maintenanceRef = databaseReference.child(key);
 
+
+                    DatabaseReference maintenanceRef = databaseReference.child(currentUser.getUid()).child(key);
                     maintenanceRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(Task<DataSnapshot> task) {
+
                             if (task.isSuccessful()) {
                                 DataSnapshot dataSnapshot = task.getResult();
+
 
 
                                 if (dataSnapshot.exists()) {
@@ -89,13 +93,28 @@ public class MaintenanceReminders extends AppCompatActivity {
                                     View maintenanceView = getLayoutInflater().inflate(R.layout.maintenance_item, null);
                                     TextView serviceTextView = maintenanceView.findViewById(R.id.service);
                                     TextView mileageTextView = maintenanceView.findViewById(R.id.nextduemileage);
+                                    TextView statusTextView = maintenanceView.findViewById(R.id.status);
 
 
                                     String serviceText = dataSnapshot.child("service").getValue(String.class);
-                                    String nextDueMileage = dataSnapshot.child("nextduemileage").getValue(String.class);
+                                    String statusText = dataSnapshot.child("status").getValue(String.class);
+                                    int mileage = dataSnapshot.child("mileage").getValue(Integer.class);
+                                    String frequency = dataSnapshot.child("frequency").getValue(String.class);
+                                    int frequencyValue = Integer.parseInt(frequency);
+                                    int nextDueMileage=mileage + frequencyValue;
+                                    String nextDueMileageString = String.valueOf(nextDueMileage);
 
                                     serviceTextView.setText(serviceText);
-                                    mileageTextView.setText(nextDueMileage);
+                                    mileageTextView.setText("Due: "+nextDueMileageString+" km");
+                                    statusTextView.setText(statusText);
+
+                                    // Add margin to the inspectionView (adjust margin value as needed)
+                                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.MATCH_PARENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    );
+                                    layoutParams.setMargins(0, 0, 0, 16); // Adjust the margin value as needed
+                                    maintenanceView.setLayoutParams(layoutParams);
 
                                     maintenanceBox.addView(maintenanceView);
                                 }

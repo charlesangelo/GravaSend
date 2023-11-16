@@ -121,74 +121,35 @@ public class Location extends AppCompatActivity {
                         double currentSpeedKph = currentSpeedMps * 3.6; // Convert to km/h
 
                         if (previousSpeed != -1) {
-                            if (currentSpeedKph - previousSpeed > 0) {
-                                if (currentSpeedKph > 30) {
-                                    harshBrakingCount++;
-                                    speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
-                                    updateHarshBrakingUI(harshBrakingCount, "0-30 km/h");
+                            double speedChange = currentSpeedKph - previousSpeed;
 
-                                    // Vibrate and play sound for harsh braking
-                                    vibrateAndPlaySound(3000);
+                            // Harsh Braking
+                            if (speedChange < -10.9435) {
+                                harshBrakingCount++;
+                                speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
+                                updateHarshBrakingUI(harshBrakingCount);
 
-                                    // Show a pop-up dialog for harsh braking
-                                    showAlertDialog("Harsh Braking", "You've experienced harsh braking at 0-30 km/h.");
-                                } else if (currentSpeedKph > 60) {
-                                    harshBrakingCount++;
-                                    speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
-                                    updateHarshBrakingUI(harshBrakingCount, "30-60 km/h");
+                                // Vibrate and play sound for harsh braking
+                                vibrateAndPlaySound(1500);
 
-                                    // Vibrate and play sound for harsh braking
-                                    vibrateAndPlaySound(3000);
-
-                                    // Show a pop-up dialog for harsh braking
-                                    showAlertDialog("Harsh Braking", "You've experienced harsh braking at 30-60 km/h.");
-                                } else if (currentSpeedKph > 100) {
-                                    harshBrakingCount++;
-                                    speedRef.child("harsh_braking_count").setValue(harshBrakingCount);
-                                    updateHarshBrakingUI(harshBrakingCount, "60-100 km/h");
-
-                                    // Vibrate and play sound for harsh braking
-                                    vibrateAndPlaySound(3000);
-
-                                    // Show a pop-up dialog for harsh braking
-                                    showAlertDialog("Harsh Braking", "You've experienced harsh braking at 60-100 km/h.");
-                                }
+                                // Show a pop-up dialog for harsh braking
+                                showAlertDialog("Harsh Braking", "You've experienced harsh braking.");
                             }
 
-                            if (currentSpeedKph - previousSpeed > 0) {
-                                if (currentSpeedKph > 30) {
-                                    suddenAccelerationCount++;
-                                    speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
-                                    updateSuddenAccelerationUI(suddenAccelerationCount, "0-30 km/h");
+                            // Sudden Acceleration
+                            if (speedChange > 9.8813) {
+                                suddenAccelerationCount++;
+                                speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
+                                updateSuddenAccelerationUI(suddenAccelerationCount);
 
-                                    // Vibrate and play sound for sudden acceleration
-                                    vibrateAndPlaySound(3000);
+                                // Vibrate and play sound for sudden acceleration
+                                vibrateAndPlaySound(1500);
 
-                                    // Show a pop-up dialog for sudden acceleration
-                                    showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 0-30 km/h.");
-                                } else if (currentSpeedKph > 60) {
-                                    suddenAccelerationCount++;
-                                    speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
-                                    updateSuddenAccelerationUI(suddenAccelerationCount, "30-60 km/h");
-
-                                    // Vibrate and play sound for sudden acceleration
-                                    vibrateAndPlaySound(3000);
-
-                                    // Show a pop-up dialog for sudden acceleration
-                                    showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 30-60 km/h.");
-                                } else if (currentSpeedKph > 100) {
-                                    suddenAccelerationCount++;
-                                    speedRef.child("sudden_acceleration_count").setValue(suddenAccelerationCount);
-                                    updateSuddenAccelerationUI(suddenAccelerationCount, "60-100 km/h");
-
-                                    // Vibrate and play sound for sudden acceleration
-                                    vibrateAndPlaySound(3000);
-
-                                    // Show a pop-up dialog for sudden acceleration
-                                    showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration at 60-100 km/h.");
-                                }
+                                // Show a pop-up dialog for sudden acceleration
+                                showAlertDialog("Sudden Acceleration", "You've experienced sudden acceleration.");
                             }
                         }
+
 
                         previousSpeed = currentSpeedKph;
 
@@ -203,16 +164,16 @@ public class Location extends AppCompatActivity {
                             updateMaxSpeedUI(maxSpeed); // Update the UI
                         }
 
-                        if (currentSpeedKph > 100.0) {
+                        if (currentSpeedKph > 80.0) {
                             // Handle speeds exceeding 100 km/h
                             Log.d("SpeedTracker", "Speed exceeded 100 km/h: " + currentSpeedKph + " KM/h");
-                            speedRef.child("speed_errors").push().setValue("Speed exceeded 100 km/h");
+                            speedRef.child("speed_errors").push().setValue("Speed exceeded 80 km/h");
 
                             // Vibrate and play sound for exceeding 100 km/h
                             vibrateAndPlaySound(3000);
 
                             // Show a pop-up dialog for exceeding 100 km/h
-                            showAlertDialog("Speed Exceeded", "You've exceeded 100 km/h.");
+                            showAlertDialog("Speed Exceeded", "You've exceeded 80 km/h. SLOW DOWN!");
                         }
 
                         speedRef.child("average_speed").setValue(averageSpeed);
@@ -250,12 +211,12 @@ public class Location extends AppCompatActivity {
         currentSpeedTextView.setText("Current Speed: " + formattedSpeed + " KM/h");
     }
 
-    private void updateHarshBrakingUI(int count, String speedRange) {
-        harshBrakingCountTextView.setText("Harsh Braking Count (" + speedRange + "): " + count);
+    private void updateHarshBrakingUI(int count) {
+        harshBrakingCountTextView.setText("Harsh Braking Count: " + count);
     }
 
-    private void updateSuddenAccelerationUI(int count, String speedRange) {
-        suddenAccelerationCountTextView.setText("Sudden Acceleration Count (" + speedRange + "): " + count);
+    private void updateSuddenAccelerationUI(int count) {
+        suddenAccelerationCountTextView.setText("Sudden Acceleration Count: " + count);
     }
 
     private void updateLocationInfo(android.location.Location location) {

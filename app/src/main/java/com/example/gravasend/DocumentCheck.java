@@ -158,22 +158,7 @@ public class DocumentCheck extends AppCompatActivity {
                         }
                     });
 
-            DatabaseReference documentCheck = FirebaseDatabase.getInstance().getReference("DocumentCheckRecord").child(userId);
-            String documentKey = documentCheck.push().getKey();
-            documentCheck.child(documentKey).setValue(checkboxData)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Intent intent = new Intent(DocumentCheck.this, CurrentTrip.class);
-                            startActivity(intent);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // Handle the failure to save data
-                        }
-                    });
+
         }
     }
 

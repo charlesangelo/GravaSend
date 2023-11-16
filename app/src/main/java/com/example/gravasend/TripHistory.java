@@ -85,7 +85,7 @@
                             public void onComplete(Task<DataSnapshot> task) {
                                 if (task.isSuccessful()) {
                                     DataSnapshot dataSnapshot = task.getResult();
-
+                                    Log.d("history", dataSnapshot.toString());
 
                                     if (dataSnapshot.exists()) {
                                         View tripItemView = getLayoutInflater().inflate(R.layout.trip_item, null);
@@ -98,10 +98,18 @@
                                         String origin = dataSnapshot.child("origin").getValue(String.class);
                                         String destination = dataSnapshot.child("destination").getValue(String.class);
                                         String date = dataSnapshot.child("dateTime").getValue(String.class);
+                                        String firstTenChars = date.substring(0, 10);
+                                        cargoTextView.setText(cargo+" - "+weight+" cubic");
+                                        originTextView.setText(origin+" - "+destination);
+                                        dateTextView.setText(firstTenChars);
 
-                                        cargoTextView.setText(cargo+"-"+weight);
-                                        originTextView.setText(origin+"-"+destination);
-                                        dateTextView.setText(date);
+                                        // Add margin to the inspectionView (adjust margin value as needed)
+                                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                LinearLayout.LayoutParams.WRAP_CONTENT
+                                        );
+                                        layoutParams.setMargins(0, 0, 0, 16); // Adjust the margin value as needed
+                                        tripItemView.setLayoutParams(layoutParams);
 
                                         tripBox.addView(tripItemView);
                                     }

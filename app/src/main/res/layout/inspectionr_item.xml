@@ -10,7 +10,7 @@
     android:layout_margin="8dp">
 
     <TextView
-        android:id="@+id/service"
+        android:id="@+id/inspectionType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Service"
@@ -21,7 +21,7 @@
         android:layout_marginBottom="8dp"/>
 
     <TextView
-        android:id="@+id/nextduemileage"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -29,7 +29,7 @@
         android:layout_marginBottom="8dp"
         android:textColor="#000000"/>
     <TextView
-        android:id="@+id/status"
+        android:id="@+id/verdict"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

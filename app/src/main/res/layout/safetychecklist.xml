@@ -114,7 +114,7 @@
             android:gravity=""
             android:paddingLeft="20dp"
             android:text="Safety Checklist"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />

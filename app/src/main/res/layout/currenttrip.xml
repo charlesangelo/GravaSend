@@ -39,7 +39,7 @@
             android:layout_height="51dp"
             android:gravity=""
             android:paddingLeft="20dp"
-            android:text="Truck Information"
+            android:text="Trip Information"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"

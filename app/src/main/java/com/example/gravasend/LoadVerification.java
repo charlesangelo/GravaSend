@@ -95,11 +95,10 @@ public class LoadVerification extends AppCompatActivity {
             // Use the current user's UID as a key to separate data
             String userId = currentUser.getUid();
 
-            // Create a unique key for the cargo data
-            String cargoId = databaseReference.child("Cargo").child(userId).push().getKey();
+
 
             // Create a Cargo object
-            Cargo cargo = new Cargo(cargoId, cargoType, cargoWeight);
+            Cargo cargo = new Cargo( cargoType, cargoWeight);
 
             // Save cargo data to Firebase under the user's UID
             databaseReference.child("Cargo").child(userId).setValue(cargo)
