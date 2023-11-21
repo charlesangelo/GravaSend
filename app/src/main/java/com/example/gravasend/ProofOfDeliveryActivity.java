@@ -2,6 +2,7 @@ package com.example.gravasend;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -23,6 +24,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +43,7 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private String eSignatureUrl; // URL for the e-signature
+    private StorageReference storageReference;
 
 
     @Override
@@ -52,6 +57,9 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         proofOfDeliveryRef = database.getReference("ProofOfDelivery");
         currentUser = firebaseAuth.getCurrentUser();
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
 
         // Initialize views
         signatureView = findViewById(R.id.signatureView);
@@ -119,58 +127,66 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
 
                 // Store the input data in Firebase
                 if (currentUser != null) {
+                    String fileName = "signature_" + currentUser.getUid() + ".png";
+
+                    // Create a reference to the signature image in Firebase Storage
+                    StorageReference signatureRef = storageReference.child("signatures/" + fileName);
+
                     DatabaseReference userRef = proofOfDeliveryRef.child(currentUser.getUid());
                     // Update the e-signature URL
                     eSignatureUrl = eSignature;
-                    ProofOfDeliveryData deliveryData = new ProofOfDeliveryData(eSignatureUrl, date, time);
 
-                    userRef.child(commonKey).setValue(deliveryData);
+                    // Convert the e-signature to a byte array (PNG format)
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    signatureView.getSignatureBitmap().compress(Bitmap.CompressFormat.PNG, 100, baos);
+                    byte[] imageData = baos.toByteArray();
 
-
-                    DatabaseReference safetyChecklistRef = FirebaseDatabase.getInstance().getReference("Safety Checklist").child(uid);
-                    safetyChecklistRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    // Upload the e-signature to Firebase Storage
+                    signatureRef.putBytes(imageData).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot2) {
-                            if (snapshot2.exists()) {
-                                boolean brake=snapshot2.child("brake").getValue(Boolean.class);
-                                boolean lights=snapshot2.child("lights").getValue(Boolean.class);
-                                boolean safetyequipment=snapshot2.child("safetyequipment").getValue(Boolean.class);
-                                boolean steering=snapshot2.child("steering").getValue(Boolean.class);
-                                boolean suspension=snapshot2.child("suspension").getValue(Boolean.class);
-                                boolean tireswheels=snapshot2.child("tireswheels").getValue(Boolean.class);
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                // Signature uploaded successfully, get the download URL
+                                signatureRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        // URL of the uploaded e-signature
+                                        String eSignatureUrl = uri.toString();
 
-                                Map<String, Object> checkboxData = new HashMap<>();
-                                checkboxData.put("brake", brake);
-                                checkboxData.put("lights", lights);
-                                checkboxData.put("safetyequipment", safetyequipment);
-                                checkboxData.put("steering", steering);
-                                checkboxData.put("suspension", suspension);
-                                checkboxData.put("tireswheels", tireswheels);
+                                        // Now you can update the proofOfDeliveryData in the Realtime Database
+                                        ProofOfDeliveryData deliveryData = new ProofOfDeliveryData(eSignatureUrl, date, time);
 
-                                DatabaseReference safetyChecklistRef = FirebaseDatabase.getInstance().getReference("SafetyChecklistRecord").child(uid);
+                                        // Assuming you have a unique key for each delivery entry
+                                        String deliveryKey = userRef.push().getKey();
 
-                                safetyChecklistRef.child(commonKey).setValue(checkboxData)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-
-
-                                                } else {
-
-                                                }
-                                            }
-                                        });
-
-
+                                        // Update the proofOfDeliveryData under the user's UID with the new delivery entry
+                                        userRef.child(deliveryKey).setValue(deliveryData)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            // Upload successful
+                                                            Toast.makeText(ProofOfDeliveryActivity.this, "Proof of Delivery submitted successfully.", Toast.LENGTH_SHORT).show();
+                                                            Intent intent = new Intent(ProofOfDeliveryActivity.this, TripDashboard.class);
+                                                            startActivity(intent);
+                                                            finish(); // Finish the current activity
+                                                        } else {
+                                                            // Handle the error if the upload fails
+                                                            Toast.makeText(ProofOfDeliveryActivity.this, "Failed to submit proof of delivery.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+                                    }
+                                });
+                            } else {
+                                // Handle the error if the upload fails
+                                Toast.makeText(ProofOfDeliveryActivity.this, "Failed to upload e-signature", Toast.LENGTH_SHORT).show();
                             }
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
                     });
+
+
+
 
                     DatabaseReference documentCheckRef = FirebaseDatabase.getInstance().getReference("Document Check").child(uid);
                     documentCheckRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -264,6 +280,52 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                 DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("CargoRecord").child(uid);
 
                                 signRef.child(commonKey).setValue(cargoval)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+
+
+                                                } else {
+
+                                                }
+                                            }
+                                        });
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+                    DatabaseReference speedRef = FirebaseDatabase.getInstance().getReference("SpeedTracker").child(uid);
+                    speedRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                            if (snapshot2.exists()) {
+                                Number average_speed=snapshot2.child("average_speed").getValue(Number.class);
+                                Number current_speed=snapshot2.child("current_speed").getValue(Number.class);
+                                Number harsh_braking_count=snapshot2.child("harsh_braking_count").getValue(Number.class);
+                                Number max_speed=snapshot2.child("max_speed").getValue(Number.class);
+                                Number sudden_acceleration_count=snapshot2.child("sudden_acceleration_count").getValue(Number.class);
+
+
+
+                                Map<String, Object> speedval = new HashMap<>();
+                                speedval.put("average_speed", average_speed);
+                                speedval.put("current_speed", current_speed);
+                                speedval.put("harsh_braking_count", harsh_braking_count);
+                                speedval.put("max_speed", max_speed);
+                                speedval.put("sudden_acceleration_count", sudden_acceleration_count);
+
+                                DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("SpeedRecord").child(uid);
+
+                                signRef.child(commonKey).setValue(speedval)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
