@@ -44,6 +44,7 @@ public class DocumentCheck extends AppCompatActivity {
 
     private DatabaseReference databaseReference; // Add this variable
     private StorageReference storageReference; // Add this variable
+    private MaintenanceManager maintenanceManager;
 
     private boolean loadedData = false; // Flag to track if data has been loaded
 
@@ -52,6 +53,9 @@ public class DocumentCheck extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.documentcheck);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this);

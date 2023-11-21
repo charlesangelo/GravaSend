@@ -32,11 +32,15 @@
         private FirebaseAuth auth;
         private DatabaseReference databaseReference;
         private LinearLayout tripBox;
+        private MaintenanceManager maintenanceManager;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.triphistory);
+
+            maintenanceManager = MaintenanceManager.getInstance();
+            maintenanceManager.startMaintenanceCheck(this);
 
             auth = FirebaseAuth.getInstance();
             // Get the current user's ID

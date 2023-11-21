@@ -12,10 +12,14 @@ public class MyTrips extends AppCompatActivity {
     private ImageButton b1;
     private ImageButton b2;
     private ImageButton b3;
+    private MaintenanceManager maintenanceManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mytrips);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         b1 = findViewById(R.id.backButton);
         b2 = findViewById(R.id.currentTripButton);

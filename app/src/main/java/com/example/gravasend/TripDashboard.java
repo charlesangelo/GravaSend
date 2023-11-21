@@ -24,11 +24,15 @@ public class TripDashboard extends AppCompatActivity {
 
     private DatabaseReference tripDashboardRef;
     private FirebaseAuth firebaseAuth;
+    private MaintenanceManager maintenanceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tripdashboard);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         // Initialize Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -53,10 +57,12 @@ public class TripDashboard extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                // Intent to start the CurrentTrip activity
+                Intent intent = new Intent(TripDashboard.this, CurrentTrip.class);
+                startActivity(intent);
+                finish(); // Optional: finish the current activity if needed
             }
         });
-
         // Complete Trip Button
         completeTripButton.setOnClickListener(new View.OnClickListener() {
             @Override

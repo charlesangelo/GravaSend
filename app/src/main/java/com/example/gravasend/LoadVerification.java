@@ -31,11 +31,15 @@ public class LoadVerification extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private FirebaseUser currentUser;
+    private MaintenanceManager maintenanceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loadverification);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         // Initialize Firebase Database reference
         databaseReference = FirebaseDatabase.getInstance().getReference();

@@ -14,10 +14,13 @@ public class CurrentTrip extends AppCompatActivity {
     private ImageButton b3;
     private ImageButton b4;
     private ImageButton b5;
+    private MaintenanceManager maintenanceManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currenttrip);
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         b1 = findViewById(R.id.backButton);
         b2 = findViewById(R.id.btnMyTruck);

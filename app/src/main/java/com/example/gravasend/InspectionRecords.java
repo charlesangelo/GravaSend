@@ -32,11 +32,15 @@ public class InspectionRecords extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseUser currentUser;
     private LinearLayout inspectionRecordBox;
+    private MaintenanceManager maintenanceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inspectionrecords);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         // Initialize Firebase Database and Authentication
         databaseReference = FirebaseDatabase.getInstance().getReference("inspectionRecords");

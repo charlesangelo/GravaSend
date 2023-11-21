@@ -41,6 +41,10 @@ public class Home extends AppCompatActivity {
     private StorageReference storageReference; // Firebase Storage reference for user images
     private static final String PREF_NAME = "DriverPrefs";
     private static final String KEY_DRIVER_NAME = "driverName";
+    private MaintenanceManager maintenanceManager;
+
+    private CurrentTripManager currentTripManager;
+
 
     private static final int GALLERY_REQUEST_CODE = 1;
 
@@ -48,6 +52,14 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        currentTripManager = CurrentTripManager.getInstance();
+        currentTripManager.CurrentTripCheck(this);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
+
+
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();

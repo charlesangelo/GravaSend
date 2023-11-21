@@ -48,11 +48,15 @@ public class SafetyChecklist extends AppCompatActivity {
     private Button button4;
     private EditText odometerInput;
     private EditText plateNumberInput;
+    private MaintenanceManager maintenanceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.safetychecklist);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();

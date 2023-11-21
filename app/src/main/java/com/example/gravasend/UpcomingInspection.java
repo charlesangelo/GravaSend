@@ -30,11 +30,15 @@ public class UpcomingInspection extends AppCompatActivity {
     private TextView serviceType;
     private TextView date;
     private LinearLayout inspectionBox;
+    private MaintenanceManager maintenanceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upcominginspections);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("upcomingInspections");

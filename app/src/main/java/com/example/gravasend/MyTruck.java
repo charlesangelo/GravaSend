@@ -29,11 +29,15 @@ public class MyTruck extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    private MaintenanceManager maintenanceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mytruck);
+
+        maintenanceManager = MaintenanceManager.getInstance();
+        maintenanceManager.startMaintenanceCheck(this);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("trucks");
         mAuth = FirebaseAuth.getInstance();
