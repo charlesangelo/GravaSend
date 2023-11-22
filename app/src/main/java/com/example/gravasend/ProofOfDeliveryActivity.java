@@ -55,7 +55,7 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
         // Initialize Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        proofOfDeliveryRef = database.getReference("ProofOfDelivery");
+        proofOfDeliveryRef = database.getReference("ProofRecords");
         currentUser = firebaseAuth.getCurrentUser();
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -82,31 +82,6 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
 
 
         // Retrieve and set retained data, if available
-        if (currentUser != null) {
-
-            DatabaseReference userRef = proofOfDeliveryRef.child(currentUser.getUid());
-
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        ProofOfDeliveryData deliveryData = dataSnapshot.getValue(ProofOfDeliveryData.class);
-                        if (deliveryData != null) {
-                            dateInput.setText(deliveryData.getDate());
-                            timeInput.setText(deliveryData.getTime());
-
-                            // Get the e-signature URL and display it
-                            eSignatureUrl = deliveryData.getESignature();
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle database errors if needed.
-                }
-            });
-        }
 
         // Complete Trip Button
         completeTripButton.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +107,7 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                     // Create a reference to the signature image in Firebase Storage
                     StorageReference signatureRef = storageReference.child("signatures/" + fileName);
 
-                    DatabaseReference userRef = proofOfDeliveryRef.child(currentUser.getUid());
+                    DatabaseReference userRef = proofOfDeliveryRef.child(currentUser.getUid()).child(commonKey);
                     // Update the e-signature URL
                     eSignatureUrl = eSignature;
 
@@ -156,11 +131,10 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                         // Now you can update the proofOfDeliveryData in the Realtime Database
                                         ProofOfDeliveryData deliveryData = new ProofOfDeliveryData(eSignatureUrl, date, time);
 
-                                        // Assuming you have a unique key for each delivery entry
-                                        String deliveryKey = userRef.push().getKey();
+
 
                                         // Update the proofOfDeliveryData under the user's UID with the new delivery entry
-                                        userRef.child(deliveryKey).setValue(deliveryData)
+                                        userRef.setValue(deliveryData)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
@@ -238,8 +212,8 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                             if (snapshot2.exists()) {
                                 String url=snapshot2.getValue(String.class);
 
-                                DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("DocumentCheckSignaturesRecord").child(uid);
-                                signRef.child(commonKey).setValue(url)
+                                DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("DocumentCheckRecord").child(uid);
+                                signRef.child(commonKey).child("signature").setValue(url)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -301,31 +275,31 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
 
                         }
                     });
-
-
-                    DatabaseReference speedRef = FirebaseDatabase.getInstance().getReference("SpeedTracker").child(uid);
-                    speedRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    DatabaseReference safetyref = FirebaseDatabase.getInstance().getReference("Safety Checklist").child(uid);
+                    safetyref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot2) {
                             if (snapshot2.exists()) {
-                                Number average_speed=snapshot2.child("average_speed").getValue(Number.class);
-                                Number current_speed=snapshot2.child("current_speed").getValue(Number.class);
-                                Number harsh_braking_count=snapshot2.child("harsh_braking_count").getValue(Number.class);
-                                Number max_speed=snapshot2.child("max_speed").getValue(Number.class);
-                                Number sudden_acceleration_count=snapshot2.child("sudden_acceleration_count").getValue(Number.class);
+                                Boolean brake=snapshot2.child("brake").getValue(Boolean.class);
+                                Boolean lights=snapshot2.child("lights").getValue(Boolean.class);
+                                Boolean safetyequipment=snapshot2.child("safetyequipment").getValue(Boolean.class);
+                                Boolean steering=snapshot2.child("steering").getValue(Boolean.class);
+                                Boolean suspension=snapshot2.child("suspension").getValue(Boolean.class);
+                                Boolean tireswheels=snapshot2.child("tireswheels").getValue(Boolean.class);
 
 
 
-                                Map<String, Object> speedval = new HashMap<>();
-                                speedval.put("average_speed", average_speed);
-                                speedval.put("current_speed", current_speed);
-                                speedval.put("harsh_braking_count", harsh_braking_count);
-                                speedval.put("max_speed", max_speed);
-                                speedval.put("sudden_acceleration_count", sudden_acceleration_count);
+                                Map<String, Object> docuval = new HashMap<>();
+                                docuval.put("brake", brake);
+                                docuval.put("lights", lights);
+                                docuval.put("safetyequipment", safetyequipment);
+                                docuval.put("steering", steering);
+                                docuval.put("suspension", suspension);
+                                docuval.put("tireswheels", tireswheels);
 
-                                DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("SpeedRecord").child(uid);
+                                DatabaseReference signRef = FirebaseDatabase.getInstance().getReference("SafetyChecklistRecord").child(uid);
 
-                                signRef.child(commonKey).setValue(speedval)
+                                signRef.child(commonKey).setValue(docuval)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -347,6 +321,53 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
 
                         }
                     });
+
+                    DatabaseReference speedRefs = FirebaseDatabase.getInstance().getReference("SpeedTracker").child(uid);
+                    speedRefs.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                            if (snapshot2.exists()) {
+                                Integer average_speed=snapshot2.child("average_speed").getValue(Integer.class);
+                                Integer current_speed=snapshot2.child("current_speed").getValue(Integer.class);
+                                Integer harsh_braking_count=snapshot2.child("harsh_braking_count").getValue(Integer.class);
+                                Integer max_speed=snapshot2.child("max_speed").getValue(Integer.class);
+                                    Integer sudden_acceleration_count=snapshot2.child("sudden_acceleration_count").getValue(Integer.class);
+
+
+                                Map<String, Object> speedval = new HashMap<>();
+                                speedval.put("average_speed", average_speed);
+                                speedval.put("current_speed", current_speed);
+                                speedval.put("harsh_braking_count", harsh_braking_count);
+                                speedval.put("max_speed", max_speed);
+                                speedval.put("sudden_acceleration_count", sudden_acceleration_count);
+
+                                DatabaseReference speedRecRef = FirebaseDatabase.getInstance().getReference("TripHistory").child(uid);
+
+                                speedRecRef.child(commonKey).setValue(speedval)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+
+
+                                                } else {
+
+                                                }
+                                            }
+                                        });
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+
 
 
 
@@ -377,10 +398,12 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                 String cargo=dataSnapshot.child("cargo").getValue(String.class);
                                 String weight=dataSnapshot.child("weight").getValue(String.class);
                                 String instructions=dataSnapshot.child("instructions").getValue(String.class);
+                                String driverName=dataSnapshot.child("driverName").getValue(String.class);
+                                String UID=dataSnapshot.child("UID").getValue(String.class);
 
 
 
-                                TripHistoryData tripHistory = new TripHistoryData(dateTime,origin,destination,cargo,weight,instructions);
+                                TripHistoryData tripHistory = new TripHistoryData(dateTime,origin,destination,cargo,weight,instructions,driverName,UID);
 
                                 DatabaseReference triphistory = FirebaseDatabase.getInstance().getReference("TripHistory").child(uid);
 

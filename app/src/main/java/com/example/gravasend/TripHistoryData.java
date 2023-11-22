@@ -1,5 +1,7 @@
 package com.example.gravasend;
 
+import org.checkerframework.checker.guieffect.qual.UI;
+
 public class TripHistoryData {
     private String dateTime;
     private String origin;
@@ -7,19 +9,23 @@ public class TripHistoryData {
     private String cargo;
     private String weight;
     private String instructions;
+    private String driverName;
+    private String UID;
 
     // Default constructor is required for calls to DataSnapshot.getValue(TripHistory.class)
     public TripHistoryData() {
         // Default constructor required for Firebase
     }
 
-    public TripHistoryData(String dateTime, String origin, String destination, String cargo, String weight, String instructions) {
+    public TripHistoryData(String dateTime, String origin, String destination, String cargo, String weight, String instructions,String driverName,String UID) {
         this.dateTime = dateTime;
         this.origin = origin;
         this.destination = destination;
         this.cargo = cargo;
         this.weight = weight;
         this.instructions = instructions;
+        this.driverName = driverName;
+        this.UID = UID;
     }
 
     public String getDateTime() {
@@ -45,6 +51,12 @@ public class TripHistoryData {
     public String getInstructions() {
         return instructions;
     }
+    public String getDriverName() {
+        return driverName;
+    }
+    public String getUID() {
+        return UID;
+    }
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
@@ -68,5 +80,11 @@ public class TripHistoryData {
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
+    }
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 }

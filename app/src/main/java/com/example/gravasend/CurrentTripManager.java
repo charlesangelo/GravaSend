@@ -64,7 +64,7 @@ public class CurrentTripManager {
             @Override
             public void onStatusReceived(String status) {
                 // Check if the status indicates a pending trip
-                if (status != null && status.equalsIgnoreCase("pending")) {
+                if (status != null && status.equalsIgnoreCase("OnGoing")) {
                     // Show a prompt or notification to the user
                     showTripPrompt(context);
                 }
@@ -80,7 +80,7 @@ public class CurrentTripManager {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // User's UID is found, indicating a pending trip
-                    callback.onStatusReceived("pending");
+                    callback.onStatusReceived("OnGoing");
                 } else {
                     // No pending trip found
                     callback.onStatusReceived(null);

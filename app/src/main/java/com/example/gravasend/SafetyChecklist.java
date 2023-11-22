@@ -454,7 +454,7 @@ public class SafetyChecklist extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     String odometerValue = dataSnapshot.child("mileage").getValue(Integer.class).toString();
                     odometerInput.setText(odometerValue);
-                    String plateNo = dataSnapshot.child("plateNo2").getValue(String.class);
+                    String plateNo = dataSnapshot.child("plateNo").getValue(String.class);
                     plateNumberInput.setText((plateNo));
                 }
             }

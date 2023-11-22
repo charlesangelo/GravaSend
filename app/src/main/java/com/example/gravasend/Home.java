@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class Home extends AppCompatActivity {
     private ImageButton b2;
     private ImageButton b3;
     private ImageView imageView6; // Display profile image
-    private EditText edittext11;
+    private TextView edittext11;
     private Button editProfileButton;
     private FirebaseAuth mAuth; // Firebase Authentication
     private DatabaseReference databaseReference; // Firebase Realtime Database reference
