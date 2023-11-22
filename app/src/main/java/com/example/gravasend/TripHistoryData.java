@@ -11,13 +11,14 @@ public class TripHistoryData {
     private String instructions;
     private String driverName;
     private String UID;
+    private String status;
 
     // Default constructor is required for calls to DataSnapshot.getValue(TripHistory.class)
     public TripHistoryData() {
         // Default constructor required for Firebase
     }
 
-    public TripHistoryData(String dateTime, String origin, String destination, String cargo, String weight, String instructions,String driverName,String UID) {
+    public TripHistoryData(String dateTime, String origin, String destination, String cargo, String weight, String instructions,String driverName,String UID,String status) {
         this.dateTime = dateTime;
         this.origin = origin;
         this.destination = destination;
@@ -26,6 +27,7 @@ public class TripHistoryData {
         this.instructions = instructions;
         this.driverName = driverName;
         this.UID = UID;
+        this.status = status;
     }
 
     public String getDateTime() {
@@ -57,6 +59,9 @@ public class TripHistoryData {
     public String getUID() {
         return UID;
     }
+    public String getStatus() {
+        return status;
+    }
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
@@ -86,5 +91,8 @@ public class TripHistoryData {
     }
     public void setUID(String UID) {
         this.UID = UID;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

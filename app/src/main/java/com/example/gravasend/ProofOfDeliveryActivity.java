@@ -341,7 +341,7 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                 speedval.put("max_speed", max_speed);
                                 speedval.put("sudden_acceleration_count", sudden_acceleration_count);
 
-                                DatabaseReference speedRecRef = FirebaseDatabase.getInstance().getReference("TripHistory").child(uid);
+                                DatabaseReference speedRecRef = FirebaseDatabase.getInstance().getReference("SpeedRecord").child(uid);
 
                                 speedRecRef.child(commonKey).setValue(speedval)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -400,10 +400,11 @@ public class ProofOfDeliveryActivity extends AppCompatActivity {
                                 String instructions=dataSnapshot.child("instructions").getValue(String.class);
                                 String driverName=dataSnapshot.child("driverName").getValue(String.class);
                                 String UID=dataSnapshot.child("UID").getValue(String.class);
+                                String status="tobeadd";
 
 
 
-                                TripHistoryData tripHistory = new TripHistoryData(dateTime,origin,destination,cargo,weight,instructions,driverName,UID);
+                                TripHistoryData tripHistory = new TripHistoryData(dateTime,origin,destination,cargo,weight,instructions,driverName,UID,status);
 
                                 DatabaseReference triphistory = FirebaseDatabase.getInstance().getReference("TripHistory").child(uid);
 
