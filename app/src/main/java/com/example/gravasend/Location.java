@@ -164,7 +164,7 @@ public class Location extends AppCompatActivity {
                             updateMaxSpeedUI(maxSpeed); // Update the UI
                         }
 
-                        if (currentSpeedKph > 80.0) {
+                        if (currentSpeedKph > 30.0) {
                             // Handle speeds exceeding 100 km/h
                             Log.d("SpeedTracker", "Speed exceeded 100 km/h: " + currentSpeedKph + " KM/h");
                             speedRef.child("speed_errors").push().setValue("Speed exceeded 80 km/h");
